@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>© 𝗡𝗘𝗘𝗫𝗧 𝗟𝗧𝗗𝗔.</title>
+    <link rel="icon" href="imagens/logo.jpeg" type="image/jpeg"> <!-- Ícone da página -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- SweetAlert 2 CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+
+    <style>
+    
+    
+        /* Estilos para o cursor animado */
+        .cursor {
+            display: inline-block;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Estilos para o botão do WhatsApp e Suporte */
+        .contact-button {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            width: 200px;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .whatsapp-button {
+            background-color: #25D366;
+            margin-bottom: 5px;
+        }
+
+        .support-button {
+            background: linear-gradient(to right, #8A2BE2, #00BFFF);
+            margin-top: 0;
+        }
+
+        .icon {
+            font-size: 30px;
+            margin-right: 10px;
+        }
+
+        .support-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        /* Lista de contatos */
+        .contact-list {
+            margin-top: 20px;
+            padding-left: 0;
+        }
+
+        .contact-list li {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            margin: 5px 0;
+        }
+
+        .contact-list li img {
+            width: 20px;
+            margin-right: 10px;
+        }
+
+        .fixed-icon {
+            width: 24px; /* Ajusta a largura do ícone para o tamanho da letra 'q' */
+            height: 24px; /* Ajusta a altura do ícone para o tamanho da letra 'q' */
+            margin-right: 10px;
+        }
+
+        /* Estilos para a linha separadora */
+        .separator {
+            border: none;
+            height: 2px;
+            background: rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+
+        /* Estilos para o iframe */
+        #iframe-container {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centraliza o iframe */
+        }
+
+        #contador-frame, #neext-frame {
+            width: 100%;
+            height: auto; /* Deixe a altura automática */
+            min-height: 200px; /* Altura mínima */
+            border: none;
+        }
+
+        /* Estilos para o rodapé */
+        footer {
+            background-color: #282c34;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: auto;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: #61dafb;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de Navegação Superior -->
+    <div class="navbar">
+        <div class="logo">
+            <img src="svg/icon.svg" alt="Ícone" class="icon"> 
+            <span class="site-title">NEEXT LTDA.</span> 
+        </div>
+        <div class="menu-hamburger" onclick="toggleMenu()">
+            <img src="svg/menu-icon.svg" alt="Menu Icon" width="30" height="30">
+        </div>
+    </div>
+
+    <div class="menu" id="menu">
+        <a href="apostilaskur.html">
+            <img src="svg/verificado.svg" alt="Verificado" class="fixed-icon"> Apostila Skur
+        </a>
+        <a href="apostilafbi.html">
+            <img src="svg/verificado.svg" alt="Verificado" class="fixed-icon"> Apostila FBI
+        </a>
+        <a href="https://quantico-fbi.pages.dev/login" target="_blank">
+            <img src="svg/verificado.svg" alt="Verificado" class="fixed-icon"> Painel FBI
+        </a>
+        <a href="https://form-skur.pages.dev/login" target="_blank">
+            <img src="svg/verificado.svg" alt="Verificado" class="fixed-icon"> Painel Skur
+        </a>
+    </div>
+
+    <!-- Barra Lateral -->
+    <div class="barra-lateral">
+        <a href="https://example.com/skur" target="_blank">Skur</a>
+        <a href="https://example.com/fbi" target="_blank">Fbi</a>
+        <a href="https://t.me/your_username" target="_blank">Telegram</a>
+        <a href="https://discord.com/invite/your_invite" target="_blank">Discord</a>
+    </div>
+
+    <!-- Seção de Boas-Vindas -->
+    <div class="welcome-container">
+        <h1 class="welcome-message">
+            <img src="svg/fixado.svg" alt="Ícone Fixado" class="fixed-icon"> 
+            Bem-vindo ao nosso site!
+        </h1>
+        <div class="animated-message">
+            <span id="mensagem"></span>
+            <span class="cursor">|</span>
+        </div>
+
+        <!-- Lista de Contatos -->
+        <ul class="contact-list">
+            <li><img src="svg/ponto.svg" alt="Ponto"> WhatsApp</li>
+            <li><img src="svg/ponto.svg" alt="Ponto"> Telegram</li>
+            <li><img src="svg/ponto.svg" alt="Ponto"> Discord</li>
+            <li><img src="svg/ponto.svg" alt="Ponto"> Instagram</li>
+        </ul>
+
+        <!-- Botão do WhatsApp com ícone -->
+        <a href="https://wa.me/5511999999999" class="contact-button whatsapp-button" target="_blank">
+            <i class="fab fa-whatsapp icon"></i> Canal no WhatsApp
+        </a>
+
+
+<!-- Botão de Suporte com ícone -->
+<a href="mailto:neextsupport@onmail.com" class="contact-button support-button">
+    <img src="svg/suporte.svg" alt="Ícone Suporte" class="support-icon"> Suporte
+</a>
+        
+        <!-- Linha Separadora -->
+        <hr class="separator">
+
+        <!-- Contêiner para os iframes -->
+        <div id="iframe-container">
+            <!-- Iframe para o contador -->
+            <iframe id="contador-frame" src="contador.html"></iframe> <!-- Contador exibido diretamente -->
+            
+            <!-- Iframe para o Neext -->
+            <iframe id="neext-frame" src="neext.html"></iframe> <!-- Conteúdo do Neext exibido abaixo -->
+        </div>
+    </div>
+    <!-- SweetAlert 2 CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+<!-- SweetAlert 2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+<script>
+    // Função para alternar o menu
+    function toggleMenu() {
+        const menu = document.getElementById('menu');
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Exibe a notificação quando a página é carregada
+    window.onload = function() {
+        Swal.fire({
+            title: 'Atenção!',
+            text: 'Este site ainda está em atualização, mas está funcionando normalmente. Qualquer bug, nos avise no nosso Instagram.',
+            icon: 'warning', // Usando "warning" para o ícone de alerta
+            confirmButtonText: 'Ok',
+        });
+    };
+</script>
+
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2024 NEEXT LTDA. Todos os direitos reservados.</p>
+        <p>
+            <a href="#">Política de Privacidade</a> | 
+            <a href="#">Termos de Serviço</a>
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Lógica para o menu hambúrguer
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Animação da mensagem de boas-vindas
+        const mensagens = [
+            "Acesse nossos serviços!",
+            "Entre em contato com nossa equipe!",
+            "Veja as últimas atualizações!"
+        ];
+
+        let i = 0;
+        let textoAtual = "";
+        let mensagemElemento = document.getElementById("mensagem");
+
+        function digitarMensagem() {
+            if (i < mensagens.length) {
+                const mensagem = mensagens[i];
+                textoAtual = "";
+                let j = 0;
+
+                const interval = setInterval(() => {
+                    if (j < mensagem.length) {
+                        textoAtual += mensagem[j];
+                        mensagemElemento.textContent = textoAtual;j++;
+                    } else {
+                        clearInterval(interval);
+                        i++;
+                        setTimeout(digitarMensagem, 2000); // Espera 2 segundos antes de começar a próxima mensagem
+                    }
+                }, 100); // Velocidade de digitação
+            }
+        }
+
+        digitarMensagem(); // Inicia a animação
+    </script>
+</body>
+</html>
