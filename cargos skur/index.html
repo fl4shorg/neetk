@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>© 𝗦𝗞𝗨𝗥 𝗦.𝗔</title>
+    <link rel="icon" href="perfil.jpg" type="image/jpeg"> <!-- Adicionando o favicon -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <style>
+        /* Ajuste do rodapé */
+        body, html {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            flex: 1;
+            text-align: center; /* Alinhar o conteúdo ao centro */
+        }
+
+        footer {
+            text-align: center;
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            font-size: 14px;
+            margin-top: auto; /* Garante que o rodapé fique no final da página */
+        }
+
+        .banner {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<audio id="background-audio" loop>
+    <source src="wait.mp3" type="audio/mpeg">
+    Incompatível com o navegador.
+</audio>
+
+<style>
+    .banner {
+        margin-bottom: 0; /* Remove qualquer margem inferior do banner */
+        display: block; /* Garante que o banner seja tratado como um bloco */
+    }
+    
+    .profile-info {
+        background: rgba(255, 255, 255, 0.2); /* Fundo de vidro transparente */
+        backdrop-filter: blur(10px); /* Adiciona um efeito de desfoque ao fundo */
+        padding: 20px; /* Adiciona um pouco de espaço interno */
+        border-radius: 8px; /* Bordas arredondadas para um visual mais suave */
+        color: #fff; /* Cor do texto em branco para melhor contraste */
+        margin-top: -10px; /* Opcional: ajusta a posição para colar mais o banner */
+    }
+</style>
+
+<div class="container" id="container">
+    <img src="banner/3.jpg" alt="Banner da Neext" class="banner"> <!-- Banner adicionado aqui -->
+    
+    <div class="profile-info">
+        <div class="profile-circle">
+            <img src="perfil.jpg" alt="Perfil" class="profile-image" />
+        </div>
+        <div>
+            <h2>
+                Apostila 
+                <i class="fas fa-check-circle" style="color: #FFFF00;"></i>
+                <span class="pulsing-text">N</span>
+            </h2>
+            <p id="neext-sticker">@neextstickers</p>
+            <p id="greeting"></p>
+        </div>
+    </div>  
+    <div class="tweets">
+        <div class="tweet">
+            <p><i class="fas fa-thumbtack"></i> Estamos realizando melhorias em nosso site para oferecer uma experiência ainda melhor a você. Durante este período, algumas funcionalidades podem estar indisponíveis.</p>
+        </div>
+        <div class="tweet">
+            <p><i class="fas fa-tools"></i> versão 2.0 Beta</p>
+        </div>
+    </div>
+</div>
+
+    <!-- Seções de troféu -->
+    <div class="house-section" style="background-color: #6a0dad; padding: 20px; border-radius: 10px;">
+        <div class="house-title">
+            <i class="fa-solid fa-trophy"></i> <!-- Ícone de troféu -->
+            <h2>Top Ranking <i class="fas fa-check-circle" style="color: gold;"></i></h2>
+        </div>
+        <div class="copy-group">
+            <span>⁰¹├ Adm ◌ </span>
+            <span style="color: yellow; margin-left: 10px;">
+                <i style="color: gold; margin-left: 5px;">1</i> <!-- Número 1 -->
+            </span>
+            <button class="copy-button" onclick="copyText('Adm')">Copiar</button> <!-- Botão de copiar -->
+        </div>
+        <div class="copy-group">
+            <span>⁰²├ Adm2 ◌ </span>
+            <span style="color: pink; margin-left: 10px;">
+                <i style="color: gold; margin-left: 5px;">2</i> <!-- Número 2 -->
+            </span>
+            <button class="copy-button" onclick="copyText('Adm2')">Copiar</button> <!-- Botão de copiar -->
+        </div>
+    </div>
+
+   <!-- Seções de Casa -->
+<div class="house-section">
+    <div class="house-title">
+        <i class="fa-solid fa-bars"></i> <!-- Ícone de castelo -->
+        <h2> Bundestag <i class="fas fa-check-circle" style="color: #1da1f2;"></i></h2>
+    </div>
+    <div class="copy-group">
+        <span>⁰¹├🎖️Diretor ◌ </span>
+        <button class="copy-button" onclick="copyText('ᶜᶜᵖ')">Copiar</button>
+        <span style="color: yellow; margin-left: 10px;">
+            <i class="fas fa-male"></i> Sam 
+            <i class="fas fa-medal" style="color: gold; margin-left: 5px;"></i>
+        </span>
+    </div>
+    <div class="copy-group">
+        <span>⁰²├🏅Vice Diretora ◌ </span>
+        <button class="copy-button" onclick="copyText('ᵘʳˢ')">Copiar</button>
+        <span style="color: pink; margin-left: 10px;">
+            <i class="fas fa-female"></i> Tay 
+            <i class="fas fa-medal" style="color: gold; margin-left: 5px;"></i>
+        </span>
+    </div>
+    <!-- Texto de copyright centralizado -->
+    <div class="copyright-text" style="text-align: center; margin-top: 15px;">
+        © NEEXT LTDA.
+    </div>
+</div>
+    
+    
+    
+    
+    
+    
+    
+    <!-- Seção Casa Branca -->
+<div class="house-section">
+    <div class="house-title">
+        <i class="fas fa-home"></i>
+        <h2> Kremnlin <i class="fas fa-check-circle" style="color: #1da1f2;"></i></h2>
+    </div>
+    <div class="copy-group" style="display: flex; align-items: center;">
+        <span>⁰¹├▩ Primeiro Ministro ꗃ </span>
+        <button class="copy-button" onclick="copyText('ᵖʳᵉᵐⁱᵉˢᵏ')">Copiar</button>
+        <i class="fa fa-user" style="color: pink; margin-left: 5px;"></i>
+        <span style="margin-left: 5px;">Rany</span>
+    </div>
+    <div class="copy-group" style="display: flex; align-items: center;">
+        <span>⁰²├▩ Chanceler ꗃ </span>
+        <button class="copy-button" onclick="copyText('ᶜʰˢ')">Copiar</button>
+        <i class="fa fa-user" style="color: yellow; margin-left: 5px;"></i>
+        <span style="margin-left: 5px;">WD</span>
+    </div>
+    <div class="copy-group" style="display: flex; align-items: center;">
+        <span>⁰³├▩ 𝘗𝘳𝘰𝘤𝘶𝘳𝘢𝘥𝘰𝘳 Geral ꗃ </span>
+        <button class="copy-button" onclick="copyText('ᵖᶜˢ')">Copiar</button>
+        <i class="fas fa-user" style="color: pink; margin-left: 5px;"></i>
+        <span style="color: pink; margin-left: 5px;">Steh</span>
+    </div>
+    <div class="copy-group" style="display: flex; align-items: center;">
+        <span>⁰⁴├▩ 𝘊𝘰𝘯𝘴𝘦𝘭𝘩𝘦𝘪𝘳𝘰 ꗃ </span>
+        <button class="copy-button" onclick="copyText('ᶜˢᵏˢ')">Copiar</button>
+    </div>
+    <div class="copy-group" style="display: flex; align-items: center;">
+        <span>⁰⁵├▩ Diretor da Abin ꗃ </span>
+        <button class="copy-button" onclick="copyText('ᵈʳᵇⁿˢ')">Copiar</button>
+        <i class="fas fa-user" style="color: pink; margin-left: 5px;"></i>
+        <span style="color: pink; margin-left: 5px;">Angel</span>
+    </div>
+    <div class="copy-group" style="display: flex; align-items: center;">
+        <span>⁰⁶├▩ Ceo Regente ꗃ </span>
+        <button class="copy-button" onclick="copyText('ᶜᵗˢ')">Copiar</button>
+    </div>
+    <div class="copy-group" style="display: flex; align-items: center;">
+        <span>⁰⁷├▩ Arquiteto ꗃ </span>
+        <button class="copy-button" onclick="copyText('ᵃʳᵠᵗˢ')">Copiar</button>
+    </div>
+    <div class="copy-group" style="display: flex; align-items: center;">
+        <span>⁰⁸├▩ Ministro Da Economia ꗃ </span>
+        <button class="copy-button" onclick="copyText('ᵐⁿᶜˢ')">Copiar</button>
+    </div>
+    <div class="copy-group" style="display: flex; align-items: center;">
+        <span>⁰⁹├▩ Tesoureiro ꗃ </span>
+        <button class="copy-button" onclick="copyText('ᵗᵉˢʳᵏ')">Copiar</button>
+    </div>
+    <div class="copy-group" style="display: flex; align-items: center;">
+        <span>¹⁰├▩ Juiz Inspetor ꗃ </span>
+        <button class="copy-button" onclick="copyText('ˢᵗˢ')">Copiar</button>
+    </div>
+    <div class="copy-group" style="display: flex; align-items: center;">
+        <span>¹¹├▩ Delegado ꗃ </span>
+        <button class="copy-button" onclick="copyText('ᵈˡᵍᵈᵒ')">Copiar</button>
+    </div>
+    <div class="copy-group" style="display: flex; align-items: center;">
+        <span>¹²├▩ 𝘔𝘪𝘯𝘪𝘴𝘵𝘳𝘰 𝘥𝘢 𝘋𝘦𝘧𝘦𝘴𝘢 ꗃ </span>
+        <button class="copy-button" onclick="copyText('ᵐᵈᶠˢᵏ')">Copiar</button>
+        <i class="fas fa-user" style="color: pink; margin-left: 5px;"></i>
+        <span style="color: pink; margin-left: 5px;">Vih❤️</span>
+    </div>
+<div class="copy-group" style="display: flex; align-items: center; flex-wrap: nowrap;">
+    <span style="font-size: 15px;">¹³├▩ Presidente do brinks ꗃ</span>
+    <button class="copy-button" onclick="copyText('ᵖʳˢᵏᵘʳ')" style="font-size: 12px;">Copiar</button>
+    <i class="fas fa-user" style="color: pink; margin-left: 5px; font-size: 20px;"></i>
+    <span style="color: pink; margin-left: 5px; font-size: 12px;">Nome</span>
+</div>
+    <div class="copy-group" style="display: flex; align-items: center;">
+        <span>¹⁴├▩ Ministro da Justiça ꗃ </span>
+        <button class="copy-button" onclick="copyText('ᵐⁿˢᵗⁿ')">Copiar</button>
+        <i class="fas fa-user" style="color: yellow; margin-left: 5px;"></i>
+        <span style="color: white; margin-left: 5px;">Lucas</span>
+    </div>
+    <div class="copy-group" style="display: flex; align-items: center;">
+        <span style="font-size: 14px;">¹⁵├▩ Ministro das relações ꗃ </span>
+        <button class="copy-button" onclick="copyText('ᵐⁿʳˡ')" style="font-size: 12px; padding: 4px 8px; margin-left: 10px;">Copiar</button>
+        <i class="fas fa-user" style="color: pink; margin-left: 10px; font-size: 14px;"></i>
+        <span style="color: pink; margin-left: 5px; font-size: 14px;">Gika</span>
+    </div>
+    <div class="copy-group" style="display: flex; align-items: center;">
+        <span style="font-size: 14px;">¹⁶├▩ Ministro de inteligência ꗃ </span>
+        <button class="copy-button" onclick="copyText('ᵐⁿˢᶜᵖ')" style="font-size: 12px; padding: 4px 8px; margin-left: 10px;">Copiar</button>
+        <i class="fas fa-user" style="color: yellow; margin-left: 10px; font-size: 14px;"></i>
+        <span style="color: white; margin-left: 5px; font-size: 14px;">Mota</span>
+    </div>
+    <div class="copy-group" style="display: flex; align-items: center;">
+        <span>¹⁷├▩ Ministro do Interior ꗃ </span>
+        <button class="copy-button" onclick="copyText('ᵐⁱⁿᵗˢ')">Copiar</button>
+        <i class="fas fa-user" style="color: yellow; margin-left: 5px;"></i>
+        <span style="color: white; margin-left: 5px;">ucold</span>
+    </div>
+<div class="copy-group" style="display: flex; align-items: center;">
+    <span>¹⁸├▩ Perfilador Geral ꗃ </span>
+    <button class="copy-button" onclick="copyText('ᵖᵍˢ')" style="margin-left: 10px;">Copiar</button>
+</div>
+<div class="copy-group" style="display: flex; align-items: center;">
+    <span>¹⁹├▩ 𝘗𝘴𝘪𝘤𝘰𝘭𝘰𝘨𝘢 ꗃ </span>
+    <button class="copy-button" onclick="copyText('ᵖˢ')">Copiar</button>
+    <i class="fas fa-user" style="color: pink; margin-left: 5px;"></i>
+    <span style="color: pink; margin-left: 5px;">mih</span>
+    <i class="fas fa-hospital" style="color: white; margin-left: 5px;"></i>
+</div>
+<div class="copy-group" style="display: flex; align-items: center;">
+    <span>²⁰├▩ 𝘗𝘴𝘪𝘤𝘰𝘭𝘰𝘨𝘢 Tk ꗃ </span>
+    <button class="copy-button" onclick="copyText('ᵖˢᵗᵏ')">Copiar</button>
+</div><div class="copy-group" style="display: flex; align-items: center;">
+  
+    <span>²¹├▩ Guardião ♖ ꗃ </span>
+    <button class="copy-button" onclick="copyText('ᵍᵘᵃʳᵈⁱᵃⁿᵘʳˢ')" style="margin-left: 0; margin-right: 5px;">Copiar</button>
+</div>
+</div>
+
+        <!-- Seção Casa Branca -->
+<div class="house-section">
+    <div class="house-title">
+        <i class="fas fa-building"></i>
+        <h2> Capital Real <i class="fas fa-check-circle" style="color: #1da1f2;"></i></h2>
+    </div>
+
+    <div class="copy-group">
+        <span>⁰¹├⌯Ceo Chefe Geral ⌬ </span>
+        <button class="copy-button" onclick="copyText('ᶜᵉᵒᵘʳˢ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰²├⌯Ceo Residente ⌬ </span>
+        <button class="copy-button" onclick="copyText('ᶜᵒᵒʳˢ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰³├⌯Ceo sk ⌬ </span>
+        <button class="copy-button" onclick="copyText('ᶜᵒᵘʳˢ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰⁴├⌯Dirigente Residente ⌬ </span>
+        <button class="copy-button" onclick="copyText('ᵈʳᵘˢᵏ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰⁵├⌯Professor Geral ⌬ </span>
+        <button class="copy-button" onclick="copyText('ᵖᵍᵏʳᵘˢ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰⁶├⌯Professor tk ⌬ </span>
+        <button class="copy-button" onclick="copyText('ᵖᵍᵗᵏ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰⁷├⌯𝘚𝘶𝘱𝘦𝘳𝘷𝘪𝘴𝘰𝘳 𝗀𝖾𝗋𝖺𝗅 ⌬ </span>
+        <button class="copy-button" onclick="copyText('ˢᵖᵛᶜᵗ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰⁸├⌯𝘚𝘶𝘱𝘦𝘳𝘷𝘪𝘴𝘰𝘳 Tk ⌬ </span>
+        <button class="copy-button" onclick="copyText('ˢᵖᵛˢᵏ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰⁹├⌯Divulgador ⌬ </span>
+        <button class="copy-button" onclick="copyText('ᵈᵛˢᵏ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>¹⁰├⌯𝘌𝘮𝘣𝘢𝘪𝘻𝘢𝘥𝘰𝘳 ⌬ </span>
+        <button class="copy-button" onclick="copyText('ᵉᵐᵇᵈᵘʳˢ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>¹¹├⌯𝘌𝘮𝘣𝘢𝘪𝘻𝘢𝘥𝘰𝘳 tk ⌬ </span>
+        <button class="copy-button" onclick="copyText('ᵉᵐᵇʳᵘˢ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>¹²├⌯𝘚𝘦𝘤𝘳𝘦𝘵𝘢𝘳𝘪𝘰 𝘨𝘦𝘳𝘢𝘭 ⌬ </span>
+        <button class="copy-button" onclick="copyText('ˢᶜᵗᵘʳˢ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>¹³├⌯𝘚𝘦𝘤𝘳𝘦𝘵𝘢𝘳𝘪𝘰 tk ⌬ </span>
+        <button class="copy-button" onclick="copyText('ˢᶜᵗᵏ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>¹⁴├⌯𝘔𝘪𝘯𝘪𝘴𝘵𝘳𝘰 𝘥𝘢 𝘧𝘢𝘻𝘦𝘯da ⌬</span>
+        <button class="copy-button" onclick="copyText('ᵐᵈᶠᶻᵈˢ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>¹⁵├⌯Tesoureiro ⌬</span>
+        <button class="copy-button" onclick="copyText('ᵗˢᵘʳˢ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>¹⁶├⌯Senador ⌬ </span>
+        <button class="copy-button" onclick="copyText('ˢⁿᵘʳˢ')">Copiar</button>
+    </div>
+</div>
+
+ 
+    <!-- Seção Mossad -->
+    <div class="house-section">
+    <div class="house-title">
+        <i class="fas fa-monument"></i>
+        <h2> Capital Regional <i class="fas fa-check-circle" style="color: #1da1f2;"></i></h2>
+    </div>
+    <div class="copy-group">
+        <span> ⁰¹├⑆ Deputado ⎔</span>
+        <button class="copy-button" onclick="copyText('ᵈᵖᵗˢᵏ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span> ⁰²├⑆ Governador  ⎔</span>
+        <button class="copy-button" onclick="copyText('ᵍᵛʳᵏ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span> ⁰³├⑆ Engenheiro ⎔</span>
+        <button class="copy-button" onclick="copyText('ᵉⁿᵍˢᵏ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span> ⁰⁴├⑆ 𝘌𝘯𝘨𝘦𝘯𝘩𝘦𝘪𝘳𝘰 𝘈𝘴𝘴𝘪𝘴𝘵𝘦𝘯𝘵𝘦 ⎔</span>
+        <button class="copy-button" onclick="copyText('ᵉⁿᵍᵗᵏᵘʳ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span> ⁰⁵├⑆ Operário ⎔</span>
+        <button class="copy-button" onclick="copyText('ᵒᵖʳᵘʳˢ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span> ⁰⁶├⑆ Ancião Guardião ⎔</span>
+        <button class="copy-button" onclick="copyText('ᵃᵍᵘʳˢ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span> ⁰⁷├⑆ Organizador ⎔</span>
+        <button class="copy-button" onclick="copyText('ᵒʳᵍᵘʳˢ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span> ⁰⁸├⑆ Ministro Do Link ⎔</span>
+        <button class="copy-button" onclick="copyText('ᵐⁿˡᵘʳˢ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span> ⁰⁹├⑆ Desembargador ⎔</span>
+        <button class="copy-button" onclick="copyText('ᵈˢᵘʳˢ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span> ¹⁰├⑆ 𝘊𝘰𝘯𝘵𝘢𝘥𝘰𝘳 ⎔</span>
+        <button class="copy-button" onclick="copyText('ᶜᵗᵗᵘʳˢ')">Copiar</button>
+    </div>
+</div>
+
+<div class="house-section">
+    <div class="house-title">
+        <i class="fas fa-stairs"></i>
+        <h2> Distrito federal <i class="fas fa-check-circle" style="color: #1da1f2;"></i></h2>
+    </div>
+    <div class="copy-group">
+        <span>⁰¹├▢Ministro Do Estado ❍</span>
+        <button class="copy-button" onclick="copyText('ᵐⁿᵈᵘʳ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰³├▢Sindicato ❍</span>
+        <button class="copy-button" onclick="copyText('ˢᵈᵗᵒ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰⁴├▢Repositor ❍</span>
+        <button class="copy-button" onclick="copyText('ʳᵖˢᵗʳ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰⁵├▢Upador ❍</span>
+        <button class="copy-button" onclick="copyText('ᵘᵖᵈʳ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰⁶├▢ Segurança ❍</span>
+        <button class="copy-button" onclick="copyText('ˢᵍʳⁿ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰⁷├▢Vigia ❍</span>
+        <button class="copy-button" onclick="copyText('ᵛᵍᶦ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰⁸├▢𝘈𝘨𝘦𝘯𝘵𝘦 ❍</span>
+        <button class="copy-button" onclick="copyText('⁰⁰¹')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰⁹├▢𝘐𝘯𝘴𝘵𝘳𝘶𝘵𝘰𝘳 ❍</span>
+        <button class="copy-button" onclick="copyText('ⁱⁿˢᵗᵘʳ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>¹⁰├▢Carrasco ❍</span>
+        <button class="copy-button" onclick="copyText('ᶜʳˢᶜ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>¹¹├▢Animador ❍</span>
+        <button class="copy-button" onclick="copyText('ᵃⁿᶦᵈʳ')">Copiar</button>
+    </div>
+</div>
+
+<div class="house-section">
+    <div class="house-title">
+        <i class="fas fa-city"></i>
+        <h2>MUNICÍPIO KRVOW <i class="fas fa-check-circle" style="color: #1da1f2;"></i></h2>
+    </div>
+    <div class="copy-group">
+        <span>⁰¹├◈ 𝘑𝘶𝘪𝘻 ▣</span>
+        <button class="copy-button" onclick="copyText('ʲᶻˢ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰²├◈𝘗𝘳𝘦𝘧𝘦𝘪𝘵𝘰 ▣</span>
+        <button class="copy-button" onclick="copyText('ᵖʳᶠᵗ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰³├◈ 𝘈𝘥𝘷𝘰𝘨𝘢𝘥𝘰 ▣</span>
+        <button class="copy-button" onclick="copyText('ᵈᵛᵍ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰⁴├◈𝘚𝘩𝘦𝘳𝘪𝘦𝘧𝘧 ▣</span>
+        <button class="copy-button" onclick="copyText('ˢʰʳᶠ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰⁵├◈𝘊𝘰𝘰𝘥𝘦𝘳𝘯𝘢𝘥𝘰𝘳 ▣</span>
+        <button class="copy-button" onclick="copyText('ᶜʳᵈⁿ')">Copiar</button>
+    </div>
+<div class="copy-group">
+        <span>⁰⁶├◈ Empregador ▣</span>
+        <button class="copy-button" onclick="copyText('ᵉᵐᵖʳᵍ')">Copiar</button>
+    </div>
+    
+    <div class="copy-group">
+        <span>⁰⁷├◈𝘖𝘳𝘨𝘢𝘯𝘪𝘢𝘥𝘰𝘳 ▣</span>
+        <button class="copy-button" onclick="copyText('ᵒʳᵍ')">Copiar</button>
+    </div>
+<div class="copy-group">
+        <span>⁰⁸├◈ 𝘎𝘦𝘳𝘦𝘯𝘵𝘦 𝘈𝘯𝘢𝘭𝘪𝘴𝘵𝘢 ▣</span>
+        <button class="copy-button" onclick="copyText('ᵍʳᵃⁿ')">Copiar</button>
+    </div>
+<div class="copy-group">
+        <span>⁰⁹├◈ 𝘐𝘯𝘥𝘪𝘤𝘢𝘥𝘰𝘳 ▣</span>
+        <button class="copy-button" onclick="copyText('ᶦⁿᵈᶜ')">Copiar</button>
+    </div>
+<div class="copy-group">
+        <span>¹⁰├◈ 𝘗𝘰𝘭𝘪𝘤𝘪𝘢𝘭 ▣</span>
+        <button class="copy-button" onclick="copyText('ᵖˡᶜˡ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>¹¹├◈ 𝘙𝘦𝘤𝘪𝘱𝘤𝘪𝘰𝘯𝘪𝘴𝘵𝘢 ▣</span>
+        <button class="copy-button" onclick="copyText('ʳᶜᵠ')">Copiar</button>
+    </div>
+<div class="copy-group">
+        <span>¹²├◈ Adm Federal ▣</span>
+        <button class="copy-button" onclick="copyText('ᶦⁿᶜᶠᵈ')">Copiar</button>
+    </div>
+<div class="copy-group">
+        <span>¹³├◈ ADM Residente ▣</span>
+        <button class="copy-button" onclick="copyText('ʳᶜˢᵈ')">Copiar</button>
+    </div>
+<div class="copy-group">
+        <span>¹⁴├◈ 𝘈𝘥𝘮 𝘈𝘱𝘳𝘦𝘯𝘥𝘪𝘻 ▣</span>
+        <button class="copy-button" onclick="copyText('ᶦⁿᵖᵈᶻ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>¹⁵├◈ Iniciante ▣</span>
+        <button class="copy-button" onclick="copyText('ᶦⁿᶜˢ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>¹⁶├◈ 𝘈𝘭𝘶𝘯𝘰 ▣</span>
+<button class="copy-button" onclick="copyText('ᵃˡⁿᵒ')">Copiar</button>
+    </div>
+        <div class="copy-group">
+        <span>¹⁷├◈ Teste ▣</span>
+<button class="copy-button" onclick="copyText('ˢᵏᵘʳ')">Copiar</button>
+    </div>
+        </div>
+  
+        <div class="house-section">
+    <div class="house-title">
+        <i class="fas fa-hospital"></i>
+        <h2> Asilo <i class="fas fa-check-circle" style="color: #1da1f2;"></i></h2>
+    </div>
+    <div class="copy-group">
+        <span>⁰¹├✙ Atestado ⌔ </span>
+        <button class="copy-button" onclick="copyText('ᵃᵗᵉˢᵗᵃˢᵒ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰²├✙ Licença indeterminada ⌔</span>
+        <button class="copy-button" onclick="copyText('ˡᶜᵐᵈˢᵏ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰³├✙ Visitante ⌔ </span>
+        <button class="copy-button" onclick="copyText('ˢᵏᵘʳᵛⁱˢⁱᵗ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰⁴├✙ 𝘍𝘦𝘳𝘪𝘢𝘴 ⌔ </span>
+        <button class="copy-button" onclick="copyText('ᶠʳˢˢᵏ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰⁵├✙ 𝘍𝘦𝘳𝘪𝘢𝘴 𝘷𝘦𝘳𝘮𝘦𝘭𝘩𝘢 ⌔ </span>
+        <button class="copy-button" onclick="copyText('ᶠʳˢᵛʳᵐ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰⁶├✙ 𝘓𝘪𝘤𝘦𝘯𝘤𝘢 𝘮𝘦𝘥𝘪𝘤𝘢 ⌔ </span>
+        <button class="copy-button" onclick="copyText('ⁱᶜˢᵐᵈ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰⁷├✙ 𝘓𝘪𝘤𝘦𝘯𝘤𝘢 ⌔ </span>
+        <button class="copy-button" onclick="copyText('ⁱᶜˢ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰⁸├✙ Aposentado ⌔ </span>
+        <button class="copy-button" onclick="copyText('ˢᵏᵘʳ²⁰¹⁹')">Copiar</button>
+    </div>
+</div>
+
+
+  
+  
+
+
+ <div class="house-section">
+    <div class="house-title">
+        <i class="fas fa-clinic-medical"></i>
+        <h2> Infração <i class="fas fa-check-circle" style="color: #1da1f2;"></i></h2>
+    </div>
+    <div class="copy-group">
+        <span>⁰¹├⍟ Habeas corpus ⌲ </span>
+        <button class="copy-button" onclick="copyText('ʰᵇᶜˢᵏ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰²├⍟ Terrorista ⌲ </span>
+        <button class="copy-button" onclick="copyText('ᵗʳˢᵏ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰³├⍟ Detento ⌲ </span>
+        <button class="copy-button" onclick="copyText('ᵈᵗᵗᵒ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰⁴├⍟ Afastamento indeterminado ⌲ </span>
+        <button class="copy-button" onclick="copyText('ᵃᶠᵏⁱⁿ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰⁵├⍟ Afastamento ⌲ </span>
+        <button class="copy-button" onclick="copyText('ᵃᶠᵏ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰⁶├⍟ Punição Alta ⌲ </span>
+        <button class="copy-button" onclick="copyText('ᵖᵘⁿᵃˡᵗ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰⁷├⍟ Punição Grave ⌲ </span>
+        <button class="copy-button" onclick="copyText('ˢᵏᵖⁿᵍ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰⁸├⍟ Punição Média ⌲ </span>
+        <button class="copy-button" onclick="copyText('ᵖᵐⁿᵈ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>⁰⁹├⍟ Punição Patológica ⌲</span>
+        <button class="copy-button" onclick="copyText('ˢᵏᵐᵍ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>¹⁰├⍟ Punição Verde ⌲ </span>
+        <button class="copy-button" onclick="copyText('ᵖᵘⁿⁱᵛ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>¹¹├⍟ Punição Amarela ⌲ </span>
+        <button class="copy-button" onclick="copyText('ᵖᵘⁿⁱᵃ')">Copiar</button>
+    </div>
+    <div class="copy-group">
+        <span>¹²├⍟ Marca de kitamento ⌲</span>
+        <button class="copy-button" onclick="copyText('ᵈᵉˢᵖᵉᵈⁱᵈᵒ ⁱⁿᶜᵒᵐᵖᵉᵗᵉⁿᵗᵉ°')">Copiar</button>
+    </div>
+</div>
+
+
+ 
+
+    <div class="notification" id="notification"></div>
+    <div class="insta-widget">
+        <i class="fab fa-instagram"></i>
+        <span>Siga no Instagram: @neet.tk</span>
+        <button class="close-button" onclick="closeWidget()">Fechar</button>
+    </div>
+</div>
+
+<!-- Inclusão do conteúdo do footer.html -->
+<div id="footer-container"></div>
+
+<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    // Função para carregar o conteúdo do footer.html
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-container').innerHTML = data;
+        })
+        .catch(error => console.error('Erro ao carregar o rodapé:', error));
+
+    // Função para determinar a saudação com base na hora atual
+    function updateGreeting() {
+        const now = new Date();
+        const hour = now.getHours();
+        const greetingElement = document.getElementById('greeting');
+
+        if (hour >= 5 && hour < 12) {
+            greetingElement.textContent = "Bom dia!";
+        } else if (hour >= 12 && hour < 18) {
+            greetingElement.textContent = "Boa tarde!";
+        } else if (hour >= 18 && hour < 24) {
+            greetingElement.textContent = "Boa noite!";
+        } else {
+            greetingElement.textContent = "Boa madrugada!";
+        }
+    }
+
+    // Exibir o alerta do SweetAlert2
+    window.onload = function() {
+        updateGreeting(); // Chama a função de saudação ao carregar a página
+        Swal.fire({
+            icon: 'warning',
+            title: 'Atenção!',
+            text: 'Por favor, não vaze as informações do site para ninguém.',
+            showCancelButton: false,
+            confirmButtonText: 'Entendi',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('background-audio').play(); // Tocar música após o clique
+            }
+        });
+    };
+
+    // Função para copiar texto e exibir mensagem de confirmação
+    function copyText(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            Swal.fire({
+                icon: 'success',
+                title: 'Copiado!',
+                text: 'A TAG foi copiada com sucesso para a área de transferência.',
+                confirmButtonText: 'OK'
+            });
+        }).catch(err => {
+            console.error('Erro ao copiar texto: ', err);
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro!',
+                text: 'Não foi possível copiar a TAG.',
+                confirmButtonText: 'OK'
+            });
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regras</title>
+    <link rel="icon" href="imagens/logo.jpeg" type="image/jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('imagens/3.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 20px;
+        }
+
+        h1 {
+            margin: 0;
+            color: #fff;
+        }
+
+        .barra-lateral {
+            background-color: purple;
+            height: auto; /* Ajustado para auto para acomodar novos botões */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        .botao-pasta {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .botao-pasta i {
+            margin-right: 5px;
+        }
+
+        .regra {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .paragrafo {
+            margin-bottom: 10px;
+        }
+
+        .botao-copiar {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .botao-copiar:hover {
+            background-color: #0056b3;
+        }
+
+        .botao-download {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            color: white;
+            background-color: #28a745; /* Cor verde para o botão de download */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .botao-download:hover {
+            background-color: #218838; /* Cor do botão quando passar o mouse */
+        }
+
+        .ultima-atualizacao {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            color: #fff; /* Cor do texto */
+        }
+
+        .ultima-atualizacao i {
+            margin-right: 5px; /* Espaço entre o ícone e o texto */
+        }
+    </style>
+</head>
+<body>
+    <div class="barra-lateral">
+        <h1><i class="fas fa-gavel"></i> Regras</h1>
+        <button class="botao-pasta" onclick="window.location.href='https://drive.google.com/drive/folders/1EwNoYwRSlO4-a5KeQxKkvupTqzDRq1ih'">
+            <i class="fas fa-folder"></i> Pasta com os cards para usar
+        </button>
+        <!-- Botão para download das regras em PDF -->
+        <a href="regras.pdf" class="botao-download" download>
+            <i class="fas fa-file-pdf"></i> Download das Regras em PDF
+        </a>
+        <!-- Última atualização -->
+        <div class="ultima-atualizacao">
+            <i class="fas fa-calendar-alt"></i> Última atualização: 13 de outubro de 2024
+        </div>
+    </div>
+    <div id="regras-container"></div>
+
+    <script>
+        // Função para carregar as regras do arquivo JSON
+        fetch('regras.json')
+            .then(response => response.json()) // Ler o conteúdo como JSON
+            .then(regras => {
+                const container = document.getElementById('regras-container');
+
+                regras.forEach(regra => {
+                    const regraDiv = document.createElement('div');
+                    regraDiv.className = 'regra';
+                    
+                    // Adicionar título
+                    const tituloDiv = document.createElement('h3');
+                    tituloDiv.innerText = regra.titulo; // Mostrar título
+                    regraDiv.appendChild(tituloDiv);
+                    
+                    // Adicionar a descrição
+                    const descricaoDiv = document.createElement('p');
+                    descricaoDiv.innerText = regra.descricao; // Descrição da regra
+                    regraDiv.appendChild(descricaoDiv);
+                    
+                    // Adicionar os parágrafos
+                    regra.paragrafos.forEach(paragrafo => {
+                        const paragrafoDiv = document.createElement('p');
+                        paragrafoDiv.className = 'paragrafo';
+                        paragrafoDiv.innerText = paragrafo.trim(); // Adicionar parágrafo
+                        regraDiv.appendChild(paragrafoDiv);
+                    });
+
+                    // Botão para copiar
+                    const botao = document.createElement('button');
+                    botao.className = 'botao-copiar';
+                    botao.innerText = 'Copiar Regra';
+                    botao.onclick = () => {
+                        // Copiar título, descrição e parágrafos para a área de transferência
+                        navigator.clipboard.writeText(`${regra.titulo}\n${regra.descricao}\n${regra.paragrafos.join('\n')}`)
+                            .catch(err => console.error('Erro ao copiar a regra: ', err));
+                    };
+
+                    regraDiv.appendChild(botao);
+                    container.appendChild(regraDiv); // Adicionar a regra ao contêiner
+                });
+            })
+            .catch(err => console.error('Erro ao carregar regras: ', err));
+    </script>
+</body>
+</html>
