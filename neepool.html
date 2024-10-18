@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝗡𝗖𝗣𝗗</title>
+    <link rel="icon" href="logo.jpg" type="image/jpeg"> <!-- Adicionei esta linha -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+    
+    .top-banner {
+    background-color: #8a2be2; /* Cor de fundo da faixa */
+    color: white; /* Cor do texto */
+    text-align: center; /* Centraliza o texto */
+    padding: 15px; /* Espaçamento interno */
+    width: 100%; /* Ocupa toda a largura */
+    position: fixed; /* Fixa a posição no topo */
+    top: 0; /* Alinha ao topo */
+    left: 0; /* Alinha à esquerda */
+    z-index: 10; /* Garante que fique acima de outros elementos */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Adiciona uma sombra para destacar */
+}
+    
+.card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px;
+    display: inline-block;
+    width: 250px; /* Aumentar a largura do card */
+    vertical-align: top;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    background-color: #f9f9f9; /* Fundo claro */
+    transition: transform 0.2s; /* Efeito de transição */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Aumenta levemente o card ao passar o mouse */
+}
+    </style>
+    <script>
+        let currentRow;
+
+        async function sendData() {
+            const id = document.getElementById("id").value;
+            const name = document.getElementById("name").value;
+            const age = document.getElementById("age").value;
+            const number = document.getElementById("number").value;
+            const instagram = document.getElementById("instagram").value;
+            const email = document.getElementById("email").value;
+
+            swal({
+                title: "Carregando...",
+                text: "Aguarde enquanto enviamos os dados.",
+                icon: "info",
+                button: false
+            });
+
+            const response = await fetch("https://script.google.com/macros/s/AKfycbwMkU80r3XS-ECU-ULiz0AjtUwpLmEedtHTkGH0uxiF7lIgvAc1PSymUbSoxQxeDDxCWw/exec", {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: new URLSearchParams({
+                    action: currentRow ? "edit" : "create",
+                    row: currentRow || undefined,
+                    id: id,
+                    name: name,
+                    age: age,
+                    number: number,
+                    instagram: instagram,
+                    email: email
+                })
+            });
+
+            currentRow = null;
+            fetchData();
+            clearForm();
+            swal("Sucesso!", "Dados enviados com sucesso!", "success");
+        }
+
+        async function fetchData() {
+            const response = await fetch("https://script.google.com/macros/s/AKfycbwMkU80r3XS-ECU-ULiz0AjtUwpLmEedtHTkGH0uxiF7lIgvAc1PSymUbSoxQxeDDxCWw/exec");
+            const data = await response.text();
+            const lines = data.trim().split("\n").slice(1);
+            const container = document.getElementById("data");
+            container.innerHTML = ""; // Limpa o container antes de preencher
+
+            lines.forEach((line, index) => {
+                const [id, name, age, number, instagram, email] = line.split(", ");
+                const card = document.createElement("div");
+                card.className = "card";card.innerHTML = `
+    <h3><i class="fas fa-user"></i> ${name}</h3> <!-- Ícone de usuário -->
+    <p><i class="fas fa-id-card"></i> ID: ${id}</p> <!-- Ícone de ID -->
+    <p><i class="fas fa-calendar-alt"></i> Idade: ${age}</p> <!-- Ícone de idade -->
+    <p><i class="fas fa-phone"></i> Número: ${number}</p> <!-- Ícone de telefone -->
+    <p><i class="fab fa-instagram"></i> Instagram: ${instagram}</p> <!-- Ícone do Instagram -->
+    <p><i class="fas fa-envelope"></i> Email: ${email}</p> <!-- Ícone de email -->
+    <button onclick="confirmEdit(${index + 2}, '${id}', '${name}', '${age}', '${number}', '${instagram}', '${email}')">Editar</button>
+    <button onclick="deleteData(${index + 2}, '${name}')">Apagar</button>
+`;
+                
+                
+                container.appendChild(card);
+            });
+        }
+
+        async function confirmEdit(row, id, name, age, number, instagram, email) {
+            swal({
+                title: "Você tem certeza?",
+                text: "Deseja editar os dados?",
+                icon: "warning",
+                buttons: ["Cancelar", "Confirmar"],
+                dangerMode: true,
+            }).then((willEdit) => {
+                if (willEdit) {
+                    editData(row, id, name, age, number, instagram, email);
+                }
+            });
+        }
+
+        async function editData(row, id, name, age, number, instagram, email) {
+            document.getElementById("id").value = id;
+            document.getElementById("name").value = name;
+            document.getElementById("age").value = age;
+            document.getElementById("number").value = number;
+            document.getElementById("instagram").value = instagram;
+            document.getElementById("email").value = email;
+            currentRow = row;
+        }
+
+        async function deleteData(row, name) {
+    swal({
+        title: "Você tem certeza?",
+        text: `Deseja realmente apagar ${name}?`,
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then(async (willDelete) => {
+        if (willDelete) {
+            // Exibir o loading antes da exclusão
+            swal({
+                title: "Carregando...",
+                text: "Aguarde enquanto apagamos os dados.",
+                icon: "info",
+                button: false
+            });
+
+            const response = await fetch("https://script.google.com/macros/s/AKfycbwMkU80r3XS-ECU-ULiz0AjtUwpLmEedtHTkGH0uxiF7lIgvAc1PSymUbSoxQxeDDxCWw/exec", {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: new URLSearchParams({
+                    action: "delete",
+                    row: row
+                })
+            });
+
+            // Atualiza a lista de dados após a exclusão
+            fetchData();
+
+            // Mostrar a mensagem de sucesso
+            swal("Apagado!", "Usuário apagado com sucesso!", "success");
+        }
+    });
+}
+
+
+
+        function clearForm() {
+            document.getElementById("id").value = '';
+            document.getElementById("name").value = '';
+            document.getElementById("age").value = '';
+            document.getElementById("number").value = '';
+            document.getElementById("instagram").value = '';
+            document.getElementById("email").value = '';
+        }
+
+        window.onload = fetchData; // Chama fetchData ao carregar a página
+    </script>
+</head>
+<body>
+<body>
+    <div class="top-banner">
+        <h2 style="margin: 0;">
+            <i class="fas fa-shield-alt"></i> <!-- Ícone de escudo -->
+            Sistema NCPD 00
+        </h2>
+    </div>
+    
+    <script>
+    // Verifica se o usuário está autenticado
+    if (!localStorage.getItem('isAuthenticated')) {
+        // Se não estiver autenticado, redireciona para o login
+        window.location.href = 'login.html';
+    }
+</script>
+
+    <div class="content" style="margin-top: 70px;"> <!-- Ajuste para que o conteúdo não fique atrás da faixa -->
+        <p>
+            <i class="fas fa-info-circle"></i> <!-- Ícone da Font Awesome -->
+            Isso é a atualização 1.0. Em breve, melhorias no sistema.
+        </p>
+        <p>
+            <i class="fas fa-list"></i> <!-- Ícone de lista -->
+            Siga os IDs nos registros: grupo 1 (101, 102) e grupo 2 (0202, 0203). Cada grupo adiciona seu número e inicia a contagem.
+        </p>
+        <p style="font-size: 24px; background: linear-gradient(90deg, blue, purple); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            <i class="fas fa-user"></i> <!-- Ícone de usuário -->
+            <span id="greeting"></span> Batman!
+        </p>
+    </div>
+
+    <script>
+        // Script para exibir a saudação apropriada
+        const now = new Date();
+        const hour = now.getHours();
+        const greetingElement = document.getElementById('greeting');
+        let greetingIcon = '';
+
+        if (hour < 6) {
+            greetingElement.textContent = 'Boa madrugada';
+            greetingIcon = '<i class="fas fa-moon"></i>'; // Ícone de lua
+        } else if (hour < 12) {
+            greetingElement.textContent = 'Bom dia';
+            greetingIcon = '<i class="fas fa-sun"></i>'; // Ícone de sol
+        } else if (hour < 18) {
+            greetingElement.textContent = 'Boa tarde';
+            greetingIcon = '<i class="fas fa-sun"></i>'; // Ícone de sol
+        } else {
+            greetingElement.textContent = 'Boa noite';
+            greetingIcon = '<i class="fas fa-moon"></i>'; // Ícone de lua
+        }
+
+        greetingElement.innerHTML = greetingIcon + ' ' + greetingElement.textContent; // Adiciona o ícone antes da saudação
+    </script>
+</body>
+  
+<div class="card" style="max-width: 300px; width: 100%; margin: auto; padding: 15px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); background-color: #ffffff;">
+    <h1 style="white-space: nowrap; font-size: 24px; text-align: center; color: #333; margin-bottom: 15px;">
+        <i class="fas fa-file-alt" style="font-size: 28px; vertical-align: middle;"></i> Registrar Dados
+    </h1>
+    <form onsubmit="event.preventDefault(); sendData();">
+        <label for="id" style="display: flex; align-items: center; margin: 5px 0;">
+            <i class="fas fa-id-card" style="color: #00bfff; margin-right: 5px;"></i> ID:
+        </label>
+        <input type="number" id="id" placeholder="#100" required min="0" pattern="\d*" style="width: 40%; padding: 4px; border: 2px solid #8a2be2; border-radius: 5px; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+        
+        <label for="name" style="display: flex; align-items: center; margin: 5px 0;">
+            <i class="fas fa-user-circle" style="color: #8a2be2; margin-right: 5px;"></i> Nome:
+        </label>
+        <input type="text" id="name" placeholder="Joãozinho Silva" required style="width: 95%; padding: 4px; border: 2px solid #8a2be2; border-radius: 5px; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+        
+        <label for="age" style="display: flex; align-items: center; margin: 5px 0;">
+            <i class="fas fa-calendar-alt" style="color: #ff6347; margin-right: 5px;"></i> Idade:
+        </label>
+        <input type="number" id="age" placeholder="Ex: 25" required min="0" style="width: 40%; padding: 4px; border: 2px solid #8a2be2; border-radius: 5px; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+        
+        <label for="number" style="display: flex; align-items: center; margin: 5px 0;">
+            <i class="fas fa-phone" style="color: #32cd32; margin-right: 5px;"></i> Número:
+        </label>
+        <input type="tel" id="number" placeholder="55219999-9999 (sem +)" required style="width: 80%; padding: 4px; border: 2px solid #8a2be2; border-radius: 5px; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+        
+        <label for="instagram" style="display: flex; align-items: center; margin: 5px 0;">
+            <i class="fab fa-instagram" style="color: #e1306c; margin-right: 5px;"></i> Instagram:
+        </label>
+        <input type="text" id="instagram" placeholder="@neet.tk" required style="width: 40%; padding: 4px; border: 2px solid #8a2be2; border-radius: 5px; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+        
+        <label for="email" style="display: flex; align-items: center; margin: 5px 0;">
+            <i class="fas fa-envelope" style="color: #ffa500; margin-right: 5px;"></i> Email:
+        </label>
+        <input type="email" id="email" placeholder="exemplo@gmail.com" required style="width: 95%; padding: 4px; border: 2px solid #8a2be2; border-radius: 5px; margin-bottom: 15px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+        
+        <div style="text-align: center;">
+            <button type="submit" style="background: linear-gradient(to right, #8a2be2, #00bfff); color: white; border: none; padding: 8px; border-radius: 5px; cursor: pointer; transition: background 0.3s; width: 100%;">
+                <i class="fas fa-paper-plane"></i> Enviar
+            </button>
+        </div>
+    </form>
+</div>
+
+
+    <h2><i class="fas fa-user"></i> Pesquisar Administrador</h2>
+<div style="display: flex; align-items: center; border: 2px solid #8a2be2; border-radius: 5px; overflow: hidden; width: 300px; margin: 0 auto;"> <!-- Ajuste a largura aqui -->
+    <input type="text" id="search" placeholder="Ex: ID ou Número" style="flex: 1; border: none; padding: 10px; outline: none; font-size: 16px;">
+    <button onclick="searchData()" style="background: #8a2be2; color: white; border: none; padding: 10px; border-radius: 0 5px 5px 0; cursor: pointer;">
+        <i class="fas fa-search"></i>
+    </button>
+</div>
+
+
+<h2 style="color: purple;">
+    <i class="fas fa-users" style="color: purple;"></i> <!-- Ícone de várias pessoas -->
+    Administradores
+</h2>
+<div id="data">
+    <!-- Os dados serão preenchidos aqui -->
+</div>
+
+<script>
+    async function searchData() {
+        const searchValue = document.getElementById("search").value.toLowerCase(); // Obtém o valor da pesquisa
+
+        // Exibe o popup de carregamento
+        swal({
+            title: "Carregando...",
+            text: "Aguarde enquanto buscamos os dados.",
+            icon: "info",
+            button: false
+        });
+
+        const response = await fetch("https://script.google.com/macros/s/AKfycbwMkU80r3XS-ECU-ULiz0AjtUwpLmEedtHTkGH0uxiF7lIgvAc1PSymUbSoxQxeDDxCWw/exec");
+        const data = await response.text();
+        const lines = data.trim().split("\n").slice(1); // Ignora o cabeçalho
+
+        // Oculta o popup de carregamento
+        swal.close();
+
+        let userFound = false; // Variável para verificar se algum usuário foi encontrado
+        let userData = ""; // String para armazenar os dados do usuário encontrado
+        let userRow = null; // Variável para armazenar a linha do usuário encontrado
+
+        lines.forEach((line, index) => {
+            const [id, name, age, number, instagram, email] = line.split(", ");
+            // Verifica se o ID ou número corresponde à pesquisa
+            if (id.toLowerCase().includes(searchValue) || number.includes(searchValue)) {
+                userFound = true; // Define como verdadeiro se um usuário for encontrado
+                userData = `
+                    <h3>${name}</h3>
+                    <p>ID: ${id}</p>
+                    <p>Idade: ${age}</p>
+                    <p>Número: ${number}</p>
+                    <p>Instagram: ${instagram}</p>
+                    <p>Email: ${email}</p>
+                    <button class="btn-edit" onclick="confirmEdit(${index + 2}, '${id}', '${name}', '${age}', '${number}', '${instagram}', '${email}')">Editar</button>
+                    <button class="btn-delete" onclick="confirmDelete(${index + 2}, '${name}')">Apagar</button>
+                `;
+                userRow = index + 2; // Armazena a linha do usuário encontrado
+            }
+        });
+
+        // Exibe o resultado no popup
+        if (userFound) {
+            swal({
+                title: "Usuário Encontrado!",
+                content: {
+                    element: "div",
+                    attributes: {
+                        innerHTML: userData,
+                    },
+                },
+                icon: "success",
+                buttons: {
+                    confirm: {
+                        text: "Fechar",
+                        value: true,
+                        visible: true,
+                        className: "confirm-button",
+                        closeModal: false, // Não fecha o modal automaticamente
+                    }
+                }
+            });
+        } else {
+            swal("Nenhum Resultado!", "Nenhum usuário encontrado com esse ID ou número.", "warning");
+        }
+    }
+
+    function confirmEdit(row, id, name, age, number, instagram, email) {
+        swal({
+            title: "Tem certeza?",
+            text: "Você quer editar este usuário?",
+            icon: "warning",
+            buttons: {
+                cancel: "Cancelar",
+                confirm: "Editar",
+            },
+            dangerMode: true,
+        }).then((willEdit) => {
+            if (willEdit) {
+                editData(row, id, name, age, number, instagram, email);
+            }
+        });
+    }
+
+    function confirmDelete(row, name) {
+        swal({
+            title: "Você tem certeza?",
+            text: `Deseja realmente apagar ${name}?`,
+            icon: "warning",
+            buttons: {
+                cancel: "Cancelar",
+                confirm: "Apagar",
+            },
+            dangerMode: true,
+        }).then(async (willDelete) => {
+            if (willDelete) {
+                const response = await fetch("https://script.google.com/macros/s/AKfycbwMkU80r3XS-ECU-ULiz0AjtUwpLmEedtHTkGH0uxiF7lIgvAc1PSymUbSoxQxeDDxCWw/exec", {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                    },
+                    body: new URLSearchParams({
+                        action: "delete",
+                        row: row
+                    })
+                });
+                fetchData(); // Atualiza a lista de dados
+                swal("Apagado!", "Usuário apagado com sucesso!", "success");
+            }
+        });
+    }
+
+    async function editData(row, id, name, age, number, instagram, email) {
+        document.getElementById("id").value = id;
+        document.getElementById("name").value = name;
+        document.getElementById("age").value = age;
+        document.getElementById("number").value = number;
+        document.getElementById("instagram").value = instagram;
+        document.getElementById("email").value = email;
+        currentRow = row; // Armazena a linha atual para edição
+    }
+
+    // Estilização dos botões
+    const style = document.createElement('style');
+    style.innerHTML = `
+        .btn-edit, .btn-delete {
+            padding: 10px 15px;
+            margin: 5px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn-edit {
+            background-color: #007bff; /* Azul */
+        }
+        .btn-delete {
+            background-color: #dc3545; /* Vermelho */
+        }
+        .btn-edit:hover {
+            background-color: #0056b3; /* Azul escuro */
+        }
+        .btn-delete:hover {
+            background-color: #c82333; /* Vermelho escuro */
+        }
+    `;
+    document.head.appendChild(style);
+
+    // As outras funções permanecem inalteradas
+</script>
+
+
+</body>
+</html>

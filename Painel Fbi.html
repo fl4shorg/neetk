@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo.jpg" type="image/jpeg"> <!-- Ícone da página -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Painel FBI</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('Neext.jpg'); /* Verifique se o nome e a extensão estão corretos */
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            margin: 15px;
+            padding: 20px;
+            width: 250px;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card i {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        .button {
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #e64a19;
+        }
+    </style>
+</head>
+<body>
+    <h1><i class="fas fa-chart-line"></i> Painel FBI</h1>
+    <div class="container">
+        <div class="card">
+            <i class="fas fa-user-shield"></i>
+            <h2>FBI 1</h2>
+            <p>Painel da Administração do NYPD.</p>
+            <button class="button" onclick="window.open('fbi1.html', '_self')">Abrir</button>
+        </div>
+        <div class="card">
+            <i class="fas fa-user-shield"></i>
+            <h2>FBI 2</h2>
+            <p>Painel da Administração do NYPD.</p>
+            <button class="button" onclick="window.open('fbi2.html', '_self')">Abrir</button>
+        </div>
+        <div class="card">
+            <i class="fas fa-user-shield"></i>
+            <h2>FBI 3</h2>
+            <p>Painel da Administração do NYPD.</p>
+            <button class="button" onclick="window.open('fbi3.html', '_self')">Abrir</button>
+        </div>
+        <div class="card">
+            <i class="fas fa-user-shield"></i>
+            <h2>FBI 4</h2>
+            <p>Painel da Administração do NYPD.</p>
+            <button class="button" onclick="window.open('fbi4.html', '_self')">Abrir</button>
+        </div>
+        <div class="card">
+            <i class="fas fa-user-shield"></i>
+            <h2>FBI 5</h2>
+            <p>Painel da Administração do NYPD.</p>
+            <button class="button" onclick="window.open('fbi5.html', '_self')">Abrir</button>
+        </div>
+        <div class="card">
+            <i class="fas fa-user-shield"></i>
+            <h2>FBI 6</h2>
+            <p>Painel da Administração do NYPD.</p>
+            <button class="button" onclick="window.open('fbi6.html', '_self')">Abrir</button>
+        </div>
+        <div class="card">
+            <i class="fas fa-user-shield"></i>
+            <h2>FBI 7</h2>
+            <p>Painel da Administração do NYPD.</p>
+            <button class="button" onclick="window.open('fbi7.html', '_self')">Abrir</button>
+        </div>
+        <div class="card">
+            <i class="fas fa-user-shield"></i>
+            <h2>FBI 8</h2>
+            <p>Painel da Administração do NYPD.</p>
+            <button class="button" onclick="window.open('fbi8.html', '_self')">Abrir</button>
+        </div>
+        <div class="card">
+            <i class="fas fa-user-shield"></i>
+            <h2>FBI 9</h2>
+            <p>Painel da Administração do NYPD.</p>
+            <button class="button" onclick="window.open('fbi9.html', '_self')">Abrir</button>
+        </div>
+        <div class="card">
+            <i class="fas fa-user-shield"></i>
+            <h2>FBI 10</h2>
+            <p>Painel da Administração do NYPD.</p>
+            <button class="button" onclick="window.open('fbi10.html', '_self')">Abrir</button>
+        </div>
+    </div>
+
+    <script>
+        // Alerta ao carregar a página
+        window.onload = function() {
+            Swal.fire({
+                title: 'Atenção!',
+                text: 'Acesso ao painel restrito apenas aos CTOs. Tentativas de invasão não terão sucesso. Tente por sua conta e risco.',
+                icon: 'warning',
+                confirmButtonText: 'Entendi',
+            });
+        };
+    </script>
+</body>
+</html>
