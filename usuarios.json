@@ -1,6 +1,42 @@
 [
     {
-        "usuario": "flash",
-        "senha": "flash"
+        "usuario": "Yumi",
+        "senha": "Yumi123!"
+    },
+    {
+        "usuario": "Alonne",
+        "senha": "Alonne#456"
+    },
+    {
+        "usuario": "Mucilon",
+        "senha": "Mucilon789@"
+    },
+    {
+        "usuario": "Robin",
+        "senha": "Robin*101"
+    },
+    {
+        "usuario": "GE",
+        "senha": "GE2020$"
+    },
+    {
+        "usuario": "Ruby",
+        "senha": "Ruby321!"
+    },
+    {
+        "usuario": "NK",
+        "senha": "NK654#"
+    },
+    {
+        "usuario": "Batman",
+        "senha": "SozinhoPelanoite"
+    },
+    {
+        "usuario": "Lany",
+        "senha": "Lany*202"
+    },
+    {
+        "usuario": "Banana",
+        "senha": "Banana$303"
     }
 ]
