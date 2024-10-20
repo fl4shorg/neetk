@@ -1,5 +1,29 @@
 [
     {
+        "usuario": "Steh",
+        "senha": "Steh123!"
+    },
+    {
+        "usuario": "Wd",
+        "senha": "Wd123!"
+    },
+    {
+        "usuario": "Viih",
+        "senha": "Viih123!"
+    },
+    {
+        "usuario": "Anny",
+        "senha": "Anny123!"
+    },
+    {
+        "usuario": "Kira",
+        "senha": "Kira123!"
+    },
+    {
+        "usuario": "Santos",
+        "senha": "Santos123!"
+    },
+    {
         "usuario": "Yumi",
         "senha": "Yumi123!"
     },
@@ -38,5 +62,9 @@
     {
         "usuario": "Banana",
         "senha": "Banana$303"
+    },
+    {
+        "usuario": "Nikito",
+        "senha": "Nikito789!"
     }
 ]
