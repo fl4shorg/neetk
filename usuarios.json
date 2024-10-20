@@ -70,5 +70,9 @@
     {
         "usuario": "Sam",
         "senha": "Sam456!"
+    },
+    {
+        "usuario": "Day",
+        "senha": "Day123!"
     }
 ]
