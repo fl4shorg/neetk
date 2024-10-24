@@ -92,7 +92,7 @@
         let isEditing = false;
 
         async function fetchData() {
-            const response = await fetch("https://script.google.com/macros/s/AKfycbxLZw3b3JsUjCD-gukmQ20-_Gxsr7q6INmjCrS4KYxGfYA9MDgpTX-xTD-lb2MqEISrHQ/exec");
+            const response = await fetch("https://script.google.com/macros/s/AKfycbxisCeB5JGczqBOssr64ZUcVOZdPRaAL8szmWeZ4oxH4emY04cSk84bolsiJ7ewq6wReA/exec");
             const data = await response.text();
             const lines = data.trim().split("\n").slice(1);
             const container = document.getElementById("data");
@@ -157,7 +157,7 @@ card.innerHTML = `
                         return;
                     }
 
-                    await fetch("https://script.google.com/macros/s/AKfycbxLZw3b3JsUjCD-gukmQ20-_Gxsr7q6INmjCrS4KYxGfYA9MDgpTX-xTD-lb2MqEISrHQ/exec", {
+                    await fetch("https://script.google.com/macros/s/AKfycbxisCeB5JGczqBOssr64ZUcVOZdPRaAL8szmWeZ4oxH4emY04cSk84bolsiJ7ewq6wReA/exec", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/x-www-form-urlencoded",
@@ -190,7 +190,7 @@ card.innerHTML = `
                 dangerMode: true,
             }).then(async (willDelete) => {
                 if (willDelete) {
-                    await fetch("https://script.google.com/macros/s/AKfycbxLZw3b3JsUjCD-gukmQ20-_Gxsr7q6INmjCrS4KYxGfYA9MDgpTX-xTD-lb2MqEISrHQ/exec", {
+                    await fetch("https://script.google.com/macros/s/AKfycbxisCeB5JGczqBOssr64ZUcVOZdPRaAL8szmWeZ4oxH4emY04cSk84bolsiJ7ewq6wReA/exec", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/x-www-form-urlencoded",
@@ -363,7 +363,7 @@ card.innerHTML = `
 
     // Função para enviar dados
     async function sendData(id, name, age, number, instagram, email) {
-        await fetch("https://script.google.com/macros/s/AKfycbxLZw3b3JsUjCD-gukmQ20-_Gxsr7q6INmjCrS4KYxGfYA9MDgpTX-xTD-lb2MqEISrHQ/exec", {
+        await fetch("https://script.google.com/macros/s/AKfycbxisCeB5JGczqBOssr64ZUcVOZdPRaAL8szmWeZ4oxH4emY04cSk84bolsiJ7ewq6wReA/exec", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
