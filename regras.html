@@ -23,7 +23,7 @@
 
         .barra-lateral {
             background-color: purple;
-            height: auto; /* Ajustado para auto para acomodar novos botões */
+            height: auto;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -79,41 +79,48 @@
             margin-top: 10px;
             padding: 10px 15px;
             color: white;
-            background-color: #28a745; /* Cor verde para o botão de download */
+            background-color: #28a745;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
 
         .botao-download:hover {
-            background-color: #218838; /* Cor do botão quando passar o mouse */
+            background-color: #218838;
         }
 
         .ultima-atualizacao {
             display: flex;
             align-items: center;
             margin-top: 10px;
-            color: #fff; /* Cor do texto */
+            color: #fff;
         }
 
         .ultima-atualizacao i {
-            margin-right: 5px; /* Espaço entre o ícone e o texto */
+            margin-right: 5px;
+        }
+
+        .barra-pesquisa {
+            margin-bottom: 20px;
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
         }
     </style>
 </head>
 <body>
     <div class="barra-lateral">
         <h1><i class="fas fa-gavel"></i> Regras</h1>
+        <input type="text" id="barra-pesquisa" class="barra-pesquisa" placeholder="Pesquisar regras...">
         <button class="botao-pasta" onclick="window.location.href='https://drive.google.com/drive/folders/1EwNoYwRSlO4-a5KeQxKkvupTqzDRq1ih'">
             <i class="fas fa-folder"></i> Pasta com os cards para usar
         </button>
-        <!-- Botão para download das regras em PDF -->
         <a href="regras.pdf" class="botao-download" download>
             <i class="fas fa-file-pdf"></i> Download das Regras em PDF
         </a>
-        <!-- Última atualização -->
         <div class="ultima-atualizacao">
-            <i class="fas fa-calendar-alt"></i> Última atualização: 16 de outubro de 2024
+            <i class="fas fa-calendar-alt"></i> Última atualização: 13 de outubro de 2024
         </div>
     </div>
     <div id="regras-container"></div>
@@ -121,44 +128,57 @@
     <script>
         // Função para carregar as regras do arquivo JSON
         fetch('regras.json')
-            .then(response => response.json()) // Ler o conteúdo como JSON
+            .then(response => response.json())
             .then(regras => {
                 const container = document.getElementById('regras-container');
 
-                regras.forEach(regra => {
-                    const regraDiv = document.createElement('div');
-                    regraDiv.className = 'regra';
-                    
-                    // Adicionar título
-                    const tituloDiv = document.createElement('h3');
-                    tituloDiv.innerText = regra.titulo; // Mostrar título
-                    regraDiv.appendChild(tituloDiv);
-                    
-                    // Adicionar a descrição
-                    const descricaoDiv = document.createElement('p');
-                    descricaoDiv.innerText = regra.descricao; // Descrição da regra
-                    regraDiv.appendChild(descricaoDiv);
-                    
-                    // Adicionar os parágrafos
-                    regra.paragrafos.forEach(paragrafo => {
-                        const paragrafoDiv = document.createElement('p');
-                        paragrafoDiv.className = 'paragrafo';
-                        paragrafoDiv.innerText = paragrafo.trim(); // Adicionar parágrafo
-                        regraDiv.appendChild(paragrafoDiv);
+                // Função para renderizar as regras
+                function renderizarRegras(regrasFiltradas) {
+                    container.innerHTML = ''; // Limpar o contêiner
+                    regrasFiltradas.forEach(regra => {
+                        const regraDiv = document.createElement('div');
+                        regraDiv.className = 'regra';
+                        
+                        const tituloDiv = document.createElement('h3');
+                        tituloDiv.innerText = regra.titulo;
+                        regraDiv.appendChild(tituloDiv);
+                        
+                        const descricaoDiv = document.createElement('p');
+                        descricaoDiv.innerText = regra.descricao;
+                        regraDiv.appendChild(descricaoDiv);
+                        
+                        regra.paragrafos.forEach(paragrafo => {
+                            const paragrafoDiv = document.createElement('p');
+                            paragrafoDiv.className = 'paragrafo';
+                            paragrafoDiv.innerText = paragrafo.trim();
+                            regraDiv.appendChild(paragrafoDiv);
+                        });
+
+                        const botao = document.createElement('button');
+                        botao.className = 'botao-copiar';
+                        botao.innerText = 'Copiar Regra';
+                        botao.onclick = () => {
+                            navigator.clipboard.writeText(`${regra.titulo}\n${regra.descricao}\n${regra.paragrafos.join('\n')}`)
+                                .catch(err => console.error('Erro ao copiar a regra: ', err));
+                        };
+
+                        regraDiv.appendChild(botao);
+                        container.appendChild(regraDiv);
                     });
+                }
 
-                    // Botão para copiar
-                    const botao = document.createElement('button');
-                    botao.className = 'botao-copiar';
-                    botao.innerText = 'Copiar Regra';
-                    botao.onclick = () => {
-                        // Copiar título, descrição e parágrafos para a área de transferência
-                        navigator.clipboard.writeText(`${regra.titulo}\n${regra.descricao}\n${regra.paragrafos.join('\n')}`)
-                            .catch(err => console.error('Erro ao copiar a regra: ', err));
-                    };
+                // Inicialmente renderizar todas as regras
+                renderizarRegras(regras);
 
-                    regraDiv.appendChild(botao);
-                    container.appendChild(regraDiv); // Adicionar a regra ao contêiner
+                // Adicionar evento de pesquisa
+                document.getElementById('barra-pesquisa').addEventListener('input', function() {
+                    const termoPesquisa = this.value.toLowerCase();
+                    const regrasFiltradas = regras.filter(regra => 
+                        regra.titulo.toLowerCase().includes(termoPesquisa) || 
+                        regra.descricao.toLowerCase().includes(termoPesquisa) ||
+                        regra.paragrafos.some(paragrafo => paragrafo.toLowerCase().includes(termoPesquisa))
+                    );
+                    renderizarRegras(regrasFiltradas);
                 });
             })
             .catch(err => console.error('Erro ao carregar regras: ', err));
