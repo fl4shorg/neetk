@@ -92,7 +92,7 @@
         let isEditing = false;
 
         async function fetchData() {
-            const response = await fetch("https://script.google.com/macros/s/AKfycbxwktTH9we5Btu5nzwuF1V9yI9fD38MS1TH2OJsofsrkNpSnfxnXTbaFnwpKokZDbh1/exec");
+            const response = await fetch("https://script.google.com/macros/s/AKfycbwMkU80r3XS-ECU-ULiz0AjtUwpLmEedtHTkGH0uxiF7lIgvAc1PSymUbSoxQxeDDxCWw/exec");
             const data = await response.text();
             const lines = data.trim().split("\n").slice(1);
             const container = document.getElementById("data");
@@ -157,7 +157,7 @@ card.innerHTML = `
                         return;
                     }
 
-                    await fetch("https://script.google.com/macros/s/AKfycbxwktTH9we5Btu5nzwuF1V9yI9fD38MS1TH2OJsofsrkNpSnfxnXTbaFnwpKokZDbh1/exec", {
+                    await fetch("https://script.google.com/macros/s/AKfycbwMkU80r3XS-ECU-ULiz0AjtUwpLmEedtHTkGH0uxiF7lIgvAc1PSymUbSoxQxeDDxCWw/exec", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/x-www-form-urlencoded",
