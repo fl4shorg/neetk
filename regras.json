@@ -406,7 +406,15 @@
     ]
 },
 {
-    "titulo": "ARTIGCARD - AVISO",
+    "titulo": "ARTIGCARD - LIMITE DE KITAMENTO",
+    "descricao": "É proibido retornar ao grupo após três kitamentos. O procurador deve recusar a entrada da pessoa que já excedeu esse limite.",
+    "paragrafos": [
+        "Parágrafo 01:Esta regra visa evitar tentativas de burlar o sistema, como sair e retornar ao grupo conforme a conveniência do indivíduo. Assim, qualquer tentativa de retorno será vetada após o terceiro kitamento.",
+     "Parágrafo 02:A validade desta regra aplica-se somente se o kitamento da pessoa foi efetivado após o tempo limite estipulado, sendo formalmente registrado como tal."
+    ]
+},
+{
+   "titulo": "ARTIGCARD - AVISO",
     "descricao": "Nem todas as regras estão aqui, pois tentar regulamentar cada aspecto da convivência não é viável. A vida em grupo envolve nuances e situações que podem não ser previstas em regras escritas.",
     "paragrafos": [
         "É fundamental agir como seres humanos e seguir as regras estabelecidas, além de saber se comportar de maneira adequada.",
