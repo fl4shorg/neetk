@@ -1,0 +1,22 @@
+[
+    {
+        "nome1": "Maria",
+        "nome2": "Fulano",
+        "data": "28/09/2022"
+    },
+    {
+        "nome1": "João",
+        "nome2": "Ana",
+        "data": "15/05/2023"
+    },
+    {
+        "nome1": "Carlos",
+        "nome2": "Pedro",
+        "data": "10/01/2024"
+    },
+    {
+        "nome1": "Laura",
+        "nome2": "Marcos",
+        "data": "20/07/2021"
+    }
+]
