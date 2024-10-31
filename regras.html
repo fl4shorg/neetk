@@ -6,6 +6,7 @@
     <title>Regras</title>
     <link rel="icon" href="imagens/logo.jpeg" type="image/jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,26 +14,32 @@
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 20px;
+            padding: 60px 20px 20px; /* Ajuste o padding superior para compensar a navbar fixa */
         }
 
-        h1 {
+        .navbar {
+            background-color: purple;
+            padding: 10px;
+            text-align: center;
+            width: 100%; /* Garante que a navbar ocupe toda a largura */
+            position: fixed; /* Fixa a navbar no topo */
+            top: 0; /* Fixa a navbar no topo */
+            left: 0; /* Garante que ela comece do lado esquerdo */
+            z-index: 1000; /* Para garantir que a navbar fique acima de outros elementos */
+        }
+
+        .navbar h1 {
             margin: 0;
             color: #fff;
         }
 
-        .barra-lateral {
-            background-color: purple;
-            height: auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            padding: 10px;
+        .ultima-atualizacao {
+            color: #fff;
+            margin-top: 5px;
+            font-size: 0.9em;
         }
 
-        .botao-pasta {
+        .botao-pasta, .botao-download {
             display: inline-block;
             margin-top: 10px;
             padding: 10px 15px;
@@ -42,10 +49,19 @@
             border-radius: 5px;
             cursor: pointer;
             text-align: center;
+            text-decoration: none; /* Remove underline for link */
         }
 
-        .botao-pasta i {
+        .botao-pasta i, .botao-download i {
             margin-right: 5px;
+        }
+
+        .botao-download {
+            background-color: #28a745;
+        }
+
+        .botao-download:hover {
+            background-color: #218838;
         }
 
         .regra {
@@ -74,57 +90,57 @@
             background-color: #0056b3;
         }
 
-        .botao-download {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 15px;
-            color: white;
-            background-color: #28a745;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .botao-download:hover {
-            background-color: #218838;
-        }
-
-        .ultima-atualizacao {
-            display: flex;
-            align-items: center;
-            margin-top: 10px;
-            color: #fff;
-        }
-
-        .ultima-atualizacao i {
-            margin-right: 5px;
-        }
-
         .barra-pesquisa {
+            margin-top: 70px; /* Margem superior para separar da navbar */
             margin-bottom: 20px;
             width: 100%;
             padding: 10px;
             border-radius: 5px;
             border: 1px solid #ccc;
+            position: relative; /* Para posicionar o ícone */
+        }
+
+        .barra-pesquisa input {
+            width: calc(100% - 40px); /* Ajusta a largura para o ícone */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .barra-pesquisa i {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999; /* Cor do ícone */
         }
     </style>
 </head>
 <body>
-    <div class="barra-lateral">
+    <div class="navbar">
         <h1><i class="fas fa-gavel"></i> Regras</h1>
-        <input type="text" id="barra-pesquisa" class="barra-pesquisa" placeholder="Pesquisar regras...">
-        <button class="botao-pasta" onclick="window.location.href='https://drive.google.com/drive/folders/1EwNoYwRSlO4-a5KeQxKkvupTqzDRq1ih'">
-            <i class="fas fa-folder"></i> Pasta com os cards para usar
-        </button>
-        <a href="regras.pdf" class="botao-download" download>
-            <i class="fas fa-file-pdf"></i> Download das Regras em PDF
-        </a>
         <div class="ultima-atualizacao">
             <i class="fas fa-calendar-alt"></i> Última atualização: 13 de outubro de 2024
         </div>
     </div>
+    
+    <div class="barra-pesquisa">
+        <input type="text" id="barra-pesquisa-input" placeholder="Pesquisar regras...">
+        <i class="fas fa-search"></i> <!-- Ícone de pesquisa -->
+    </div>
+
+    <button class="botao-pasta" onclick="window.location.href='https://drive.google.com/drive/folders/1EwNoYwRSlO4-a5KeQxKkvupTqzDRq1ih'">
+        <i class="fas fa-folder"></i> Pasta com os cards para usar
+    </button>
+    <a href="regras.pdf" class="botao-download" download>
+        <i class="fas fa-file-pdf"></i> Download das Regras em PDF
+    </a>
+    
     <div id="regras-container"></div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         // Função para carregar as regras do arquivo JSON
         fetch('regras.json')
@@ -158,7 +174,16 @@
                         botao.className = 'botao-copiar';
                         botao.innerText = 'Copiar Regra';
                         botao.onclick = () => {
-                            navigator.clipboard.writeText(`${regra.titulo}\n${regra.descricao}\n${regra.paragrafos.join('\n')}`)
+                            const textoRegra = `${regra.titulo}\n${regra.descricao}\n${regra.paragrafos.join('\n')}`;
+                            navigator.clipboard.writeText(textoRegra)
+                                .then(() => {
+                                    // Exibir alerta de sucesso ao copiar
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Copiado!',
+                                        text: `Regra "${regra.titulo}" copiada com sucesso.`,
+                                    });
+                                })
                                 .catch(err => console.error('Erro ao copiar a regra: ', err));
                         };
 
@@ -171,7 +196,7 @@
                 renderizarRegras(regras);
 
                 // Adicionar evento de pesquisa
-                document.getElementById('barra-pesquisa').addEventListener('input', function() {
+                document.getElementById('barra-pesquisa-input').addEventListener('input', function() {
                     const termoPesquisa = this.value.toLowerCase();
                     const regrasFiltradas = regras.filter(regra => 
                         regra.titulo.toLowerCase().includes(termoPesquisa) || 
