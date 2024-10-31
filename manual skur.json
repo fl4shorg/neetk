@@ -98,19 +98,24 @@
     "descricao": "O Tabelião é responsável por cuidar do registro dos IDs e organizar o cartório, mantendo seu funcionamento no banco de dados. Sua função principal é garantir que todas as informações estejam devidamente registradas e atualizadas, assegurando que o cartório opere de maneira eficiente e legal. Ele realiza verificações constantes para garantir a integridade dos dados, facilita o acesso e a consulta das informações pelos usuários autorizados, e garante que todos os registros estejam em conformidade. O Tabelião desempenha um papel fundamental na administração e organização do cartório, assegurando que todos os registros sejam gerenciados corretamente no banco de dados."
 },
 {
-    "titulo": "21- Padre",
+      "titulo": "21- Reporter",
+          "descricao": "O repórter responsável pelo canal da Neext é encarregado de relatar as notícias de forma precisa e objetiva, sempre buscando trazer informações relevantes para a comunidade. Além de informar, ele também faz críticas construtivas aos membros da Neext, promovendo um ambiente de diálogo e melhorias. Seu compromisso é com a verdade, combatendo ativamente a disseminação de fake news e assegurando que a informação correta chegue a todos."
+},
+{
+  
+    "titulo": "22- Padre",
     "descricao": "O Padre é responsável por realizar casamentos no cartório, conduzindo cerimônias e oficializando as uniões de acordo com os procedimentos legais e as tradições da comunidade. Ele assegura que todos os registros de casamento sejam devidamente documentados no banco de dados do cartório, mantendo a organização e a integridade das informações. Além disso, o Padre orienta os casais sobre os requisitos e prepara os documentos necessários, garantindo que cada casamento esteja em conformidade com as normas estabelecidas. Seu papel é fundamental para proporcionar um ambiente seguro e organizado para as uniões oficiais."
 },
 {
-                    "titulo": "22- Psicóloga Geral",
+                    "titulo": "23- Psicóloga Geral",
                     "descricao": "A psicóloga desempenha um papel importante na plataforma Neext, oferecendo suporte emocional e orientação para os administradores. Ela está encarregada de identificar quaisquer problemas ou dificuldades enfrentadas pelos administradores e oferecer apoio adequado. Isso inclui ajudar a lidar com a falta de presença de administradores, dar orientação para melhorar a comunicação entre os membros e oferecer assistência a pessoas que estejam passando por momentos difíceis. A psicóloga também é responsável por conceder férias para aqueles que precisam de um tempo de descanso e recuperação. Seu objetivo é garantir o bem-estar emocional e o bom funcionamento da comunidade Neext, proporcionando suporte e orientação para todos os envolvidos."
                 },
                 {
-                    "titulo": "23- PSICÓLOGA TK",
+                    "titulo": "24- PSICÓLOGA TK",
                     "descricao": "A Psicóloga TK trabalha junto com a Psicóloga Geral, auxiliando no suporte aos membros da Neext. Ela realiza consultas e atua como ajudante da Psicóloga Geral, contribuindo para o bem-estar da comunidade."
                 },
                 {
-                    "titulo": "24- Guardião",
+                    "titulo": "25- Guardião",
                     "descricao": "O guardião é responsável por proteger o número do proprietário do grupo, garantindo que não ocorra nenhum arquivamento indevido e impedindo que alguém o roube. Ele desempenha um papel fundamental na segurança e integridade do grupo, monitorando atividades e assegurando que somente pessoas autorizadas tenham ADM."
                 }
             ]
