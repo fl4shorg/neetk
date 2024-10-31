@@ -93,6 +93,15 @@
                     "descricao": "O Perfilador Geral possui duas responsabilidades principais na comunidade do Quântico. Primeiro, ele é encarregado de capturar informações de ex-administradores e infiltrados, registrando-os no banco de dados e realizando verificações diárias nesses ex-administradores para garantir que não representem riscos à segurança. A segunda responsabilidade é monitorar esses registros, assegurando que pessoas removidas ou banidas não consigam retornar aos grupos, evitando problemas ou violações. Além disso, ele mantém a comunidade limpa e impede sua superlotação"
                 },
                 {
+                  
+    "titulo": "20- Tabelião",
+    "descricao": "O Tabelião é responsável por cuidar do registro dos IDs e organizar o cartório, mantendo seu funcionamento no banco de dados. Sua função principal é garantir que todas as informações estejam devidamente registradas e atualizadas, assegurando que o cartório opere de maneira eficiente e legal. Ele realiza verificações constantes para garantir a integridade dos dados, facilita o acesso e a consulta das informações pelos usuários autorizados, e garante que todos os registros estejam em conformidade. O Tabelião desempenha um papel fundamental na administração e organização do cartório, assegurando que todos os registros sejam gerenciados corretamente no banco de dados."
+},
+{
+    "titulo": "21- Padre",
+    "descricao": "O Padre é responsável por realizar casamentos no cartório, conduzindo cerimônias e oficializando as uniões de acordo com os procedimentos legais e as tradições da comunidade. Ele assegura que todos os registros de casamento sejam devidamente documentados no banco de dados do cartório, mantendo a organização e a integridade das informações. Além disso, o Padre orienta os casais sobre os requisitos e prepara os documentos necessários, garantindo que cada casamento esteja em conformidade com as normas estabelecidas. Seu papel é fundamental para proporcionar um ambiente seguro e organizado para as uniões oficiais."
+},
+{
                     "titulo": "20- Psicóloga Geral",
                     "descricao": "A psicóloga desempenha um papel importante na plataforma Neext, oferecendo suporte emocional e orientação para os administradores. Ela está encarregada de identificar quaisquer problemas ou dificuldades enfrentadas pelos administradores e oferecer apoio adequado. Isso inclui ajudar a lidar com a falta de presença de administradores, dar orientação para melhorar a comunicação entre os membros e oferecer assistência a pessoas que estejam passando por momentos difíceis. A psicóloga também é responsável por conceder férias para aqueles que precisam de um tempo de descanso e recuperação. Seu objetivo é garantir o bem-estar emocional e o bom funcionamento da comunidade Neext, proporcionando suporte e orientação para todos os envolvidos."
                 },
