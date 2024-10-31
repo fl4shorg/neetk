@@ -56,7 +56,16 @@
                     "titulo": "10- Perfilador Geral",
                     "descricao": "O Perfilador Geral possui duas responsabilidades principais na comunidade do Quântico. Primeiro, ele é encarregado de capturar informações de ex-administradores e infiltrados, registrando-os no banco de dados e realizando verificações diárias nesses ex-administradores para garantir que não representem riscos à segurança. A segunda responsabilidade é monitorar esses registros, assegurando que pessoas removidas ou banidas não consigam retornar aos grupos, evitando problemas ou violações. Além disso, ele mantém a comunidade limpa e impede sua superlotação"
                 },
-                {
+                            {
+                  
+    "titulo": "20- Tabelião",
+    "descricao": "O Tabelião é responsável por cuidar do registro dos IDs e organizar o cartório, mantendo seu funcionamento no banco de dados. Sua função principal é garantir que todas as informações estejam devidamente registradas e atualizadas, assegurando que o cartório opere de maneira eficiente e legal. Ele realiza verificações constantes para garantir a integridade dos dados, facilita o acesso e a consulta das informações pelos usuários autorizados, e garante que todos os registros estejam em conformidade. O Tabelião desempenha um papel fundamental na administração e organização do cartório, assegurando que todos os registros sejam gerenciados corretamente no banco de dados."
+},
+{
+    "titulo": "21- Padre",
+    "descricao": "O Padre é responsável por realizar casamentos no cartório, conduzindo cerimônias e oficializando as uniões de acordo com os procedimentos legais e as tradições da comunidade. Ele assegura que todos os registros de casamento sejam devidamente documentados no banco de dados do cartório, mantendo a organização e a integridade das informações. Além disso, o Padre orienta os casais sobre os requisitos e prepara os documentos necessários, garantindo que cada casamento esteja em conformidade com as normas estabelecidas. Seu papel é fundamental para proporcionar um ambiente seguro e organizado para as uniões oficiais."
+},
+{
                     "titulo": "11- Arquiteto",
                     "descricao": "O \"Arquiteto\" é um papel de grande importância na comunidade Neext. Suas responsabilidades incluem aprovar e criar novos cargos, regras e levels, bem como aceitar indicações de novos cargos feitas pelos administradores e membros da comunidade. Além disso, o Arquiteto desempenha um papel essencial na organização da comunidade, sendo responsável por atualizar a lista de cargos da Neext e o manual de cargos, garantindo que todas as mudanças sejam feitas com precisão e estejam em conformidade com as normas estabelecidas. Antes da implementação, ele deve enviar as regras e cargos para aprovação final do Imperador. Essa posição exige grande atenção aos detalhes para manter tudo de acordo com as diretrizes."
                 },
@@ -239,6 +248,7 @@
                     "descricao": "O Perfilador possui uma função distinta do Perfilador Geral, sendo encarregado de verificar cada pessoa antes que ela receba o cargo de administrador. Sua responsabilidade inclui investigar e avaliar as credenciais dos candidatos a administrador, além de denunciar aqueles que desejam obter esse cargo sem a devida qualificação ou intenção. O Perfilador também se assegura de que nenhum infiltrado seja recrutado para a administração, protegendo a integridade do grupo. Caso encontre um infiltrado, ele tem a autoridade de banir essa pessoa, garantindo assim que a administração permaneça composta apenas por indivíduos de confiança"
                 },
                 {
+                  
                     "titulo": "14- Upador",
                     "descricao": "O Upador tem a função de promover e elevar os levels dos administradores dentro da organização. Ele é responsável por avaliar o desempenho de cada administrador, garantindo que aqueles que se destacam sejam reconhecidos e recompensados por suas contribuições. Além disso, o Upador escolhe o melhor administrador da semana no grupo."
                 },
