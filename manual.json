@@ -58,43 +58,47 @@
                 },
                             {
                   
-    "titulo": "20- Tabelião",
+    "titulo": "11- Tabelião",
     "descricao": "O Tabelião é responsável por cuidar do registro dos IDs e organizar o cartório, mantendo seu funcionamento no banco de dados. Sua função principal é garantir que todas as informações estejam devidamente registradas e atualizadas, assegurando que o cartório opere de maneira eficiente e legal. Ele realiza verificações constantes para garantir a integridade dos dados, facilita o acesso e a consulta das informações pelos usuários autorizados, e garante que todos os registros estejam em conformidade. O Tabelião desempenha um papel fundamental na administração e organização do cartório, assegurando que todos os registros sejam gerenciados corretamente no banco de dados."
 },
 {
-    "titulo": "21- Padre",
+      "titulo": "12- Reporter",
+          "descricao": "O repórter responsável pelo canal da Neext é encarregado de relatar as notícias de forma precisa e objetiva, sempre buscando trazer informações relevantes para a comunidade. Além de informar, ele também faz críticas construtivas aos membros da Neext, promovendo um ambiente de diálogo e melhorias. Seu compromisso é com a verdade, combatendo ativamente a disseminação de fake news e assegurando que a informação correta chegue a todos."
+},
+{
+    "titulo": "13- Padre",
     "descricao": "O Padre é responsável por realizar casamentos no cartório, conduzindo cerimônias e oficializando as uniões de acordo com os procedimentos legais e as tradições da comunidade. Ele assegura que todos os registros de casamento sejam devidamente documentados no banco de dados do cartório, mantendo a organização e a integridade das informações. Além disso, o Padre orienta os casais sobre os requisitos e prepara os documentos necessários, garantindo que cada casamento esteja em conformidade com as normas estabelecidas. Seu papel é fundamental para proporcionar um ambiente seguro e organizado para as uniões oficiais."
 },
 {
-                    "titulo": "11- Arquiteto",
+                    "titulo": "14- Arquiteto",
                     "descricao": "O \"Arquiteto\" é um papel de grande importância na comunidade Neext. Suas responsabilidades incluem aprovar e criar novos cargos, regras e levels, bem como aceitar indicações de novos cargos feitas pelos administradores e membros da comunidade. Além disso, o Arquiteto desempenha um papel essencial na organização da comunidade, sendo responsável por atualizar a lista de cargos da Neext e o manual de cargos, garantindo que todas as mudanças sejam feitas com precisão e estejam em conformidade com as normas estabelecidas. Antes da implementação, ele deve enviar as regras e cargos para aprovação final do Imperador. Essa posição exige grande atenção aos detalhes para manter tudo de acordo com as diretrizes."
                 },
                 {
-                    "titulo": "12- O Ministro da Defesa",
+                    "titulo": "15- O Ministro da Defesa",
                     "descricao": "O Ministro da defesa é responsável pela proteção de toda a plataforma Neext, juntamente com a unidade de defesa SWAT. Sua principal função é repelir qualquer ataque e garantir a segurança de todos os usuários. O Ministro da Defesa lidera a linha de frente, implementando diversos protocolos de segurança para mitigar ameaças e prevenir danos. Ele trabalha em estreita colaboração com a equipe da SWAT para coordenar estratégias defensivas e garantir a pronta resposta a qualquer situação de perigo. Sua atuação é crucial para manter a integridade e o funcionamento seguro da plataforma Neext, Além de ser responsável pela proteção geral da plataforma Neext, o Ministro da Defesa também cuida dos grupos durante a madrugada."
                 },
                 {
-                    "titulo": "13-  Ministro das Relações",
+                    "titulo": "16-  Ministro das Relações",
                     "descricao": "o ministro das relações tem uma responsabilidade crucial e de extrema importância na organização, que é garantir a efetiva utilização de todos os cargos disponíveis. Afinal, é comum que existam cargos não utilizados ou que haja uma concentração excessiva de administradores ocupando funções similares. Nesse sentido, o Ministro trabalha para alocar os cargos de forma estratégica, indicando pessoas qualificadas para ocupá-los, a fim de otimizar o desempenho e promover o sucesso da organização. Essa função é essencial para o crescimento e a prosperidade da empresa Neext."
                 },
                 {
-                    "titulo": "14- Ministro da inteligência",
+                    "titulo": "17- Ministro da inteligência",
                     "descricao": "Ministro da inteligência Sua função e à espionagem de alianças da Brinks ou grupos inimigos, normalmente, essa função não faz parte das atribuições de uma figura ministerial. O trabalho de inteligência é geralmente conduzido por agências especializadas com o objetivo de obter informações e salvaguardar interesses nacionais, O FBI é a NSA são agências independente A NSA (National Security Agency) se dedica à coleta e análise de informações de inteligência para segurança nacional."
                 },
                 {
-                    "titulo": "15- Delegado",
+                    "titulo": "18- Delegado",
                     "descricao": "o delegado exerce um papel crucial e de grande importância na comunidade Neext. Sua principal prioridade e responsabilidade são cuidar dos administradores que se tornaram detentos após cometerem atos que os levaram a esse destino. Ele assume o controle da prisão do FBI e é encarregado de garantir que a pena dos detentos seja cumprida adequadamente, O trabalho do Delegado é essencial para manter a ordem e a segurança na comunidade Neext, assegurando que as consequências para aqueles que infringem as regras sejam aplicadas de maneira justa e consistente. Sua atuação é vital para garantir a integridade e a harmonia dentro da comunidade."
                 },
                 {
-                    "titulo": "16- Presidente do Brinks",
+                    "titulo": "19- Presidente do Brinks",
                     "descricao": "O Presidente do Brinks é responsável por cuidar das alianças da Neext, representando a comunidade em cada uma delas. Ele também gerencia os embaixadores e é responsável por estabelecer novas alianças para a Neext."
                 },
                 {
-                    "titulo": "17- Psicóloga Geral",
+                    "titulo": "20- Psicóloga Geral",
                     "descricao": "A psicóloga desempenha um papel importante na plataforma Neext, oferecendo suporte emocional e orientação para os administradores. Ela está encarregada de identificar quaisquer problemas ou dificuldades enfrentadas pelos administradores e oferecer apoio adequado. Isso inclui ajudar a lidar com a falta de presença de administradores, dar orientação para melhorar a comunicação entre os membros e oferecer assistência a pessoas que estejam passando por momentos difíceis. A psicóloga também é responsável por conceder férias para aqueles que precisam de um tempo de descanso e recuperação. Seu objetivo é garantir o bem-estar emocional e o bom funcionamento da comunidade Neext, proporcionando suporte e orientação para todos os envolvidos."
                 },
                 {
-                    "titulo": "18- PSICÓLOGA TK",
+                    "titulo": "21- PSICÓLOGA TK",
                     "descricao": "A Psicóloga TK trabalha junto com a Psicóloga Geral, auxiliando no suporte aos membros da Neext. Ela realiza consultas e atua como ajudante da Psicóloga Geral, contribuindo para o bem-estar da comunidade."
                 }
             ]
