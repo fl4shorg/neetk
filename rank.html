@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Rank</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        #rankContainer {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            background: linear-gradient(to right, #6a5acd, #1e90ff);
+            position: relative;
+            color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 300px;
+            margin: auto;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .rankItem {
+            margin: 5px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 5px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+        }
+        .rankSymbol {
+            font-size: 20px;
+        }
+        .userIcon {
+            font-size: 24px;
+            margin-left: 10px;
+        }
+        #starBackground {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+            background-image: url('https://cdn.pixabay.com/photo/2014/03/27/15/19/star-30055_1280.png');
+            background-repeat: repeat;
+        }
+        #footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: white;
+        }
+        .trophy {
+            color: gold;
+            font-size: 24px;
+            margin-right: 5px;
+        }
+        .medal {
+            font-size: 24px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Gerador de Rank</h1>
+
+<div>
+    <select id="rankType">
+        <option value="Rank Skur">Rank Skur</option>
+        <option value="Rank FBI">Rank FBI</option>
+    </select>
+    <input type="text" id="groupName" placeholder="Nome do Grupo" required>
+    <input type="text" id="user" placeholder="Usuário" required>
+    <button onclick="addGroup()">Adicionar Grupo</button>
+</div>
+
+<div id="groupList"></div>
+<div class="button-container">
+    <button onclick="generateRank()">Gerar Rank</button>
+    <button id="downloadButton" style="display: none;" onclick="downloadRank()">Download Rank</button>
+</div>
+
+<div id="rankContainer">
+    <div id="starBackground"></div>
+    <h2><i class="fas fa-trophy"></i> <span id="rankTitle">Rank Skur</span></h2>
+    <h3 id="date"><i class="fas fa-calendar-alt"></i> <span></span></h3>
+    <div id="rankDetails"></div>
+    <div id="footer">© NEEXT LTDA</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const groups = [];
+
+    function addGroup() {
+        const groupName = document.getElementById("groupName").value;
+        const user = document.getElementById("user").value;
+
+        if (groupName && user) {
+            groups.push({ name: groupName, user: user });
+
+            const groupList = document.getElementById("groupList");
+            const groupItem = document.createElement("div");
+            groupItem.className = "rankItem";
+            groupItem.innerText = `${groupName} - Usuário: ${user}`;
+            groupList.appendChild(groupItem);
+
+            // Limpar os campos
+            document.getElementById("groupName").value = '';
+            document.getElementById("user").value = '';
+        } else {
+            alert("Preencha todos os campos!");
+        }
+    }
+
+    function generateRank() {
+        const date = new Date().toLocaleDateString('pt-BR');
+        document.getElementById("date").querySelector('span').innerText = date;
+
+        // Define o título do rank com base na seleção
+        const rankType = document.getElementById("rankType").value;
+        document.getElementById("rankTitle").innerText = rankType;
+
+        const rankDetails = groups.map((group, index) => {
+            const medal = index === 0 ? '<span class="trophy"><i class="fas fa-trophy"></i></span>' : 
+                        index === 1 ? '🥈' : 
+                        index === 2 ? '🥉' : 
+                        '<span class="medal">🏅</span>';
+            return `
+                <div class="rankItem">
+                    <div class="rankSymbol">${medal} ${index + 1}</div>
+                    <span>${group.name}</span>
+                    <span class="userIcon"><i class="fas fa-user"></i> ${group.user}</span>
+                </div>
+            `;
+        }).join('');
+
+        document.getElementById("rankDetails").innerHTML = rankDetails;
+
+        document.getElementById("rankContainer").style.display = 'block';
+
+        // Exibe o botão de download
+        document.getElementById("downloadButton").style.display = 'inline';
+    }
+
+    function downloadRank() {
+        setTimeout(() => {
+            html2canvas(document.getElementById("rankContainer")).then(canvas => {
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL("image/png");
+                link.download = 'rank.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Notificação de sucesso
+                Swal.fire({
+                    title: 'Download iniciado!',
+                    text: 'Seu rank está sendo baixado.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            });
+        }, 100); // 100 ms de atraso
+    }
+</script>
+
+</body>
+</html>
