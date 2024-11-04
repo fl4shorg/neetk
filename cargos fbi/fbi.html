@@ -129,6 +129,23 @@
     <input type="text" id="search-input" class="barra-pesquisa" placeholder="Pesquisar cargo..." oninput="filterCargos()">
 </div>
 
+<script>
+    function filterCargos() {
+        const input = document.getElementById('search-input');
+        const filter = input.value.toLowerCase();
+        const cargos = document.querySelectorAll('.copy-group');
+
+        cargos.forEach(cargo => {
+            const text = cargo.innerText.toLowerCase();
+            if (text.includes(filter)) {
+                cargo.style.display = '';
+            } else {
+                cargo.style.display = 'none';
+            }
+        });
+    }
+</script>
+
     <!-- Seções de troféu -->
     <div class="house-section" style="background-color: #6a0dad; padding: 20px; border-radius: 10px;">
         <div class="house-title">
