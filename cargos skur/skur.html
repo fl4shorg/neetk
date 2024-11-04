@@ -125,8 +125,12 @@
 </div>
 <div class="container-barra">
     <i class="fas fa-search"></i>
-    <input type="text" class="barra-pesquisa" placeholder="Pesquisar cargo...">
+    <input type="text" id="search-input" class="barra-pesquisa" placeholder="Pesquisar cargo..." oninput="filterCargos()">
 </div>
+
+<!-- Exemplo de cargos para pesquisa -->
+<div class="copy-group tipo House">House - White</div>
+<div class="copy-group tipo Mage">Mage - Blue</div>
 <!-- Seções de troféu e medalha -->
 <div class="house-section" style="background: linear-gradient(to right, #6a0dad, #1e90ff); padding: 20px; border-radius: 10px;">
     <div class="house-title">
@@ -217,20 +221,58 @@
 
 
 <script>
-    function filterCargos() {
-        const input = document.getElementById('search-input');
-        const filter = input.value.toLowerCase();
-        const cargos = document.querySelectorAll('.copy-group');
+    // Adicione este código JavaScript no seu arquivo ou entre <script> tags
+function filterCargos() {
+    const input = document.getElementById('search-input');
+    const filter = input.value.toLowerCase();
+    const cargos = document.querySelectorAll('.copy-group');
+    let cargoEncontrado = false;
 
-        cargos.forEach(cargo => {
-            const text = cargo.innerText.toLowerCase();
-            if (text.includes(filter)) {
-                cargo.style.display = '';
-            } else {
-                cargo.style.display = 'none';
+    cargos.forEach(cargo => {
+        const text = cargo.innerText.toLowerCase();
+        if (text.includes(filter)) {
+            cargoEncontrado = true;
+            Swal.fire({
+                title: 'Cargo Encontrado',
+                html: `<div class="cargo-text">${cargo.innerHTML}</div>
+                       <button id="copy-btn" onclick="copyToClipboard('${cargo.innerText}')">Copiar</button>`,
+                showCloseButton: true,
+                focusConfirm: false,
+                background: '#f3f3f3', // Cor de fundo do modal
+                customClass: {
+                    popup: 'tipo'
+                }
+            });
+        }
+    });
+
+    if (!cargoEncontrado && filter !== "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Cargo não encontrado',
+            text: 'Tente outra pesquisa.',
+            background: '#f3f3f3',
+            customClass: {
+                popup: 'tipo'
             }
         });
     }
+}
+
+// Função para copiar o texto para a área de transferência
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        Swal.fire({
+            icon: 'success',
+            title: 'Texto copiado!',
+            timer: 1000,
+            showConfirmButton: false,
+            background: '#f3f3f3'
+        });
+    }).catch(err => {
+        console.error('Erro ao copiar texto: ', err);
+    });
+}
 </script>
 
    <!-- Seções de Casa -->
