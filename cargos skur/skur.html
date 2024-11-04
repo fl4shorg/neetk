@@ -72,24 +72,6 @@
     color: #d0c7f5; /* Cor do ícone */
     font-size: 18px;
 }
-.suggestions-container {
-    position: absolute;
-    background-color: #ffffff;
-    border: 1px solid #ccc;
-    width: 100%;
-    max-height: 150px;
-    overflow-y: auto;
-    display: none;
-}
-
-.suggestion-item {
-    padding: 8px;
-    cursor: pointer;
-}
-
-.suggestion-item:hover {
-    background-color: #f0f0f0;
-}
     </style>
 </head>
 <body>
@@ -143,11 +125,10 @@
 </div>
 <div class="container-barra">
     <i class="fas fa-search"></i>
-    <input type="text" id="search-input" class="barra-pesquisa" placeholder="Pesquisar cargo..." oninput="showSuggestions()">
-    <div id="suggestions-container" class="suggestions-container"></div>
+    <input type="text" id="search-input" class="barra-pesquisa" placeholder="Pesquisar cargo..." oninput="filterCargos()">
 </div>
 
-<!-- Exemplo de cargos -->
+<!-- Exemplo de cargos para pesquisa -->
 <div class="copy-group tipo House">House - White</div>
 <div class="copy-group tipo Mage">Mage - Blue</div>
 <!-- Seções de troféu e medalha -->
@@ -240,46 +221,45 @@
 
 
 <script>
-// Abre o widget de pesquisa
-function openSearchWidget() {
-    Swal.fire({
-        title: 'Pesquisar Cargos',
-        html: `<input type="text" id="search-input" class="barra-pesquisa" placeholder="Pesquisar cargo..." oninput="updateSuggestions()" />
-               <div id="suggestions-container" class="suggestions-container"></div>`,
-        showCloseButton: true,
-        showConfirmButton: false,
-        background: '#f3f3f3',
-        didOpen: () => {
-            // Chama o updateSuggestions ao abrir
-            updateSuggestions();
-        }
-    });
-}
-
-// Atualiza a lista de sugestões conforme o usuário digita
-function updateSuggestions() {
+    // Adicione este código JavaScript no seu arquivo ou entre <script> tags
+function filterCargos() {
     const input = document.getElementById('search-input');
     const filter = input.value.toLowerCase();
     const cargos = document.querySelectorAll('.copy-group');
-    const suggestionsContainer = document.getElementById('suggestions-container');
-
-    // Limpa as sugestões anteriores
-    suggestionsContainer.innerHTML = '';
+    let cargoEncontrado = false;
 
     cargos.forEach(cargo => {
-        const cargoText = cargo.getAttribute('data-cargo').toLowerCase();
-        if (cargoText.includes(filter) && filter !== "") {
-            const suggestionItem = document.createElement('div');
-            suggestionItem.classList.add('suggestion-item');
-            suggestionItem.innerHTML = `
-                <strong>${cargo.getAttribute('data-cargo')}</strong>
-                <button onclick="copyToClipboard('${cargo.getAttribute('data-cargo')}')">Copiar</button>`;
-            suggestionsContainer.appendChild(suggestionItem);
+        const text = cargo.innerText.toLowerCase();
+        if (text.includes(filter)) {
+            cargoEncontrado = true;
+            Swal.fire({
+                title: 'Cargo Encontrado',
+                html: `<div class="cargo-text">${cargo.innerHTML}</div>
+                       <button id="copy-btn" onclick="copyToClipboard('${cargo.innerText}')">Copiar</button>`,
+                showCloseButton: true,
+                focusConfirm: false,
+                background: '#f3f3f3', // Cor de fundo do modal
+                customClass: {
+                    popup: 'tipo'
+                }
+            });
         }
     });
+
+    if (!cargoEncontrado && filter !== "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Cargo não encontrado',
+            text: 'Tente outra pesquisa.',
+            background: '#f3f3f3',
+            customClass: {
+                popup: 'tipo'
+            }
+        });
+    }
 }
 
-// Função para copiar o texto do cargo para a área de transferência
+// Função para copiar o texto para a área de transferência
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(() => {
         Swal.fire({
