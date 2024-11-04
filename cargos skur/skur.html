@@ -175,6 +175,26 @@
         </span>
     </div>
 </div>
+<div class="search-bar" style="margin-top: 20px;">
+    <input type="text" id="search-input" placeholder="Buscar cargo..." onkeyup="filterCargos()" style="padding: 10px; width: 80%; max-width: 400px; border-radius: 5px; border: 1px solid #ccc;">
+</div>
+
+<script>
+    function filterCargos() {
+        const input = document.getElementById('search-input');
+        const filter = input.value.toLowerCase();
+        const cargos = document.querySelectorAll('.copy-group');
+
+        cargos.forEach(cargo => {
+            const text = cargo.innerText.toLowerCase();
+            if (text.includes(filter)) {
+                cargo.style.display = '';
+            } else {
+                cargo.style.display = 'none';
+            }
+        });
+    }
+</script>
 
    <!-- Seções de Casa -->
 <div class="house-section">
