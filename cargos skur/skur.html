@@ -199,19 +199,19 @@
 
 <script>
     function filterCargos() {
-        const input = document.getElementById('search-input');
-        const filter = input.value.toLowerCase();
-        const cargos = document.querySelectorAll('.copy-group');
+        const input = document.querySelector('.barra-pesquisa').addEventListener('input', function () {
+    const query = this.value.toLowerCase();
+    const cargos = document.querySelectorAll('.sessao-cargo');
 
-        cargos.forEach(cargo => {
-            const text = cargo.innerText.toLowerCase();
-            if (text.includes(filter)) {
-                cargo.style.display = '';
-            } else {
-                cargo.style.display = 'none';
-            }
-        });
-    }
+    cargos.forEach(cargo => {
+        const cargoNome = cargo.getAttribute('data-cargo').toLowerCase();
+        if (cargoNome.includes(query)) {
+            cargo.style.display = 'block';
+        } else {
+            cargo.style.display = 'none';
+        }
+    });
+});
 </script>
 
    <!-- Seções de Casa -->
