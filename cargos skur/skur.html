@@ -125,10 +125,11 @@
 </div>
 <div class="container-barra">
     <i class="fas fa-search"></i>
-    <input type="text" id="search-input" class="barra-pesquisa" placeholder="Pesquisar cargo..." oninput="filterCargos()">
+    <input type="text" id="search-input" class="barra-pesquisa" placeholder="Pesquisar cargo..." oninput="showSuggestions()">
+    <div id="suggestions-container" class="suggestions-container"></div>
 </div>
 
-<!-- Exemplo de cargos para pesquisa -->
+<!-- Exemplo de cargos -->
 <div class="copy-group tipo House">House - White</div>
 <div class="copy-group tipo Mage">Mage - Blue</div>
 <!-- Seções de troféu e medalha -->
