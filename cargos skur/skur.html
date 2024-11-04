@@ -37,21 +37,40 @@
             height: auto;
         }
         
-        .barra-pesquisa {
+.container-barra {
+    position: relative;
     width: 100%;
     max-width: 300px;
-    padding: 10px 20px;
+}
+
+.barra-pesquisa {
+    width: 100%;
+    padding: 10px 20px 10px 40px; /* Espaço à esquerda para o ícone */
     font-size: 16px;
-    border: 1px solid #ddd;
+    border: none;
     border-radius: 20px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(90deg, #8e2de2, #4a00e0); /* Degradê roxo e azul */
+    color: #fff;
     outline: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
 }
 
+.barra-pesquisa::placeholder {
+    color: #d0c7f5; /* Cor clara para o placeholder */
+}
+
 .barra-pesquisa:focus {
-    border-color: #0073e6;
-    box-shadow: 0px 0px 8px rgba(0, 115, 230, 0.5);
+    box-shadow: 0px 0px 8px rgba(78, 42, 161, 0.5);
+}
+
+.container-barra i {
+    position: absolute;
+    left: 15px; /* Posiciona o ícone à esquerda */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #d0c7f5; /* Cor do ícone */
+    font-size: 18px;
 }
     </style>
 </head>
@@ -104,8 +123,9 @@
         </div>
     </div>
 </div>
-<div class="search-bar" style="margin-top: 20px;">
-    <input type="text" id="search-input" placeholder="Buscar cargo..." onkeyup="filterCargos()" style="padding: 10px; width: 80%; max-width: 400px; border-radius: 5px; border: 1px solid #ccc;">
+<div class="container-barra">
+    <i class="fas fa-search"></i>
+    <input type="text" class="barra-pesquisa" placeholder="Pesquisar cargo...">
 </div>
 <!-- Seções de troféu e medalha -->
 <div class="house-section" style="background: linear-gradient(to right, #6a0dad, #1e90ff); padding: 20px; border-radius: 10px;">
