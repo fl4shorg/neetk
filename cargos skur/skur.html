@@ -104,7 +104,9 @@
         </div>
     </div>
 </div>
-
+<div class="search-bar" style="margin-top: 20px;">
+    <input type="text" id="search-input" placeholder="Buscar cargo..." onkeyup="filterCargos()" style="padding: 10px; width: 80%; max-width: 400px; border-radius: 5px; border: 1px solid #ccc;">
+</div>
 <!-- Seções de troféu e medalha -->
 <div class="house-section" style="background: linear-gradient(to right, #6a0dad, #1e90ff); padding: 20px; border-radius: 10px;">
     <div class="house-title">
@@ -192,26 +194,23 @@
         </span>
     </div>
 </div>
-<div class="container-barra">
-    <i class="fas fa-search" style="position: absolute; margin: 10px;"></i>
-    <input type="text" class="barra-pesquisa" placeholder="Pesquisar cargo...">
-</div>
+
 
 <script>
     function filterCargos() {
-        const input = document.querySelector('.barra-pesquisa').addEventListener('input', function () {
-    const query = this.value.toLowerCase();
-    const cargos = document.querySelectorAll('.sessao-cargo');
+        const input = document.getElementById('search-input');
+        const filter = input.value.toLowerCase();
+        const cargos = document.querySelectorAll('.copy-group');
 
-    cargos.forEach(cargo => {
-        const cargoNome = cargo.getAttribute('data-cargo').toLowerCase();
-        if (cargoNome.includes(query)) {
-            cargo.style.display = 'block';
-        } else {
-            cargo.style.display = 'none';
-        }
-    });
-});
+        cargos.forEach(cargo => {
+            const text = cargo.innerText.toLowerCase();
+            if (text.includes(filter)) {
+                cargo.style.display = '';
+            } else {
+                cargo.style.display = 'none';
+            }
+        });
+    }
 </script>
 
    <!-- Seções de Casa -->
