@@ -240,7 +240,24 @@
 
 
 <script>
-function showSuggestions() {
+// Abre o widget de pesquisa
+function openSearchWidget() {
+    Swal.fire({
+        title: 'Pesquisar Cargos',
+        html: `<input type="text" id="search-input" class="barra-pesquisa" placeholder="Pesquisar cargo..." oninput="updateSuggestions()" />
+               <div id="suggestions-container" class="suggestions-container"></div>`,
+        showCloseButton: true,
+        showConfirmButton: false,
+        background: '#f3f3f3',
+        didOpen: () => {
+            // Chama o updateSuggestions ao abrir
+            updateSuggestions();
+        }
+    });
+}
+
+// Atualiza a lista de sugestões conforme o usuário digita
+function updateSuggestions() {
     const input = document.getElementById('search-input');
     const filter = input.value.toLowerCase();
     const cargos = document.querySelectorAll('.copy-group');
@@ -248,41 +265,21 @@ function showSuggestions() {
 
     // Limpa as sugestões anteriores
     suggestionsContainer.innerHTML = '';
-    suggestionsContainer.style.display = 'none';
 
-    // Adiciona sugestões para cargos correspondentes ao texto digitado
     cargos.forEach(cargo => {
-        const text = cargo.innerText.toLowerCase();
-        if (text.includes(filter) && filter !== "") {
+        const cargoText = cargo.getAttribute('data-cargo').toLowerCase();
+        if (cargoText.includes(filter) && filter !== "") {
             const suggestionItem = document.createElement('div');
             suggestionItem.classList.add('suggestion-item');
-            suggestionItem.textContent = cargo.innerText;
-            suggestionItem.onclick = () => showCargoModal(cargo); // Mostra o modal ao clicar
+            suggestionItem.innerHTML = `
+                <strong>${cargo.getAttribute('data-cargo')}</strong>
+                <button onclick="copyToClipboard('${cargo.getAttribute('data-cargo')}')">Copiar</button>`;
             suggestionsContainer.appendChild(suggestionItem);
-            suggestionsContainer.style.display = 'block';
         }
     });
 }
 
-// Função para exibir o modal com o cargo e classe
-function showCargoModal(cargoElement) {
-    const cargoText = cargoElement.innerText;
-    const cargoClass = cargoElement.className;
-
-    Swal.fire({
-        title: 'Cargo Encontrado',
-        html: `<div class="cargo-text"><strong>${cargoText}</strong><br>Classe: ${cargoClass}</div>
-               <button id="copy-btn" onclick="copyToClipboard('${cargoText}')">Copiar</button>`,
-        showCloseButton: true,
-        focusConfirm: false,
-        background: '#f3f3f3'
-    });
-
-    // Esconde as sugestões quando o modal é aberto
-    document.getElementById('suggestions-container').style.display = 'none';
-}
-
-// Função para copiar o texto para a área de transferência
+// Função para copiar o texto do cargo para a área de transferência
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(() => {
         Swal.fire({
