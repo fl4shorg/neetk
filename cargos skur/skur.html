@@ -240,42 +240,46 @@
 
 
 <script>
-    // Adicione este código JavaScript no seu arquivo ou entre <script> tags
-function filterCargos() {
+function showSuggestions() {
     const input = document.getElementById('search-input');
     const filter = input.value.toLowerCase();
     const cargos = document.querySelectorAll('.copy-group');
-    let cargoEncontrado = false;
+    const suggestionsContainer = document.getElementById('suggestions-container');
 
+    // Limpa as sugestões anteriores
+    suggestionsContainer.innerHTML = '';
+    suggestionsContainer.style.display = 'none';
+
+    // Adiciona sugestões para cargos correspondentes ao texto digitado
     cargos.forEach(cargo => {
         const text = cargo.innerText.toLowerCase();
-        if (text.includes(filter)) {
-            cargoEncontrado = true;
-            Swal.fire({
-                title: 'Cargo Encontrado',
-                html: `<div class="cargo-text">${cargo.innerHTML}</div>
-                       <button id="copy-btn" onclick="copyToClipboard('${cargo.innerText}')">Copiar</button>`,
-                showCloseButton: true,
-                focusConfirm: false,
-                background: '#f3f3f3', // Cor de fundo do modal
-                customClass: {
-                    popup: 'tipo'
-                }
-            });
+        if (text.includes(filter) && filter !== "") {
+            const suggestionItem = document.createElement('div');
+            suggestionItem.classList.add('suggestion-item');
+            suggestionItem.textContent = cargo.innerText;
+            suggestionItem.onclick = () => showCargoModal(cargo); // Mostra o modal ao clicar
+            suggestionsContainer.appendChild(suggestionItem);
+            suggestionsContainer.style.display = 'block';
         }
     });
+}
 
-    if (!cargoEncontrado && filter !== "") {
-        Swal.fire({
-            icon: 'error',
-            title: 'Cargo não encontrado',
-            text: 'Tente outra pesquisa.',
-            background: '#f3f3f3',
-            customClass: {
-                popup: 'tipo'
-            }
-        });
-    }
+// Função para exibir o modal com o cargo e classe
+function showCargoModal(cargoElement) {
+    const cargoText = cargoElement.innerText;
+    const cargoClass = cargoElement.className;
+
+    Swal.fire({
+        title: 'Cargo Encontrado',
+        html: `<div class="cargo-text"><strong>${cargoText}</strong><br>Classe: ${cargoClass}</div>
+               <button id="copy-btn" onclick="copyToClipboard('${cargoText}')">Copiar</button>`,
+        showCloseButton: true,
+        focusConfirm: false,
+        background: '#f3f3f3'
+    });
+
+    // Esconde as sugestões quando o modal é aberto
+    document.getElementById('suggestions-container').style.display = 'none';
 }
 
 // Função para copiar o texto para a área de transferência
