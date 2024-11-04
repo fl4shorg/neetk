@@ -221,58 +221,20 @@
 
 
 <script>
-    // Adicione este código JavaScript no seu arquivo ou entre <script> tags
-function filterCargos() {
-    const input = document.getElementById('search-input');
-    const filter = input.value.toLowerCase();
-    const cargos = document.querySelectorAll('.copy-group');
-    let cargoEncontrado = false;
+    function filterCargos() {
+        const input = document.getElementById('search-input');
+        const filter = input.value.toLowerCase();
+        const cargos = document.querySelectorAll('.copy-group');
 
-    cargos.forEach(cargo => {
-        const text = cargo.innerText.toLowerCase();
-        if (text.includes(filter)) {
-            cargoEncontrado = true;
-            Swal.fire({
-                title: 'Cargo Encontrado',
-                html: `<div class="cargo-text">${cargo.innerHTML}</div>
-                       <button id="copy-btn" onclick="copyToClipboard('${cargo.innerText}')">Copiar</button>`,
-                showCloseButton: true,
-                focusConfirm: false,
-                background: '#f3f3f3', // Cor de fundo do modal
-                customClass: {
-                    popup: 'tipo'
-                }
-            });
-        }
-    });
-
-    if (!cargoEncontrado && filter !== "") {
-        Swal.fire({
-            icon: 'error',
-            title: 'Cargo não encontrado',
-            text: 'Tente outra pesquisa.',
-            background: '#f3f3f3',
-            customClass: {
-                popup: 'tipo'
+        cargos.forEach(cargo => {
+            const text = cargo.innerText.toLowerCase();
+            if (text.includes(filter)) {
+                cargo.style.display = '';
+            } else {
+                cargo.style.display = 'none';
             }
         });
     }
-}
-
-// Função para copiar o texto para a área de transferência
-function copyToClipboard(text) {
-    navigator.clipboard.writeText(text).then(() => {
-        Swal.fire({
-            icon: 'success',
-            title: 'Texto copiado!',
-            timer: 1000,
-            showConfirmButton: false,
-            background: '#f3f3f3'
-        });
-    }).catch(err => {
-        console.error('Erro ao copiar texto: ', err);
-    });
-}
 </script>
 
    <!-- Seções de Casa -->
