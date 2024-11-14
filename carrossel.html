@@ -8,15 +8,14 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
     <style>
-        /* Garantir que o carrossel se ajuste ao iframe */
         body, html {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #fff; /* Fundo branco */
+            background-color: #fff;
             color: #333;
-            overflow: hidden; /* Remover barras de rolagem do conteúdo */
-            height: 100%; /* Garantir que o conteúdo ocupe toda a altura */
+            height: 100%;
+            overflow: hidden;
         }
 
         .directors-title {
@@ -29,7 +28,7 @@
 
         .carousel {
             margin: 0 auto;
-            max-width: 900px;  /* Largura máxima para centralizar o carrossel */
+            max-width: 900px;
         }
 
         .carousel-item {
@@ -44,7 +43,7 @@
             object-fit: cover;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
             margin-bottom: 15px;
-            display: block;  /* Garante que a imagem seja centralizada */
+            display: block;
             margin-left: auto;
             margin-right: auto;
         }
@@ -59,7 +58,6 @@
             color: #666;
         }
 
-        /* Estilo dos botões da Slick */
         .slick-prev, .slick-next {
             background-color: rgba(0, 0, 0, 0.6);
             color: white;
@@ -117,17 +115,17 @@
     <script>
         $(document).ready(function(){
             $('.carousel').slick({
-                infinite: true,               // Loop contínuo
-                slidesToShow: 1,              // Mostra um item por vez
-                slidesToScroll: 1,            // Avança um item por vez
-                dots: true,                   // Adiciona indicadores de navegação
-                arrows: true,                 // Habilita os botões de navegação
-                autoplay: true,               // Ativa o autoplay
-                autoplaySpeed: 3000,          // Intervalo entre as trocas de slides
-                centerMode: true,             // Centraliza o slide atual
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                dots: true,
+                arrows: true,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                centerMode: true,
                 responsive: [
                     {
-                        breakpoint: 768,     // Para telas menores que 768px
+                        breakpoint: 768,
                         settings: {
                             slidesToShow: 1,
                             arrows: true
@@ -135,6 +133,19 @@
                     }
                 ]
             });
+
+            // Ajuste da altura do iframe quando o conteúdo for carregado
+            function adjustIframeHeight() {
+                var iframe = window.frameElement;
+                if (iframe) {
+                    var docHeight = document.body.scrollHeight;
+                    iframe.style.height = docHeight + 'px';
+                }
+            }
+
+            // Executa o ajuste de altura assim que o carrossel for inicializado
+            adjustIframeHeight();
+            $(window).resize(adjustIframeHeight); // Ajusta a altura caso a janela seja redimensionada
         });
     </script>
 </body>
