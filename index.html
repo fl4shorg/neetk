@@ -248,112 +248,39 @@
             <!-- Iframe para o Neext -->
             <iframe id="neext-frame" src="neext.html"></iframe> <!-- Conteúdo do Neext exibido abaixo -->
               <!-- Linha Separadora -->
-        <hr class="separator">      
+        <hr class="separator">     
+        
+    
+
+<!-- Linha Separadora -->
+<hr class="separator">      
+
+<!-- Seção de Diretores -->
+<div class="directors-section">
+  <h2>Diretores</h2>
+  <div class="directors-container">
+    <div class="director">
+      <img src="diretor1.jpg" alt="Diretor 1" class="director-photo">
+      <h3 class="director-name">Diretor 1</h3>
+      <p class="director-title">CEO</p>
+      <p class="director-description">Descrição sobre o Diretor 1. Aqui vai uma breve biografia ou informações.</p>
+    </div>
+    
+    <div class="director">
+      <img src="diretor2.jpg" alt="Diretor 2" class="director-photo">
+      <h3 class="director-name">Diretor 2</h3>
+      <p class="director-title">CTO</p>
+      <p class="director-description">Descrição sobre o Diretor 2. Aqui vai uma breve biografia ou informações.</p>
+    </div>
+
+    <!-- Adicione mais diretores conforme necessário -->
+  
                         
         </div>
     </div>
     
     
-    <!-- Carrossel de Diretores -->
-<div class="carrossel-container">
-    <h2 class="carrossel-titulo">
-        <i class="fas fa-users"></i> Diretores
-    </h2>
-    <div id="carrossel-diretores" class="carousel">
-        <!-- Item 1 -->
-        <div class="carousel-item">
-            <img src="diretor1.jpg" alt="Diretor 1" class="carrossel-imagem">
-            <div class="carrossel-info">
-                <h3>Nome do Diretor 1</h3>
-                <p>Descrição do Diretor 1, sua história e contribuições.</p>
-            </div>
-        </div>
-        <!-- Item 2 -->
-        <div class="carousel-item">
-            <img src="diretor2.jpg" alt="Diretor 2" class="carrossel-imagem">
-            <div class="carrossel-info">
-                <h3>Nome do Diretor 2</h3>
-                <p>Descrição do Diretor 2, sua história e contribuições.</p>
-            </div>
-        </div>
-        <!-- Item 3 -->
-        <div class="carousel-item">
-            <img src="diretor3.jpg" alt="Diretor 3" class="carrossel-imagem">
-            <div class="carrossel-info">
-                <h3>Nome do Diretor 3</h3>
-                <p>Descrição do Diretor 3, sua história e contribuições.</p>
-            </div>
-        </div>
-    </div>
-    <button class="carousel-control prev" onclick="moveCarousel(-1)">&#10094;</button>
-    <button class="carousel-control next" onclick="moveCarousel(1)">&#10095;</button>
-</div>
-
-<style>
-    .carrossel-container {
-        text-align: center;
-        margin-top: 50px;
-    }
-    .carrossel-titulo {
-        font-size: 2em;
-        margin-bottom: 20px;
-        font-weight: bold;
-    }
-    .carrossel-titulo i {
-        margin-right: 10px;
-    }
-    .carousel {
-        display: flex;
-        overflow: hidden;
-        justify-content: center;
-    }
-    .carousel-item {
-        margin: 0 15px;
-        text-align: center;
-        width: 200px;
-    }
-    .carrossel-imagem {
-        width: 100%;
-        border-radius: 50%;
-        margin-bottom: 10px;
-    }
-    .carrossel-info {
-        font-size: 1.1em;
-    }
-    .carousel-control {
-        position: absolute;
-        top: 50%;
-        z-index: 1;
-        background-color: rgba(0, 0, 0, 0.5);
-        color: white;
-        border: none;
-        padding: 10px;
-        font-size: 2em;
-        cursor: pointer;
-        transform: translateY(-50%);
-    }
-    .prev {
-        left: 0;
-    }
-    .next {
-        right: 0;
-    }
-</style>
-
-<script>
-    let currentIndex = 0;
     
-    function moveCarousel(step) {
-        const items = document.querySelectorAll(".carousel-item");
-        currentIndex += step;
-        
-        if (currentIndex >= items.length) currentIndex = 0;
-        if (currentIndex < 0) currentIndex = items.length - 1;
-        
-        const offset = -currentIndex * (items[0].clientWidth + 30); // 30px é o espaço entre os itens
-        document.getElementById("carrossel-diretores").style.transform = `translateX(${offset}px)`;
-    }
-</script>
     
     
     
