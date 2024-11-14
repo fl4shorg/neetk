@@ -12,7 +12,7 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #fff; /* Fundo branco */
             color: #333;
         }
 
@@ -22,6 +22,11 @@
             text-align: center;
             font-weight: bold;
             color: #333;
+        }
+
+        .carousel {
+            margin: 0 auto;
+            max-width: 900px;  /* Largura máxima para centralizar o carrossel */
         }
 
         .carousel-item {
@@ -36,6 +41,9 @@
             object-fit: cover;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
             margin-bottom: 15px;
+            display: block;  /* Garante que a imagem seja centralizada */
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .carousel-item h2 {
@@ -113,6 +121,7 @@
                 arrows: true,                 // Habilita os botões de navegação
                 autoplay: true,               // Ativa o autoplay
                 autoplaySpeed: 3000,          // Intervalo entre as trocas de slides
+                centerMode: true,             // Centraliza o slide atual
                 responsive: [
                     {
                         breakpoint: 768,     // Para telas menores que 768px
