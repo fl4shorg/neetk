@@ -125,7 +125,7 @@
 
             console.log('Tentando logar com usuário:', username);
 
-            fetch('./usuarios.json') // Ajuste o caminho se necessário
+            fetch('./usuariosfbi.json') // Ajuste o caminho se necessário
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Erro ao carregar usuários: ' + response.status);
