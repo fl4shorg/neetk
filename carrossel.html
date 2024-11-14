@@ -8,12 +8,15 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
     <style>
-        body {
+        /* Garantir que o carrossel se ajuste ao iframe */
+        body, html {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
             background-color: #fff; /* Fundo branco */
             color: #333;
+            overflow: hidden; /* Remover barras de rolagem do conteúdo */
+            height: 100%; /* Garantir que o conteúdo ocupe toda a altura */
         }
 
         .directors-title {
