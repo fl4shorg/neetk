@@ -109,7 +109,7 @@
         // Função para carregar e exibir as regras
         async function carregarRegras() {
             try {
-                const response = await fetch('regrasskur.json');
+                const response = await fetch('regrasfbi.json');
                 const dados = await response.json();
 
                 document.getElementById('titulo').textContent = dados.titulo;
