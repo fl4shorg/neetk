@@ -252,13 +252,7 @@
                         <!-- Iframe para o Neext -->
 <iframe id="neext-frame" src="carrossel.html" style="width: 100%; border: none; overflow: hidden;" onload="resizeIframe()"></iframe>
 
-<script>
-    function resizeIframe() {
-        var iframe = document.getElementById("neext-frame");
-        var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-        iframe.style.height = iframeDocument.documentElement.scrollHeight + 'px';
-    }
-</script>
+
 
 
         </div>
@@ -276,6 +270,13 @@
         menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
     }
 
+<script>
+    function resizeIframe() {
+        var iframe = document.getElementById("neext-frame");
+        var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+        iframe.style.height = iframeDocument.documentElement.scrollHeight + 'px';
+    }
+</script>
 
 
 // Lógica para esconder a extensão .html
