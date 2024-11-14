@@ -4,22 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEEXT LTDA. - Carrossel</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            color: #333;
             background-color: #f4f4f4;
+            color: #333;
         }
 
+        /* Título da seção Diretores */
+        .directors-title {
+            font-size: 28px;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Carrossel */
         .carousel-container {
             position: relative;
             width: 100%;
             overflow: hidden;
-            height: 70vh;  /* Ajuste da altura do carrossel */
+            height: 60vh;  /* Ajuste da altura do carrossel para maior flexibilidade */
         }
 
         .carousel {
@@ -33,20 +42,19 @@
             justify-content: center;
             align-items: center;
             position: relative;
+            padding: 15px;
         }
 
         .carousel-item img {
-            width: 150px; /* Tamanho moderado da foto */
-            height: 150px;
+            width: 120px;  /* Tamanho moderado da foto */
+            height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 15px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .carousel-item .info {
             text-align: center;
-            color: #fff;
             position: absolute;
             bottom: 20px;
             left: 50%;
@@ -57,17 +65,18 @@
         }
 
         .carousel-item h2 {
-            font-size: 24px;
-            margin: 0;
+            font-size: 22px;
             color: #fff;
+            margin: 0;
         }
 
         .carousel-item p {
-            font-size: 16px;
+            font-size: 14px;
             color: #fff;
             margin-top: 5px;
         }
 
+        /* Botões de navegação do carrossel */
         .carousel-button {
             position: absolute;
             top: 50%;
@@ -76,7 +85,7 @@
             color: white;
             border: none;
             cursor: pointer;
-            padding: 15px;
+            padding: 10px;
             font-size: 24px;
             border-radius: 50%;
             z-index: 1;
@@ -91,28 +100,43 @@
             right: 10px;
         }
 
-        .directors-title {
-            font-size: 32px;
-            margin: 20px 0;
-            text-align: center;
-            color: #333;
-            font-weight: bold;
-        }
-
-        /* Centralizar o título dentro do carrossel */
+        /* Título do carrossel */
         .carousel-title {
             position: absolute;
             top: 10px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 40px;
+            font-size: 35px;
             font-weight: bold;
             color: #fff;
             z-index: 1;
         }
+
+        /* Responsividade para dispositivos móveis */
+        @media screen and (max-width: 600px) {
+            .carousel-item img {
+                width: 100px;  /* Menor tamanho das fotos em telas pequenas */
+                height: 100px;
+            }
+
+            .carousel-item h2 {
+                font-size: 18px;
+            }
+
+            .carousel-item p {
+                font-size: 12px;
+            }
+
+            .carousel-button {
+                padding: 8px;
+                font-size: 20px;
+            }
+        }
+
     </style>
 </head>
 <body>
+
     <!-- Título de Diretores -->
     <div class="directors-title">Diretores</div>
 
@@ -144,8 +168,12 @@
         </div>
 
         <!-- Botões de navegação -->
-        <button class="carousel-button left" onclick="moveCarousel(-1)"><i class="fas fa-chevron-left"></i></button>
-        <button class="carousel-button right" onclick="moveCarousel(1)"><i class="fas fa-chevron-right"></i></button>
+        <button class="carousel-button left" onclick="moveCarousel(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="carousel-button right" onclick="moveCarousel(1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
     </div>
 
     <script>
@@ -167,5 +195,6 @@
             carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
         }
     </script>
+
 </body>
 </html>
