@@ -384,17 +384,17 @@ A Neext foi fundada e criada em 01/03/2019 e segue firme até hoje. O principal 
 
 
 <!-- Rodapé -->
-<footer style="background: linear-gradient(135deg, #ff5c8f, #8f44d1); color: white; padding: 20px; text-align: center; border-top: 5px solid #fff; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); font-family: 'Arial', sans-serif;">
+<footer style="background: linear-gradient(135deg, #ff5c8f, #8f44d1); color: white; padding: 20px; text-align: center; border-top: 5px solid #fff; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); font-family: 'Arial', sans-serif; width: 100%; box-sizing: border-box;">
     <div style="margin-bottom: 15px;">
         <p style="font-size: 16px; font-weight: bold;">&copy; 2024 NEEXT LTDA. Todos os direitos reservados.</p>
     </div>
     <div style="margin-bottom: 20px;">
-        <p style="font-size: 14px;">
-            <a href="teste.html" style="color: #fff; text-decoration: none; margin: 0 10px; transition: transform 0.3s;">Política de Privacidade</a> | 
-            <a href="teste.html" style="color: #fff; text-decoration: none; margin: 0 10px; transition: transform 0.3s;">Termos de Serviço</a> |
-            <a href="teste.html" style="color: #fff; text-decoration: none; margin: 0 10px; transition: transform 0.3s;">Regras Skur</a> | 
-            <a href="teste.html" style="color: #fff; text-decoration: none; margin: 0 10px; transition: transform 0.3s;">Regras Neepool</a> | 
-            <a href="teste.html" style="color: #fff; text-decoration: none; margin: 0 10px; transition: transform 0.3s;">Regras FBI</a>
+        <p style="font-size: 14px; flex-wrap: wrap; display: flex; justify-content: center; flex-direction: column;">
+            <a href="teste.html" style="color: #fff; text-decoration: none; margin: 5px; transition: transform 0.3s;">Política de Privacidade</a> | 
+            <a href="teste.html" style="color: #fff; text-decoration: none; margin: 5px; transition: transform 0.3s;">Termos de Serviço</a> |
+            <a href="teste.html" style="color: #fff; text-decoration: none; margin: 5px; transition: transform 0.3s;">Regras Skur</a> | 
+            <a href="teste.html" style="color: #fff; text-decoration: none; margin: 5px; transition: transform 0.3s;">Regras Neepool</a> | 
+            <a href="teste.html" style="color: #fff; text-decoration: none; margin: 5px; transition: transform 0.3s;">Regras FBI</a>
         </p>
     </div>
     <div>
@@ -407,6 +407,29 @@ A Neext foi fundada e criada em 01/03/2019 e segue firme até hoje. O principal 
     </div>
 </footer>
 
+<!-- Inclua o Font Awesome para os ícones -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+<style>
+    footer a:hover {
+        transform: scale(1.2);
+    }
+    
+    @media screen and (max-width: 600px) {
+        footer p {
+            font-size: 12px;
+            text-align: center;
+        }
+        footer a {
+            margin: 10px 0;
+        }
+        footer div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>
 <!-- Inclua o Font Awesome para os ícones -->
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
