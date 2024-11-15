@@ -368,19 +368,19 @@
                     "descricao": "A TAG de Visitante indica que a pessoa está temporariamente visitando a administração. Os membros com essa TAG são reconhecidos como visitantes"
                 },
                 {
-                    "titulo": "04-𝘍𝘦𝘳𝘪𝘢𝘴",
+                    "titulo": "04-Férias",
                     "descricao": "Essas férias são reconhecidas formalmente e têm uma duração específica, permitindo que o indivíduo se ausente de suas funções por um tempo determinado. Durante esse período, espera-se que o membro descanse e se recupere, garantindo que, ao retornar, possa continuar a desempenhar suas funções com renovado vigor e eficiência."
                 },
                 {
-                    "titulo": "05-𝘍𝘦𝘳𝘪𝘢𝘴 𝘷𝘦𝘳𝘮𝘦𝘭𝘩𝘢",
+                    "titulo": "05- Férias vermelha",
                     "descricao": "Férias Vermelha é uma forma de licença concedida a um membro devido a motivos graves e pessoais. Essa licença tem a duração de dois meses e é destinada a permitir que o indivíduo lide com questões que exigem atenção especial, como problemas de saúde, questões familiares ou outras situações críticas que possam impactar sua capacidade de cumprir as obrigações administrativas."
                 },
                 {
-                    "titulo": "06-𝘓𝘪𝘤𝘦𝘯𝘤𝘢 𝘮𝘦𝘥𝘪𝘤𝘢",
+                    "titulo": "06-Licença Médica",
                     "descricao": "Licença Médica é uma licença concedida a um membro que está enfrentando problemas de saúde graves, incluindo situações em que a pessoa pode estar hospitalizada ou em condições críticas de saúde. Essa licença é destinada a permitir que o indivíduo se concentre em sua recuperação sem a pressão de cumprir suas obrigações administrativas. A Licença Médica é uma medida que reconhece a gravidade da situação e oferece o suporte necessário para que o membro possa receber os cuidados adequados."
                 },
                 {
-                    "titulo": "07-𝘓𝘪𝘤𝘦𝘯𝘤𝘢",
+                    "titulo": "07-Licença",
                     "descricao": "Licença é um tipo de descanso concedido a um membro por um período de duas semanas."
                 },
                 {
