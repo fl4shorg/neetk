@@ -273,39 +273,60 @@
 
 <!-- Estilos para o estilo de pergaminho envelhecido -->
 <style>
+    /* Definindo o fundo com uma textura de pergaminho */
     .historia-container {
-        background: url('https://www.example.com/old-paper-texture.jpg'); /* Substitua com o link da sua textura de pergaminho envelhecido */
+        background: url('https://www.publicdomainpictures.net/pictures/40000/velvety/old-paper-1335727104Bh3.jpg') no-repeat center center; /* Exemplo de papel envelhecido */
         background-size: cover;
-        background-position: center;
-        padding: 40px;
+        padding: 20px;
         margin-top: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     }
 
     .historia-conteudo {
-        background-color: rgba(255, 255, 255, 0.85); /* Fundo semitransparente para melhorar a legibilidade */
+        background-color: rgba(255, 255, 255, 0.9); /* Fundo semitransparente para não perder a textura do papel */
         padding: 30px;
         border-radius: 12px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     }
 
+    /* Título com estilo de letra antiga */
     .historia-conteudo h2 {
         font-family: 'Garamond', serif; /* Fonte clássica, estilo antigo */
-        color: #4e2a84; /* Cor de tinta envelhecida */
-        font-size: 2.5em;
+        color: #6b4f3a; /* Cor marrom de tinta envelhecida */
+        font-size: 2em;
         text-align: center;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         margin-bottom: 20px;
     }
 
+    /* Parágrafos com fonte mais tradicional */
     .historia-conteudo p {
         font-family: 'Times New Roman', serif; /* Fonte tradicional, estilo de escrita antiga */
         color: #4b2e06; /* Cor de tinta marrom envelhecida */
-        font-size: 1.2em;
-        line-height: 1.6;
+        font-size: 1.1em;
+        line-height: 1.8;
         text-align: justify;
         letter-spacing: 0.5px;
+    }
+
+    /* Estilo responsivo para dispositivos móveis */
+    @media (max-width: 768px) {
+        .historia-container {
+            padding: 15px;
+        }
+
+        .historia-conteudo {
+            padding: 20px;
+        }
+
+        .historia-conteudo h2 {
+            font-size: 1.8em; /* Reduzindo o tamanho do título no celular */
+        }
+
+        .historia-conteudo p {
+            font-size: 1em; /* Ajuste no tamanho da fonte para melhor legibilidade em telas menores */
+        }
     }
 </style>
 
