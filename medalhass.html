@@ -64,11 +64,21 @@
             color: #666;
         }
 
+        /* Estilo das setas */
         .slick-prev, .slick-next {
             background-color: rgba(0, 0, 0, 0.6);
             color: white;
             border-radius: 50%;
             padding: 10px;
+            font-size: 20px; /* Aumenta o tamanho das setas */
+        }
+
+        .slick-prev {
+            left: -40px; /* Posição da seta anterior */
+        }
+
+        .slick-next {
+            right: -40px; /* Posição da seta seguinte */
         }
 
         /* Responsividade para mobile */
@@ -84,6 +94,12 @@
 
             .carousel-item p {
                 font-size: 14px;
+            }
+
+            /* Ajusta as setas em dispositivos móveis */
+            .slick-prev, .slick-next {
+                font-size: 18px; /* Menor tamanho de seta */
+                padding: 8px;
             }
         }
     </style>
@@ -124,8 +140,8 @@
                 infinite: true,
                 slidesToShow: 1,
                 slidesToScroll: 1,
-                dots: true,
-                arrows: true,
+                dots: false, /* Desativa os pontos */
+                arrows: true, /* Habilita as setas */
                 autoplay: true,
                 autoplaySpeed: 3000,
                 centerMode: true,
