@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEEXT LTDA. - Medalhas e Carrossel</title>
+    <title>NEEXT LTDA. - Medalhas e Troféus</title>
     <!-- Incluindo o CSS do Slick -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
@@ -42,11 +42,16 @@
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .medal {
+        .icons {
             position: absolute;
-            top: -20px;
+            top: -40px;
             left: 50%;
             transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .icon {
             width: 60px;
             height: 60px;
             border-radius: 50%;
@@ -60,13 +65,21 @@
             border: 3px solid white;
         }
 
+        .icon.trophy {
+            background: #d4af37; /* Cor dourada de troféu */
+        }
+
+        .icon.medal {
+            background: gold; /* Cor clássica de medalha */
+        }
+
         .carousel-item img {
             width: 200px;
             height: 200px;
             border-radius: 50%;
             object-fit: cover;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            margin: 20px auto 15px;
+            margin: 40px auto 15px;
         }
 
         .carousel-item h2 {
@@ -102,7 +115,7 @@
                 font-size: 14px;
             }
 
-            .medal {
+            .icon {
                 width: 50px;
                 height: 50px;
                 font-size: 20px;
@@ -112,32 +125,44 @@
 </head>
 <body>
 
-    <div class="directors-title"><i class="fas fa-medal"></i> Conquistadores</div>
+    <div class="directors-title"><i class="fas fa-award"></i> Conquistadores</div>
 
     <div class="carousel">
         <div class="carousel-item">
-            <div class="medal"><i class="fas fa-trophy"></i></div>
+            <div class="icons">
+                <div class="icon trophy"><i class="fas fa-trophy"></i></div>
+                <div class="icon medal"><i class="fas fa-medal"></i></div>
+            </div>
             <img src="tay.jpg" alt="Pessoa 1">
             <h2>Tayzinha 💖</h2>
-            <p>Conquistou medalhas de reconhecimento por seu trabalho excepcional como CTO e vice-diretora.</p>
+            <p>Conquistou diversas medalhas e troféus por seu trabalho como CTO e vice-diretora.</p>
         </div>
         <div class="carousel-item">
-            <div class="medal"><i class="fas fa-trophy"></i></div>
+            <div class="icons">
+                <div class="icon trophy"><i class="fas fa-trophy"></i></div>
+                <div class="icon medal"><i class="fas fa-medal"></i></div>
+            </div>
             <img src="sam.jpg" alt="Pessoa 2">
             <h2>Sam ❄️</h2>
-            <p>Um dos diretores mais premiados da história da NEEXT, com liderança exemplar.</p>
+            <p>Diretor premiado com múltiplos troféus e medalhas por sua liderança na NEEXT.</p>
         </div>
         <div class="carousel-item">
-            <div class="medal"><i class="fas fa-trophy"></i></div>
+            <div class="icons">
+                <div class="icon trophy"><i class="fas fa-trophy"></i></div>
+                <div class="icon medal"><i class="fas fa-medal"></i></div>
+            </div>
             <img src="batman.jpg" alt="Pessoa 3">
             <h2>Batman 🦇</h2>
-            <p>Recebeu medalhas de honra por sua dedicação em tornar a NEEXT ainda melhor.</p>
+            <p>Recebeu troféus e medalhas de honra por sua dedicação à melhoria da NEEXT.</p>
         </div>
         <div class="carousel-item">
-            <div class="medal"><i class="fas fa-trophy"></i></div>
+            <div class="icons">
+                <div class="icon trophy"><i class="fas fa-trophy"></i></div>
+                <div class="icon medal"><i class="fas fa-medal"></i></div>
+            </div>
             <img src="ary.jpg" alt="Pessoa 4">
             <h2>Ary 🐞</h2>
-            <p>Reconhecida por sua liderança excepcional e conquistas na administração.</p>
+            <p>Reconhecida com medalhas e troféus por sua gestão excepcional na NEEXT.</p>
         </div>
     </div>
 
