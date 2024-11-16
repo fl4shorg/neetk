@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEEXT LTDA. - Medalhas e Carrossel</title>
+    <!-- Incluindo o CSS do Slick -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+    <!-- Incluindo Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            height: 100%;
+        }
+
+        .directors-title {
+            font-size: 36px;
+            margin: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .carousel {
+            margin: 0 auto;
+            max-width: 900px;
+            padding: 20px;
+        }
+
+        .carousel-item {
+            position: relative;
+            text-align: center;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .medal {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: gold;
+            color: white;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+            border: 3px solid white;
+        }
+
+        .carousel-item img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 20px auto 15px;
+        }
+
+        .carousel-item h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .carousel-item p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .slick-prev, .slick-next {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border-radius: 50%;
+            padding: 10px;
+        }
+
+        /* Responsividade para mobile */
+        @media (max-width: 768px) {
+            .carousel-item img {
+                width: 150px;
+                height: 150px;
+            }
+
+            .carousel-item h2 {
+                font-size: 20px;
+            }
+
+            .carousel-item p {
+                font-size: 14px;
+            }
+
+            .medal {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="directors-title"><i class="fas fa-medal"></i> Conquistadores</div>
+
+    <div class="carousel">
+        <div class="carousel-item">
+            <div class="medal"><i class="fas fa-trophy"></i></div>
+            <img src="tay.jpg" alt="Pessoa 1">
+            <h2>Tayzinha 💖</h2>
+            <p>Conquistou medalhas de reconhecimento por seu trabalho excepcional como CTO e vice-diretora.</p>
+        </div>
+        <div class="carousel-item">
+            <div class="medal"><i class="fas fa-trophy"></i></div>
+            <img src="sam.jpg" alt="Pessoa 2">
+            <h2>Sam ❄️</h2>
+            <p>Um dos diretores mais premiados da história da NEEXT, com liderança exemplar.</p>
+        </div>
+        <div class="carousel-item">
+            <div class="medal"><i class="fas fa-trophy"></i></div>
+            <img src="batman.jpg" alt="Pessoa 3">
+            <h2>Batman 🦇</h2>
+            <p>Recebeu medalhas de honra por sua dedicação em tornar a NEEXT ainda melhor.</p>
+        </div>
+        <div class="carousel-item">
+            <div class="medal"><i class="fas fa-trophy"></i></div>
+            <img src="ary.jpg" alt="Pessoa 4">
+            <h2>Ary 🐞</h2>
+            <p>Reconhecida por sua liderança excepcional e conquistas na administração.</p>
+        </div>
+    </div>
+
+    <!-- Incluindo o jQuery e o Slick JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.carousel').slick({
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                dots: true,
+                arrows: true,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                centerMode: true,
+                responsive: [
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1,
+                            arrows: true
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+</body>
+</html>
