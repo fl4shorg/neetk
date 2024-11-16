@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEEXT LTDA. - Medalhas e Troféus</title>
+    <title>NEEXT LTDA. - Carrossel Responsivo</title>
     <!-- Incluindo o CSS do Slick -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
@@ -14,63 +14,32 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #fff;
             color: #333;
             height: 100%;
+            overflow: hidden;
         }
 
         .directors-title {
-            font-size: 36px;
+            font-size: 32px;
             margin: 20px;
             text-align: center;
             font-weight: bold;
             color: #333;
         }
 
+        .directors-title i {
+            margin-right: 10px; /* Espaço entre o ícone e o texto */
+        }
+
         .carousel {
             margin: 0 auto;
             max-width: 900px;
-            padding: 20px;
         }
 
         .carousel-item {
-            position: relative;
             text-align: center;
             padding: 20px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .icons {
-            position: absolute;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-        }
-
-        .icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: gold;
-            color: white;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-            border: 3px solid white;
-        }
-
-        .icon.trophy {
-            background: #d4af37; /* Cor dourada de troféu */
-        }
-
-        .icon.medal {
-            background: gold; /* Cor clássica de medalha */
         }
 
         .carousel-item img {
@@ -79,13 +48,15 @@
             border-radius: 50%;
             object-fit: cover;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            margin: 40px auto 15px;
+            margin-bottom: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .carousel-item h2 {
             font-size: 24px;
             color: #333;
-            margin-bottom: 10px;
         }
 
         .carousel-item p {
@@ -114,55 +85,33 @@
             .carousel-item p {
                 font-size: 14px;
             }
-
-            .icon {
-                width: 50px;
-                height: 50px;
-                font-size: 20px;
-            }
         }
     </style>
 </head>
 <body>
 
-    <div class="directors-title"><i class="fas fa-award"></i> Conquistadores</div>
+    <div class="directors-title"><i class="fas fa-chalkboard-teacher"></i>Diretores</div>
 
     <div class="carousel">
         <div class="carousel-item">
-            <div class="icons">
-                <div class="icon trophy"><i class="fas fa-trophy"></i></div>
-                <div class="icon medal"><i class="fas fa-medal"></i></div>
-            </div>
             <img src="tay.jpg" alt="Pessoa 1">
-            <h2>Tayzinha 💖</h2>
-            <p>Conquistou diversas medalhas e troféus por seu trabalho como CTO e vice-diretora.</p>
+            <h2>Tayzinha💖</h2>
+            <p>A melhor vice-diretora que a Skur já teve e uma das melhores CTOs, conquistando várias medalhas em reconhecimento ao seu trabalho excepcional.</p>
         </div>
         <div class="carousel-item">
-            <div class="icons">
-                <div class="icon trophy"><i class="fas fa-trophy"></i></div>
-                <div class="icon medal"><i class="fas fa-medal"></i></div>
-            </div>
             <img src="sam.jpg" alt="Pessoa 2">
-            <h2>Sam ❄️</h2>
-            <p>Diretor premiado com múltiplos troféus e medalhas por sua liderança na NEEXT.</p>
+            <h2>Sam❄️</h2>
+            <p>Sam é um dos melhores diretores que o Skur já teve, com uma carreira marcada por inúmeras conquistas e medalhas de honra. Seu trabalho incansável e sua liderança exemplar fizeram dele uma figura respeitada e admirada.</p>
         </div>
         <div class="carousel-item">
-            <div class="icons">
-                <div class="icon trophy"><i class="fas fa-trophy"></i></div>
-                <div class="icon medal"><i class="fas fa-medal"></i></div>
-            </div>
             <img src="batman.jpg" alt="Pessoa 3">
-            <h2>Batman 🦇</h2>
-            <p>Recebeu troféus e medalhas de honra por sua dedicação à melhoria da NEEXT.</p>
+            <h2>Batman🦇⏳</h2>
+            <p>Batman, o melhor diretor que visa sempre na melhoria da empresa NEEXT, está disposto a enfrentar qualquer obstáculo em seu caminho para deixar a comunidade o melhor possível.</p>
         </div>
         <div class="carousel-item">
-            <div class="icons">
-                <div class="icon trophy"><i class="fas fa-trophy"></i></div>
-                <div class="icon medal"><i class="fas fa-medal"></i></div>
-            </div>
             <img src="ary.jpg" alt="Pessoa 4">
-            <h2>Ary 🐞</h2>
-            <p>Reconhecida com medalhas e troféus por sua gestão excepcional na NEEXT.</p>
+            <h2>Ary🐞</h2>
+            <p>Ary, ex-diretora e atual vice-diretora, foi responsável pela liderança por dois anos consecutivos, sempre demonstrando uma gestão excepcional..</p>
         </div>
     </div>
 
@@ -190,6 +139,19 @@
                     }
                 ]
             });
+
+            // Ajuste da altura do iframe quando o conteúdo for carregado
+            function adjustIframeHeight() {
+                var iframe = window.frameElement;
+                if (iframe) {
+                    var docHeight = document.body.scrollHeight;
+                    iframe.style.height = docHeight + 'px';
+                }
+            }
+
+            // Executa o ajuste de altura assim que o carrossel for inicializado
+            adjustIframeHeight();
+            $(window).resize(adjustIframeHeight); // Ajusta a altura caso a janela seja redimensionada
         });
     </script>
 </body>
