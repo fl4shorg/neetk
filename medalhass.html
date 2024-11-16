@@ -7,8 +7,6 @@
     <!-- Incluindo o CSS do Slick -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
-    <!-- Incluindo Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
         body, html {
             margin: 0;
@@ -17,7 +15,6 @@
             background-color: #fff;
             color: #333;
             height: 100%;
-            overflow: hidden;
         }
 
         .medals-title {
@@ -28,11 +25,8 @@
             color: #333;
         }
 
-        .medals-title i {
-            margin-right: 10px; /* Espaço entre o ícone e o texto */
-        }
-
         .carousel {
+            position: relative;
             margin: 0 auto;
             max-width: 900px;
         }
@@ -64,21 +58,35 @@
             color: #666;
         }
 
-        /* Estilo das setas */
+        /* Estilo das setas usando ícones de texto */
         .slick-prev, .slick-next {
+            position: absolute;
+            top: 50%;
+            z-index: 1;
             background-color: rgba(0, 0, 0, 0.6);
             color: white;
             border-radius: 50%;
             padding: 10px;
-            font-size: 20px; /* Aumenta o tamanho das setas */
+            font-size: 24px;
+            transform: translateY(-50%);
+        }
+
+        .slick-prev::before {
+            content: "⬅️"; /* Seta para a esquerda */
+            font-size: 32px;
+        }
+
+        .slick-next::before {
+            content: "➡️"; /* Seta para a direita */
+            font-size: 32px;
         }
 
         .slick-prev {
-            left: -40px; /* Posição da seta anterior */
+            left: -30px; /* Posição da seta anterior */
         }
 
         .slick-next {
-            right: -40px; /* Posição da seta seguinte */
+            right: -30px; /* Posição da seta seguinte */
         }
 
         /* Responsividade para mobile */
@@ -106,7 +114,7 @@
 </head>
 <body>
 
-    <div class="medals-title"><i class="fas fa-medal"></i>Medalhas</div>
+    <div class="medals-title">Medalhas</div>
 
     <div class="carousel">
         <div class="carousel-item">
@@ -155,19 +163,6 @@
                     }
                 ]
             });
-
-            // Ajuste da altura do iframe quando o conteúdo for carregado
-            function adjustIframeHeight() {
-                var iframe = window.frameElement;
-                if (iframe) {
-                    var docHeight = document.body.scrollHeight;
-                    iframe.style.height = docHeight + 'px';
-                }
-            }
-
-            // Executa o ajuste de altura assim que o carrossel for inicializado
-            adjustIframeHeight();
-            $(window).resize(adjustIframeHeight); // Ajusta a altura caso a janela seja redimensionada
         });
     </script>
 </body>
