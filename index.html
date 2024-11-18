@@ -91,7 +91,8 @@
     margin: 30px auto;
     padding: 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Garante que os resultados fiquem abaixo da barra */
+    align-items: center; /* Centraliza a barra */
 }
 
 .search-bar {
@@ -113,10 +114,14 @@
     box-shadow: 0 0 8px rgba(91, 135, 255, 0.5);
     border-width: 2px; /* Mantém a borda do mesmo tamanho ao focar */
 }
+
 .search-results {
-    margin-top: 20px;
+    margin-top: 10px;
     list-style: none;
     padding: 0;
+    width: 100%;
+    max-height: 300px; /* Adiciona um limite de altura para os resultados */
+    overflow-y: auto; /* Permite rolagem quando os resultados excedem a altura */
 }
 
 .search-results li {
@@ -138,7 +143,7 @@
 .search-results i {
     margin-right: 12px;
     font-size: 20px;
-    color: #5b87ff; /* Cor do ícone */
+    color: #5b87ff;
     transition: transform 0.3s ease;
 }
 
