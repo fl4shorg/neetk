@@ -91,20 +91,25 @@
     margin: 30px auto;
     padding: 0;
     display: flex;
-    flex-direction: column; /* Garante que os resultados fiquem abaixo da barra */
-    align-items: center; /* Centraliza a barra */
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-bar-container {
+    position: relative;
+    width: 100%;
 }
 
 .search-bar {
     width: 100%;
-    padding: 15px;
+    padding: 15px 15px 15px 40px; /* Espaço extra à esquerda para o ícone */
     font-size: 16px;
     border: 2px solid #e0e0e0;
     border-radius: 50px;
     background-color: #f9f9f9;
     color: #333;
     outline: none;
-    box-sizing: border-box; /* Garante que o tamanho da caixa não mude ao adicionar bordas */
+    box-sizing: border-box;
     transition: all 0.3s ease;
 }
 
@@ -112,7 +117,16 @@
     border-color: #5b87ff;
     background-color: #fff;
     box-shadow: 0 0 8px rgba(91, 135, 255, 0.5);
-    border-width: 2px; /* Mantém a borda do mesmo tamanho ao focar */
+    border-width: 2px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px; /* Ajusta a posição do ícone à esquerda */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #333;
 }
 
 .search-results {
@@ -120,8 +134,8 @@
     list-style: none;
     padding: 0;
     width: 100%;
-    max-height: 300px; /* Adiciona um limite de altura para os resultados */
-    overflow-y: auto; /* Permite rolagem quando os resultados excedem a altura */
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 .search-results li {
@@ -148,7 +162,7 @@
 }
 
 .search-results li:hover i {
-    transform: scale(1.1); /* Efeito de aumento no ícone ao passar o mouse */
+    transform: scale(1.1);
 }
 
         /* Estilos para a linha separadora */
