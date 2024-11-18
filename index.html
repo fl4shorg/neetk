@@ -188,28 +188,23 @@
             display: flex;
             flex-direction: column;
             align-items: center; /* Centraliza o iframe */
-        }/* Estilo para o botão flutuante com ícone do Instagram */
+        }
+        /* Estilo para o botão flutuante do Instagram */
 .instagram-button {
     position: fixed;
     bottom: 20px;  /* Distância do fundo */
     right: 20px;   /* Distância da direita */
     background-color: #E1306C;  /* Cor do botão do Instagram */
-    color: white;
-    padding: 10px 20px;
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    padding: 15px;
+    border-radius: 50%;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    text-decoration: none;  /* Remove underline */
-    font-weight: bold;
-    z-index: 1000;
+    cursor: pointer;
+    z-index: 1000;  /* Para garantir que o botão fique sobre os outros elementos */
 }
 
-/* Estilo do ícone do Instagram */
-.instagram-icon {
-    width: 25px;
-    height: 25px;
+.instagram-button i {
+    color: white;
+    font-size: 30px;
 }
 
 /* Efeito de hover para o botão */
@@ -217,7 +212,7 @@
     background-color: #C13584;  /* Cor de hover mais escura */
     box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
 }
-
+        
 
         #contador-frame, #neext-frame {
             width: 100%;
@@ -393,10 +388,11 @@
     <img src="svg/suporte.svg" alt="Ícone Suporte" class="support-icon"> Suporte
 </a>
 
-<!-- Botão de Suporte Instagram com ícone -->
-<a href="https://www.instagram.com/seu_usuario/" class="contact-button instagram-button" target="_blank">
-    <img src="svg/instagram-icon.svg" alt="Ícone Instagram" class="instagram-icon"> Suporte Instagram
+<a href="https://www.instagram.com/seuperfil" class="contact-button instagram-button" target="_blank">
+    <i class="fab fa-instagram icon"></i> Instagram
 </a>
+
+
         <!-- Linha Separadora -->
         <hr class="separator">
 
