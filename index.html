@@ -189,6 +189,29 @@
             flex-direction: column;
             align-items: center; /* Centraliza o iframe */
         }
+        
+        /* Estilos para os ícones de redes sociais */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espaçamento entre os ícones */
+    margin-top: 20px;
+}
+
+.social-icons i {
+    font-size: 40px;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.social-icons i:hover {
+    color: #1da1f2; /* Cor do ícone quando passar o mouse (para o Instagram será a cor padrão) */
+}
+
+/* Estilos específicos para o Instagram */
+.social-icons .fab.fa-instagram {
+    color: #E4405F; /* Cor específica para o ícone do Instagram */
+}
 
         #contador-frame, #neext-frame {
             width: 100%;
