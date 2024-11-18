@@ -262,6 +262,36 @@
     </div>
 </body>
 
+<script>
+    const searchData = [
+        { name: "Página 1", url: "pagina1.html", icon: "fas fa-globe" },
+        { name: "Página 2", url: "pagina2.html", icon: "fas fa-laptop" },
+        { name: "Página 3", url: "pagina3.html", icon: "fas fa-desktop" },
+        // Adicione mais páginas aqui
+    ];
+
+    document.getElementById("search-bar").addEventListener("input", function () {
+        const query = this.value.toLowerCase();
+        const filteredResults = searchData.filter(item => item.name.toLowerCase().includes(query));
+        const resultsContainer = document.getElementById("search-results");
+
+        resultsContainer.innerHTML = "";
+
+        filteredResults.forEach(item => {
+            const listItem = document.createElement("li");
+            const icon = document.createElement("i");
+            icon.className = item.icon;  // Adiciona o ícone da Font Awesome
+
+            listItem.appendChild(icon);
+            listItem.appendChild(document.createTextNode(item.name));
+            listItem.onclick = function() {
+                window.location.href = item.url;
+            };
+            resultsContainer.appendChild(listItem);
+        });
+    });
+</script>
+
     <!-- Seção de Boas-Vindas -->
     <div class="welcome-container">
         <h1 class="welcome-message">
