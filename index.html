@@ -86,6 +86,45 @@
     margin-right: 10px; /* Espaço entre o ícone e o texto */
     vertical-align: middle; /* Alinha verticalmente o ícone com o texto */
 }
+.search-bar {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 30px;
+    background: linear-gradient(90deg, #7b2ff7, #00c6ff); /* Degradê roxo para azul */
+    color: white;
+    outline: none;
+    transition: 0.3s;
+}
+
+.search-bar:focus {
+    border-color: #00c6ff;
+    background: linear-gradient(90deg, #7b2ff7, #00c6ff);
+    box-shadow: 0 0 5px rgba(0, 194, 255, 0.5);
+}
+
+.search-results li {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.search-results li:hover {
+    background-color: #f0f0f0;
+}
+
+.search-results i {
+    margin-right: 10px;
+    font-size: 20px;
+    color: #7b2ff7; /* Cor roxa para o ícone */
+}
 
         /* Estilos para a linha separadora */
         .separator {
@@ -118,39 +157,6 @@
             min-height: 200px; /* Altura mínima */
             border: none;
         }
-        
-        .search-container {
-    margin-top: 20px;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.search-bar {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.search-results {
-    margin-top: 10px;
-    list-style: none;
-    padding: 0;
-}
-
-.search-results li {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-bottom: 5px;
-    background-color: #f9f9f9;
-}
-
-.search-results li:hover {
-    background-color: #f1f1f1;
-}
 
         /* Estilos para o rodapé */
         footer {
@@ -248,37 +254,6 @@
         <a href="https://t.me/your_username" target="_blank">Telegram</a>
         <a href="https://discord.com/invite/your_invite" target="_blank">Discord</a>
     </div>
-    
-    <div class="search-container">
-    <input type="text" id="search-bar" class="search-bar" placeholder="Pesquise...">
-    <ul id="search-results" class="search-results"></ul>
-</div>
-
-<script>
-    const searchData = [
-        { name: "Página 1", url: "pagina1.html" },
-        { name: "Página 2", url: "pagina2.html" },
-        { name: "Página 3", url: "pagina3.html" },
-        // Adicione mais páginas aqui
-    ];
-
-    document.getElementById("search-bar").addEventListener("input", function () {
-        const query = this.value.toLowerCase();
-        const filteredResults = searchData.filter(item => item.name.toLowerCase().includes(query));
-        const resultsContainer = document.getElementById("search-results");
-        
-        resultsContainer.innerHTML = "";
-
-        filteredResults.forEach(item => {
-            const listItem = document.createElement("li");
-            listItem.textContent = item.name;
-            listItem.onclick = function() {
-                window.location.href = item.url;
-            };
-            resultsContainer.appendChild(listItem);
-        });
-    });
-</script>
 
     <!-- Seção de Boas-Vindas -->
     <div class="welcome-container">
