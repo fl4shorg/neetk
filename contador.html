@@ -43,11 +43,16 @@
 
         .countdown-item {
             margin: 0 10px; /* Espaçamento entre os itens */
+            text-align: center;
         }
 
         .countdown-label {
             font-size: 14px; /* Tamanho do rótulo */
             color: #fff; /* Cor do rótulo */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px; /* Espaço entre o ícone e o texto */
         }
 
         .countdown-time {
@@ -66,19 +71,27 @@
             <div class="countdown-items">
                 <div class="countdown-item">
                     <div class="countdown-time" id="days">00</div>
-                    <div class="countdown-label">Dias</div>
+                    <div class="countdown-label">
+                        <i class="fas fa-calendar"></i> Dias
+                    </div>
                 </div>
                 <div class="countdown-item">
                     <div class="countdown-time" id="hours">00</div>
-                    <div class="countdown-label">Horas</div>
+                    <div class="countdown-label">
+                        <i class="fas fa-clock"></i> Horas
+                    </div>
                 </div>
                 <div class="countdown-item">
                     <div class="countdown-time" id="minutes">00</div>
-                    <div class="countdown-label">Minutos</div>
+                    <div class="countdown-label">
+                        <i class="fas fa-hourglass-half"></i> Minutos
+                    </div>
                 </div>
                 <div class="countdown-item">
                     <div class="countdown-time" id="seconds">00</div>
-                    <div class="countdown-label">Segundos</div>
+                    <div class="countdown-label">
+                        <i class="fas fa-stopwatch"></i> Segundos
+                    </div>
                 </div>
             </div>
         </div>
