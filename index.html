@@ -103,7 +103,7 @@
     background-color: #f9f9f9;
     color: #333;
     outline: none;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Garante que o tamanho da caixa não mude ao adicionar bordas */
     transition: all 0.3s ease;
 }
 
@@ -111,6 +111,7 @@
     border-color: #5b87ff;
     background-color: #fff;
     box-shadow: 0 0 8px rgba(91, 135, 255, 0.5);
+    border-width: 2px; /* Mantém a borda do mesmo tamanho ao focar */
 }
 .search-results {
     margin-top: 20px;
