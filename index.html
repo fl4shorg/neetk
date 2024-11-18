@@ -130,22 +130,6 @@
             bottom: 0;
             width: 100%;
         }
-        /* Estilos para a barra de pesquisa */
-.search-container {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.search-bar {
-    width: 80%;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    margin: 0 auto;
-    display: block;
-}
 
         footer a {
             color: #61dafb;
@@ -231,43 +215,6 @@
         <a href="https://t.me/your_username" target="_blank">Telegram</a>
         <a href="https://discord.com/invite/your_invite" target="_blank">Discord</a>
     </div>
-    
-    <!-- Barra de Pesquisa -->
-<div class="search-container">
-    <input type="text" id="search-bar" class="search-bar" placeholder="Pesquisar...">
-</div>
-
-<<div class="search-container">
-  <input type="text" id="searchInput" class="search-bar" placeholder="Pesquisar..." onkeyup="searchFunction()">
-  <ul id="searchResults" class="search-results">
-    <!-- Os resultados da pesquisa aparecerão aqui -->
-  </ul>
-</div>
-
-<script>
-  function searchFunction() {
-    const query = document.getElementById("searchInput").value.toLowerCase();
-    const resultsContainer = document.getElementById("searchResults");
-    resultsContainer.innerHTML = "";  // Limpa os resultados anteriores
-
-    if (query) {
-      // Aqui você pode adicionar suas opções de pesquisa para comparar
-      const options = [
-        'Página 1', 'Página 2', 'Página 3' // Substitua por suas opções de pesquisa
-      ];
-
-      // Filtra as opções com base na pesquisa
-      const filteredOptions = options.filter(option => option.toLowerCase().includes(query));
-
-      // Exibe os resultados
-      filteredOptions.forEach(option => {
-        const listItem = document.createElement('li');
-        listItem.textContent = option;
-        resultsContainer.appendChild(listItem);
-      });
-    }
-  }
-</script>
 
     <!-- Seção de Boas-Vindas -->
     <div class="welcome-container">
