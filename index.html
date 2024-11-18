@@ -215,6 +215,35 @@
         <a href="https://t.me/your_username" target="_blank">Telegram</a>
         <a href="https://discord.com/invite/your_invite" target="_blank">Discord</a>
     </div>
+    
+    <div class="search-container">
+    <input type="text" id="search-bar" class="search-bar" placeholder="Pesquise...">
+    <ul id="search-results" class="search-results"></ul>
+</div>
+
+const searchData = [
+    { name: "Página 1", url: "pagina1.html" },
+    { name: "Página 2", url: "pagina2.html" },
+    { name: "Página 3", url: "pagina3.html" },
+    // Adicione mais páginas aqui
+];
+
+document.getElementById("search-bar").addEventListener("input", function () {
+    const query = this.value.toLowerCase();
+    const filteredResults = searchData.filter(item => item.name.toLowerCase().includes(query));
+    const resultsContainer = document.getElementById("search-results");
+    
+    resultsContainer.innerHTML = "";
+
+    filteredResults.forEach(item => {
+        const listItem = document.createElement("li");
+        listItem.textContent = item.name;
+        listItem.onclick = function() {
+            window.location.href = item.url;
+        };
+        resultsContainer.appendChild(listItem);
+    });
+});
 
     <!-- Seção de Boas-Vindas -->
     <div class="welcome-container">
