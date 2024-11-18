@@ -130,6 +130,22 @@
             bottom: 0;
             width: 100%;
         }
+        /* Estilos para a barra de pesquisa */
+.search-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.search-bar {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin: 0 auto;
+    display: block;
+}
 
         footer a {
             color: #61dafb;
@@ -215,6 +231,29 @@
         <a href="https://t.me/your_username" target="_blank">Telegram</a>
         <a href="https://discord.com/invite/your_invite" target="_blank">Discord</a>
     </div>
+    
+    <!-- Barra de Pesquisa -->
+<div class="search-container">
+    <input type="text" id="search-bar" class="search-bar" placeholder="Pesquisar...">
+</div>
+
+<script>
+    // Função para realizar a busca
+    document.getElementById('search-bar').addEventListener('input', function() {
+        let query = this.value.toLowerCase();
+        let links = document.querySelectorAll('.barra-lateral a');
+
+        // Percorrer todos os links e verificar se o texto do link contém a busca
+        links.forEach(function(link) {
+            let linkText = link.textContent.toLowerCase();
+            if (linkText.includes(query)) {
+                link.style.display = ''; // Mostrar o link
+            } else {
+                link.style.display = 'none'; // Esconder o link
+            }
+        });
+    });
+</script>
 
     <!-- Seção de Boas-Vindas -->
     <div class="welcome-container">
