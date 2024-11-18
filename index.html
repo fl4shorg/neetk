@@ -237,22 +237,36 @@
     <input type="text" id="search-bar" class="search-bar" placeholder="Pesquisar...">
 </div>
 
-<script>
-    // Função para realizar a busca
-    document.getElementById('search-bar').addEventListener('input', function() {
-        let query = this.value.toLowerCase();
-        let links = document.querySelectorAll('.barra-lateral a');
+<<div class="search-container">
+  <input type="text" id="searchInput" class="search-bar" placeholder="Pesquisar..." onkeyup="searchFunction()">
+  <ul id="searchResults" class="search-results">
+    <!-- Os resultados da pesquisa aparecerão aqui -->
+  </ul>
+</div>
 
-        // Percorrer todos os links e verificar se o texto do link contém a busca
-        links.forEach(function(link) {
-            let linkText = link.textContent.toLowerCase();
-            if (linkText.includes(query)) {
-                link.style.display = ''; // Mostrar o link
-            } else {
-                link.style.display = 'none'; // Esconder o link
-            }
-        });
-    });
+<script>
+  function searchFunction() {
+    const query = document.getElementById("searchInput").value.toLowerCase();
+    const resultsContainer = document.getElementById("searchResults");
+    resultsContainer.innerHTML = "";  // Limpa os resultados anteriores
+
+    if (query) {
+      // Aqui você pode adicionar suas opções de pesquisa para comparar
+      const options = [
+        'Página 1', 'Página 2', 'Página 3' // Substitua por suas opções de pesquisa
+      ];
+
+      // Filtra as opções com base na pesquisa
+      const filteredOptions = options.filter(option => option.toLowerCase().includes(query));
+
+      // Exibe os resultados
+      filteredOptions.forEach(option => {
+        const listItem = document.createElement('li');
+        listItem.textContent = option;
+        resultsContainer.appendChild(listItem);
+      });
+    }
+  }
 </script>
 
     <!-- Seção de Boas-Vindas -->
