@@ -32,6 +32,9 @@
             font-size: 24px; /* Tamanho do título */
             color: #fff; /* Cor do título */
             margin-bottom: 10px; /* Espaçamento entre o título e o contador */
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Espaço entre o ícone e o texto */
         }
 
         .countdown-items {
@@ -57,7 +60,9 @@
 <body>
     <div id="countdown-container">
         <div class="countdown">
-            <div class="countdown-title">Próximo Aniversário</div>
+            <div class="countdown-title">
+                <i class="fas fa-birthday-cake"></i> Próximo Aniversário
+            </div>
             <div class="countdown-items">
                 <div class="countdown-item">
                     <div class="countdown-time" id="days">00</div>
