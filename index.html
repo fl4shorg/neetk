@@ -86,6 +86,33 @@
     margin-right: 10px; /* Espaço entre o ícone e o texto */
     vertical-align: middle; /* Alinha verticalmente o ícone com o texto */
 }
+
+.contact-button.instagram-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, #ff4b5c, #ff6b81); /* Degradê de vermelho */
+    color: white; /* Cor do texto e ícone */
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.contact-button.instagram-button:hover {
+    background: linear-gradient(45deg, #ff6b81, #ff4b5c); /* Efeito hover com reversão do degradê */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra no hover */
+}
+
+.contact-button.instagram-button .icon {
+    margin-right: 10px;
+    font-size: 24px; /* Tamanho do ícone */
+}
+
+.contact-button.instagram-button:hover .icon {
+    transform: scale(1.1); /* Efeito de aumento no ícone no hover */
+}
 .search-container {
     max-width: 600px;
     margin: 30px auto;
