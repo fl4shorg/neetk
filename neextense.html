@@ -6,113 +6,25 @@
   <title>NEEXTENSE</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    body { 
-      font-family: Arial, sans-serif; 
-      margin: 0; 
-      padding: 0; 
-      background: url('hora.jpg') no-repeat center center fixed; 
-      background-size: cover;
-      color: white; 
-      text-align: center;
-    }
-
-    .content {
-      position: relative;
-      z-index: 1;
-      backdrop-filter: blur(10px); 
-      background-color: rgba(0, 0, 0, 0.5); 
-      padding: 20px;
-    }
-
-    h1 { 
-      font-size: 3em; 
-      margin: 20px 0; 
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.5); 
-    }
-
-    nav { 
-      background: #222; 
-      padding: 10px 0; 
-      text-align: center; 
-      font-size: 1.5em; 
-      font-weight: bold; 
-      color: white; 
-    }
-
-    .clock { 
-      position: relative; 
-      width: 200px; 
-      height: 200px; 
-      margin: 30px auto; 
-      border: 10px solid #fff; 
-      border-radius: 50%; 
-      background: #333; 
-      box-shadow: 0 0 20px rgba(0,0,0,0.5); 
-    }
-
-    .clock div { 
-      position: absolute; 
-      width: 50%; 
-      height: 4px; 
-      background: #fff; 
-      top: 50%; 
-      left: 50%; 
-      transform-origin: 0% 50%; 
-      border-radius: 4px; 
-    }
-
-    .minute { background: #ddd; } 
-    .second { background: red; } 
-
-    .center { 
-      width: 12px; 
-      height: 12px; 
-      background: #fff; 
-      border-radius: 50%; 
-      top: 50%; 
-      left: 50%; 
-      transform: translate(-50%, -50%); 
-    }
-
-    .center-text { 
-      top: 50%; 
-      left: 50%; 
-      transform: translate(-50%, -50%); 
-      font-size: 2em; 
-      font-weight: bold; 
-      background: linear-gradient(135deg, #ff6a00, #ee0979); 
-      -webkit-background-clip: text; 
-      -webkit-text-fill-color: transparent; 
-    }
-
-    .status { 
-      margin: 10px 0; 
-      font-size: 1.2em; 
-    }
-
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: url('hora.jpg') no-repeat center center fixed; background-size: cover; color: white; text-align: center; }
+    .content { position: relative; z-index: 1; backdrop-filter: blur(10px); background-color: rgba(0, 0, 0, 0.5); padding: 20px; }
+    h1 { font-size: 3em; margin: 20px 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+    nav { background: #222; padding: 10px 0; text-align: center; font-size: 1.5em; font-weight: bold; color: white; }
+    .clock { position: relative; width: 200px; height: 200px; margin: 30px auto; border: 10px solid #fff; border-radius: 50%; background: #333; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+    .clock div { position: absolute; width: 50%; height: 4px; background: #fff; top: 50%; left: 50%; transform-origin: 0% 50%; border-radius: 4px; }
+    .minute { background: #ddd; }
+    .second { background: red; width: 4px; height: 50%; top: 25%; }
+    .center { width: 12px; height: 12px; background: #fff; border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    .center-text { top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2em; font-weight: bold; background: linear-gradient(135deg, #ff6a00, #ee0979); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .status { margin: 10px 0; font-size: 1.2em; }
     .aberto { color: #4CAF50; } 
     .fechado { color: #F44336; }
-
-    table { 
-      width: 80%; 
-      margin: 30px auto; 
-      border-collapse: collapse; 
-    }
-
-    th, td { 
-      padding: 10px; 
-      border: 1px solid #ddd; 
-      text-align: left; 
-    }
-
+    table { width: 80%; margin: 30px auto; border-collapse: collapse; }
+    th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
     th { background-color: #222; } 
     tr:nth-child(even) { background-color: #333; } 
     tr:nth-child(odd) { background-color: #444; }
-
-    @media (max-width: 600px) { 
-      h1 { font-size: 2em; } 
-      table { font-size: 14px; } 
-    }
+    @media (max-width: 600px) { h1 { font-size: 2em; } table { font-size: 14px; } }
   </style>
 </head>
 <body>
@@ -136,15 +48,15 @@
   </div>
   <script>
     const locais = { 
-      "FBI": { open: "07:00", close: "23:31", days: [0,1,2,3,4,5,6] }, 
-      "Skur": { open: "07:00", close: "23:31", days: [0,1,2,3,4,5,6] }, 
-      "Discord": { open: "07:00", close: "23:31", days: [0,1,2,3,4,5,6] }, 
-      "Telegram": { open: "07:00", close: "23:31", days: [0,1,2,3,4,5,6] }, 
-      "Biblioteca": { open: "00:00", close: "23:59", days: [0,1,2,3,4,5,6] }, 
-      "Cartório": { open: "07:00", close: "23:31", days: [0,1,2,3,4,5,6] }, 
-      "Cinema": { open: "07:00", close: "23:59", days: [5,6] }, 
-      "Bar Homem e Girl": { open: "07:00", close: "23:59", days: [0,1,4] }, 
-      "Bar Normal": { open: "23:31", close: "07:00", days: [2] }, 
+      "FBI": { open: "07:00", close: "23:31", days: [0,1,2,3,4,5,6] },
+      "Skur": { open: "07:00", close: "23:31", days: [0,1,2,3,4,5,6] },
+      "Discord": { open: "07:00", close: "23:31", days: [0,1,2,3,4,5,6] },
+      "Telegram": { open: "07:00", close: "23:31", days: [0,1,2,3,4,5,6] },
+      "Biblioteca": { open: "00:00", close: "23:59", days: [0,1,2,3,4,5,6] },
+      "Cartório": { open: "07:00", close: "23:31", days: [0,1,2,3,4,5,6] },
+      "Cinema": { open: "07:00", close: "23:59", days: [5,6] },
+      "Bar Homem e Girl": { open: "07:00", close: "23:59", days: [0,1,4] },
+      "Bar Normal": { open: "23:31", close: "07:00", days: [2] },
       "Coffe": { open: "23:31", close: "07:00", days: [3] }
     };
 
