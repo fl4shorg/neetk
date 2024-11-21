@@ -55,7 +55,7 @@
       "Biblioteca": { open: "00:00", close: "23:59", days: [0,1,2,3,4,5,6] },
       "Cartório": { open: "07:00", close: "23:31", days: [0,1,2,3,4,5,6] },
       "Cinema": { open: "07:00", close: "23:59", days: [5,6] },
-      "Bar Homem e Girl": { open: "07:00", close: "23:59", days: [0,1,4] },
+      "Bar Homem e Girl": { open: "23:31", close: "07:00", days: [0,1,4] },
       "Bar Normal": { open: "23:31", close: "07:00", days: [2] },
       "Coffe": { open: "23:31", close: "07:00", days: [3] }
     };
@@ -73,11 +73,26 @@
     }
 
     function verificarStatus() {
-      const agora = obterHoraBrasilia(), horaAtual = agora.getHours() * 60 + agora.getMinutes(), diaAtual = agora.getDay();
+      const agora = obterHoraBrasilia();
+      const horaAtual = agora.getHours() * 60 + agora.getMinutes();
+      const diaAtual = agora.getDay();
+
       document.getElementById("status").innerHTML = Object.entries(locais).map(([local, { open, close, days }]) => {
-        const [abertura, fechamento] = [parseInt(open.split(":")[0]) * 60 + parseInt(open.split(":")[1]), parseInt(close.split(":")[0]) * 60 + parseInt(close.split(":")[1])];
-        const status = days.includes(diaAtual) && (horaAtual >= abertura || horaAtual < fechamento) ? "Aberto" : "Fechado";
-        return `<div class="status ${status === "Aberto" ? "aberto" : "fechado"}"><i class="fas fa-clock"></i> ${local}: ${status}</div>`;
+        const abertura = parseInt(open.split(":")[0]) * 60 + parseInt(open.split(":")[1]);
+        const fechamento = parseInt(close.split(":")[0]) * 60 + parseInt(close.split(":")[1]);
+
+        let estaAberto = false;
+
+        if (days.includes(diaAtual)) {
+          if (fechamento > abertura) {
+            estaAberto = horaAtual >= abertura && horaAtual < fechamento;
+          } else {
+            estaAberto = horaAtual >= abertura || horaAtual < fechamento;
+          }
+        }
+
+        const status = estaAberto ? "Aberto" : "Fechado";
+        return `<div class="status ${estaAberto ? "aberto" : "fechado"}"><i class="fas fa-clock"></i> ${local}: ${status}</div>`;
       }).join("");
     }
 
