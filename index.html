@@ -508,80 +508,87 @@ document.addEventListener("click", (event) => {
         <!-- Linha Separadora -->
         <hr class="separator">
 
-<div class="slider">
-    <!-- Card Neext -->
-    <div class="card">
-        <div class="card-icon">
-            <img src="https://img.icons8.com/ios-filled/50/ffffff/lock.png" alt="Ícone de segurança">
+<div class="carousel">
+    <div class="carousel-track">
+        <!-- Card Neext -->
+        <div class="card">
+            <div class="card-icon">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/lock.png" alt="Ícone de segurança">
+            </div>
+            <div class="card-content">
+                <h2>Neext: Sistema de Inteligência e Defesa</h2>
+                <p>A Neext conta com um robusto sistema de inteligência e defesa para garantir a segurança e a integridade, integrando-se a outras forças de elite.</p>
+            </div>
         </div>
-        <div class="card-content">
-            <h2>Neext: Sistema de Inteligência e Defesa</h2>
-            <p>A Neext conta com um robusto sistema de inteligência e defesa para garantir a segurança e a integridade, integrando-se a outras forças de elite.</p>
-        </div>
-    </div>
 
-    <!-- Card SWAT -->
-    <div class="card">
-        <div class="card-icon">
-            <img src="https://img.icons8.com/ios-filled/50/ffffff/swat.png" alt="Ícone da SWAT">
+        <!-- Card SWAT -->
+        <div class="card">
+            <div class="card-icon">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/swat.png" alt="Ícone da SWAT">
+            </div>
+            <div class="card-content">
+                <h2>SWAT</h2>
+                <p>Unidade de elite preparada para lidar com ameaças extremas, trabalhando em colaboração com sistemas como a Neext.</p>
+            </div>
         </div>
-        <div class="card-content">
-            <h2>SWAT</h2>
-            <p>Unidade de elite preparada para lidar com ameaças extremas, trabalhando em colaboração com sistemas como a Neext.</p>
-        </div>
-    </div>
 
-    <!-- Card SSA -->
-    <div class="card">
-        <div class="card-icon">
-            <img src="https://img.icons8.com/ios-filled/50/ffffff/secure.png" alt="Ícone da SSA">
+        <!-- Card SSA -->
+        <div class="card">
+            <div class="card-icon">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/secure.png" alt="Ícone da SSA">
+            </div>
+            <div class="card-content">
+                <h2>SSA</h2>
+                <p>Especializada em segurança e análise estratégica, garantindo respostas rápidas e precisas.</p>
+            </div>
         </div>
-        <div class="card-content">
-            <h2>SSA</h2>
-            <p>Especializada em segurança e análise estratégica, garantindo respostas rápidas e precisas.</p>
-        </div>
-    </div>
 
-    <!-- Card NSA -->
-    <div class="card">
-        <div class="card-icon">
-            <img src="https://img.icons8.com/ios-filled/50/ffffff/data-encryption.png" alt="Ícone da NSA">
+        <!-- Card NSA -->
+        <div class="card">
+            <div class="card-icon">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/data-encryption.png" alt="Ícone da NSA">
+            </div>
+            <div class="card-content">
+                <h2>NSA</h2>
+                <p>Responsável por monitoramento e inteligência digital, protegendo informações sensíveis e redes críticas.</p>
+            </div>
         </div>
-        <div class="card-content">
-            <h2>NSA</h2>
-            <p>Responsável por monitoramento e inteligência digital, protegendo informações sensíveis e redes críticas.</p>
-        </div>
-    </div>
 
-    <!-- Card SCP -->
-    <div class="card">
-        <div class="card-icon">
-            <img src="https://img.icons8.com/ios-filled/50/ffffff/security-guard.png" alt="Ícone da SCP">
-        </div>
-        <div class="card-content">
-            <h2>SCP</h2>
-            <p>Focada na contenção e controle de ameaças anômalas, atuando em cooperação com outras agências.</p>
+        <!-- Card SCP -->
+        <div class="card">
+            <div class="card-icon">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/security-guard.png" alt="Ícone da SCP">
+            </div>
+            <div class="card-content">
+                <h2>SCP</h2>
+                <p>Focada na contenção e controle de ameaças anômalas, atuando em cooperação com outras agências.</p>
+            </div>
         </div>
     </div>
 </div>
 
-
-.slider {
-    display: flex;
-    overflow-x: auto;
-    gap: 16px;
-    scroll-snap-type: x mandatory;
-    padding: 16px;
+/* Estilizando o carrossel */
+.carousel {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background: #111;
+    padding: 16px 0;
 }
 
-.slider .card {
-    flex: 0 0 300px;
+.carousel-track {
+    display: flex;
+    gap: 16px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.card {
+    min-width: 300px;
     background: #222;
     color: #fff;
     border-radius: 10px;
     padding: 16px;
     text-align: center;
-    scroll-snap-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
@@ -601,39 +608,24 @@ document.addEventListener("click", (event) => {
     line-height: 1.5;
 }
 
-<style>
-    .card {
-        background: linear-gradient(to right, #7b2cbf, #2a80d7); /* Roxo e azul */
-        color: white;
-        border-radius: 12px;
-        padding: 20px;
-        width: 300px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        flex-direction: column;
-    }
+<script>
+const track = document.querySelector('.carousel-track');
+const cards = document.querySelectorAll('.card');
+let currentIndex = 0;
 
-    .card-icon img {
-        width: 50px;
-        margin-bottom: 15px;
-    }
 
-    .card-content h2 {
-        margin: 0;
-        font-size: 20px;
-        font-weight: bold;
+function moveCarousel() {
+    currentIndex++;
+    if (currentIndex >= cards.length) {
+        currentIndex = 0;
     }
+    const translateX = -currentIndex * cards[0].offsetWidth;
+    track.style.transform = `translateX(${translateX}px)`;
+}
 
-    .card-content p {
-        font-size: 14px;
-        line-height: 1.6;
-        margin-top: 10px;
-    }
-</style>
 
+setInterval(moveCarousel, 3000);
+<script>
 
         </div>
     </div>
