@@ -510,9 +510,9 @@ document.addEventListener("click", (event) => {
 
 <div class="card">
   <div class="card-header">
-    <!-- Coloque seu ícone SVG ou imagem aqui -->
-    <img src="icone.svg" alt="Ícone Regras" class="card-icon">
-    <h3 class="card-title">Regras da Administração</h3>
+    <!-- Ícone da Font Awesome representando regras -->
+    <i class="fas fa-gavel card-icon"></i>
+    <h3 class="card-title">Regras Geral da Neext</h3>
   </div>
   <div class="card-body">
     <p>Veja nossas diretrizes e regras gerais da administração Neext e fique por dentro de como seguimos e somos rígidos com as regras.</p>
@@ -520,13 +520,16 @@ document.addEventListener("click", (event) => {
   </div>
 </div>
 
+<!-- Link para o Font Awesome (caso não tenha incluído no seu projeto) -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
 <style>
   .card {
     border: 1px solid #ddd;
     border-radius: 8px;
     width: 100%;
     max-width: 350px;
-    background-color: #f9f9f9;
+    background: linear-gradient(to right, #ff4b5c, #9b3f79); /* Degradê vermelho-rosa */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin: 20px;
     padding: 20px;
@@ -540,27 +543,24 @@ document.addEventListener("click", (event) => {
   }
 
   .card-icon {
-    width: 50px;
-    height: 50px;
+    font-size: 30px;
+    color: white;
     margin-right: 15px;
   }
 
   .card-title {
     font-size: 18px;
     font-weight: bold;
-    color: #333;
-    background: linear-gradient(to right, #ff4b5c, #9b3f79);
-    -webkit-background-clip: text;
-    color: transparent;
+    color: white;
   }
 
   .card-body {
     font-size: 14px;
-    color: #555;
+    color: white;
   }
 
   .card-link {
-    color: #007bff;
+    color: #fff;
     text-decoration: none;
     font-weight: bold;
   }
@@ -577,8 +577,7 @@ document.addEventListener("click", (event) => {
     }
 
     .card-icon {
-      width: 40px;
-      height: 40px;
+      font-size: 25px;
     }
 
     .card-title {
