@@ -508,109 +508,128 @@ document.addEventListener("click", (event) => {
         <!-- Linha Separadora -->
         <hr class="separator">
 
-<div class="carousel-container">
-    <div class="carousel-track">
-        <!-- Card Neext -->
+<div class="carousel">
+    <button class="carousel-button prev">&lt;</button>
+    <div class="carousel-wrapper">
         <div class="card">
             <div class="card-icon">
                 <img src="https://img.icons8.com/ios-filled/50/ffffff/lock.png" alt="Ícone de segurança">
             </div>
             <div class="card-content">
                 <h2>Neext: Sistema de Inteligência e Defesa</h2>
-                <p>A Neext conta com um robusto sistema de inteligência e defesa para garantir a segurança e a integridade, integrando-se a outras forças de elite.</p>
+                <p>A Neext conta com um robusto sistema de inteligência e defesa para garantir a segurança e a integridade.</p>
             </div>
         </div>
-
-        <!-- Card SWAT -->
         <div class="card">
             <div class="card-icon">
-                <img src="https://img.icons8.com/ios-filled/50/ffffff/swat.png" alt="Ícone da SWAT">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/rocket.png" alt="Ícone de inovação">
             </div>
             <div class="card-content">
-                <h2>SWAT</h2>
-                <p>Unidade de elite preparada para lidar com ameaças extremas, trabalhando em colaboração com sistemas como a Neext.</p>
+                <h2>Inovação e Tecnologia</h2>
+                <p>Desenvolvemos soluções de ponta que lideram no mercado e protegem o futuro.</p>
             </div>
         </div>
-
-        <!-- Card SSA -->
         <div class="card">
             <div class="card-icon">
-                <img src="https://img.icons8.com/ios-filled/50/ffffff/secure.png" alt="Ícone da SSA">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/network.png" alt="Ícone de conectividade">
             </div>
             <div class="card-content">
-                <h2>SSA</h2>
-                <p>Especializada em segurança e análise estratégica, garantindo respostas rápidas e precisas.</p>
-            </div>
-        </div>
-
-        <!-- Card NSA -->
-        <div class="card">
-            <div class="card-icon">
-                <img src="https://img.icons8.com/ios-filled/50/ffffff/data-encryption.png" alt="Ícone da NSA">
-            </div>
-            <div class="card-content">
-                <h2>NSA</h2>
-                <p>Responsável por monitoramento e inteligência digital, protegendo informações sensíveis e redes críticas.</p>
-            </div>
-        </div>
-
-        <!-- Card SCP -->
-        <div class="card">
-            <div class="card-icon">
-                <img src="https://img.icons8.com/ios-filled/50/ffffff/security-guard.png" alt="Ícone da SCP">
-            </div>
-            <div class="card-content">
-                <h2>SCP</h2>
-                <p>Focada na contenção e controle de ameaças anômalas, atuando em cooperação com outras agências.</p>
+                <h2>Conexões Seguras</h2>
+                <p>Oferecemos conectividade segura e eficiente para todos os sistemas da Neext.</p>
             </div>
         </div>
     </div>
+    <button class="carousel-button next">&gt;</button>
 </div>
 
-/* Estilo do container do carrossel */
-.carousel-container {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    background: #111;
-    padding: 20px 0;
-}
+<style>
+    .carousel {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 300px;
+        overflow: hidden;
+        margin: 0 auto;
+    }
 
-/* Faixa que contém os cards */
-.carousel-track {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    gap: 20px;
-}
+    .carousel-wrapper {
+        display: flex;
+        transition: transform 0.5s ease;
+    }
 
-/* Estilo dos cards */
-.card {
-    min-width: 300px;
-    max-width: 300px;
-    background: #222;
-    color: #fff;
-    border-radius: 10px;
-    padding: 16px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    flex-shrink: 0;
-}
+    .card {
+        background: linear-gradient(to right, #7b2cbf, #2a80d7);
+        color: white;
+        border-radius: 12px;
+        padding: 20px;
+        width: 300px;
+        margin-right: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        flex-shrink: 0;
+    }
 
-.card-icon img {
-    margin-bottom: 12px;
-    width: 50px;
-    height: 50px;
-}
+    .card-icon img {
+        width: 50px;
+        margin-bottom: 15px;
+    }
 
-.card-content h2 {
-    font-size: 1.5rem;
-    margin-bottom: 8px;
-}
+    .card-content h2 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: bold;
+    }
 
-.card-content p {
-    font-size: 1rem;
-    line-height: 1.5;
-}
+    .card-content p {
+        font-size: 14px;
+        line-height: 1.6;
+        margin-top: 10px;
+    }
+
+    .carousel-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.8);
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 50%;
+        font-size: 18px;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .carousel-button.prev {
+        left: -30px;
+    }
+
+    .carousel-button.next {
+        right: -30px;
+    }
+</style>
+
+<script>
+    const carousel = document.querySelector('.carousel-wrapper');
+    const nextButton = document.querySelector('.carousel-button.next');
+    const prevButton = document.querySelector('.carousel-button.prev');
+    let currentIndex = 0;
+
+    nextButton.addEventListener('click', () => {
+        if (currentIndex < carousel.children.length - 1) {
+            currentIndex++;
+            carousel.style.transform = `translateX(-${currentIndex * 320}px)`;
+        }
+    });
+
+    prevButton.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            carousel.style.transform = `translateX(-${currentIndex * 320}px)`;
+        }
+    });
+</script>
 
         </div>
     </div>
