@@ -551,9 +551,9 @@ document.addEventListener("click", (event) => {
     /* Container principal */
     .carousel {
         position: relative;
-        max-width: 100%;
-        margin: 0 auto;
+        width: 100%;
         overflow: hidden;
+        margin: 0 auto;
     }
 
     /* Wrapper que contém os cards */
@@ -618,16 +618,13 @@ document.addEventListener("click", (event) => {
 
     /* Responsividade para dispositivos móveis */
     @media (max-width: 768px) {
-        .card {
-            min-width: 90%; /* Ajuste a largura dos cards para dispositivos móveis */
-        }
-
         .carousel-wrapper {
             display: block; /* Empilha os cards na versão mobile */
         }
 
-        .carousel-nav {
-            top: 80%;
+        .card {
+            min-width: 90%; /* Ajuste a largura dos cards para dispositivos móveis */
+            margin: 10px auto;
         }
     }
 </style>
