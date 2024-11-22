@@ -543,12 +543,13 @@ document.addEventListener("click", (event) => {
 </div>
 
 <style>
+    /* Estrutura geral */
     .carousel {
         display: flex;
         align-items: center;
         justify-content: center;
         position: relative;
-        width: 300px;
+        max-width: 100%;
         overflow: hidden;
         margin: 0 auto;
     }
@@ -558,13 +559,15 @@ document.addEventListener("click", (event) => {
         transition: transform 0.5s ease;
     }
 
+    /* Estilo dos cards */
     .card {
         background: linear-gradient(to right, #7b2cbf, #2a80d7);
         color: white;
         border-radius: 12px;
         padding: 20px;
-        width: 300px;
-        margin-right: 20px;
+        min-width: 280px;
+        max-width: 90%;
+        margin: 0 auto;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         text-align: center;
         flex-shrink: 0;
@@ -587,6 +590,7 @@ document.addEventListener("click", (event) => {
         margin-top: 10px;
     }
 
+    /* Botões de navegação */
     .carousel-button {
         position: absolute;
         top: 50%;
@@ -602,11 +606,28 @@ document.addEventListener("click", (event) => {
     }
 
     .carousel-button.prev {
-        left: -30px;
+        left: 10px;
     }
 
     .carousel-button.next {
-        right: -30px;
+        right: 10px;
+    }
+
+    /* Estilo responsivo */
+    @media (max-width: 768px) {
+        .carousel-wrapper {
+            flex-direction: row;
+        }
+
+        .card {
+            margin: 10px auto;
+            min-width: 100%;
+        }
+
+        .carousel-button {
+            padding: 8px;
+            font-size: 16px;
+        }
     }
 </style>
 
@@ -619,14 +640,14 @@ document.addEventListener("click", (event) => {
     nextButton.addEventListener('click', () => {
         if (currentIndex < carousel.children.length - 1) {
             currentIndex++;
-            carousel.style.transform = `translateX(-${currentIndex * 320}px)`;
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
         }
     });
 
     prevButton.addEventListener('click', () => {
         if (currentIndex > 0) {
             currentIndex--;
-            carousel.style.transform = `translateX(-${currentIndex * 320}px)`;
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
         }
     });
 </script>
