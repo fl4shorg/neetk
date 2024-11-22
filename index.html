@@ -508,7 +508,7 @@ document.addEventListener("click", (event) => {
         <!-- Linha Separadora -->
         <hr class="separator">
 
-<div class="carousel">
+<div class="carousel-container">
     <div class="carousel-track">
         <!-- Card Neext -->
         <div class="card">
@@ -567,29 +567,33 @@ document.addEventListener("click", (event) => {
     </div>
 </div>
 
-/* Estilizando o carrossel */
-.carousel {
+/* Estilo do container do carrossel */
+.carousel-container {
     width: 100%;
     overflow: hidden;
     position: relative;
     background: #111;
-    padding: 16px 0;
+    padding: 20px 0;
 }
 
+/* Faixa que contém os cards */
 .carousel-track {
     display: flex;
-    gap: 16px;
     transition: transform 0.5s ease-in-out;
+    gap: 20px;
 }
 
+/* Estilo dos cards */
 .card {
     min-width: 300px;
+    max-width: 300px;
     background: #222;
     color: #fff;
     border-radius: 10px;
     padding: 16px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
 }
 
 .card-icon img {
@@ -607,23 +611,6 @@ document.addEventListener("click", (event) => {
     font-size: 1rem;
     line-height: 1.5;
 }
-
-const track = document.querySelector('.carousel-track');
-const cards = document.querySelectorAll('.card');
-let currentIndex = 0;
-
-// Função para mover o carrossel
-function moveCarousel() {
-    currentIndex++;
-    if (currentIndex >= cards.length) {
-        currentIndex = 0;
-    }
-    const translateX = -currentIndex * cards[0].offsetWidth;
-    track.style.transform = `translateX(${translateX}px)`;
-}
-
-// Mover automaticamente a cada 3 segundos
-setInterval(moveCarousel, 3000);
 
         </div>
     </div>
