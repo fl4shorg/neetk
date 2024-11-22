@@ -608,12 +608,11 @@ document.addEventListener("click", (event) => {
     line-height: 1.5;
 }
 
-<script>
 const track = document.querySelector('.carousel-track');
 const cards = document.querySelectorAll('.card');
 let currentIndex = 0;
 
-
+// Função para mover o carrossel
 function moveCarousel() {
     currentIndex++;
     if (currentIndex >= cards.length) {
@@ -623,9 +622,8 @@ function moveCarousel() {
     track.style.transform = `translateX(${translateX}px)`;
 }
 
-
+// Mover automaticamente a cada 3 segundos
 setInterval(moveCarousel, 3000);
-<script>
 
         </div>
     </div>
