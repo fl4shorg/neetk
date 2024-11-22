@@ -508,162 +508,62 @@ document.addEventListener("click", (event) => {
         <!-- Linha Separadora -->
         <hr class="separator">
 
-
-<div class="carousel">
-    <div class="carousel-wrapper">
-        <div class="card">
-            <div class="card-icon">
-                <img src="https://img.icons8.com/ios-filled/50/ffffff/lock.png" alt="Ícone de segurança">
-            </div>
-            <div class="card-content">
-                <h2>Neext: Sistema de Inteligência e Defesa</h2>
-                <p>A Neext conta com um robusto sistema de inteligência e defesa para garantir a segurança e a integridade.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-icon">
-                <img src="https://img.icons8.com/ios-filled/50/ffffff/rocket.png" alt="Ícone de inovação">
-            </div>
-            <div class="card-content">
-                <h2>Inovação e Tecnologia</h2>
-                <p>Desenvolvemos soluções de ponta que lideram no mercado e protegem o futuro.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-icon">
-                <img src="https://img.icons8.com/ios-filled/50/ffffff/network.png" alt="Ícone de conectividade">
-            </div>
-            <div class="card-content">
-                <h2>Conexões Seguras</h2>
-                <p>Oferecemos conectividade segura e eficiente para todos os sistemas da Neext.</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Navegação -->
-<div class="carousel-nav">
-    <button class="prev">&#10094;</button>
-    <button class="next">&#10095;</button>
+<div class="card">
+  <div class="card-header">
+    <img src="icone.png" alt="Ícone Regras" class="card-icon">
+    <h3 class="card-title">Regras da Administração</h3>
+  </div>
+  <div class="card-body">
+    <p>Veja nossas diretrizes e regras gerais da administração Neext e fique por dentro de como seguimos e somos rígidos com as regras.</p>
+    <a href="link-para-diretrizes.html" class="card-link">Veja nossas diretrizes e regras gerais</a>
+  </div>
 </div>
 
 <style>
-    /* Container principal */
-    .carousel {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-        margin: 0 auto;
-    }
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 300px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 20px;
+  }
 
-    /* Wrapper que contém os cards */
-    .carousel-wrapper {
-        display: flex;
-        transition: transform 0.5s ease;
-    }
+  .card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
 
-    /* Estilo dos cards */
-    .card {
-        background: linear-gradient(to right, #7b2cbf, #2a80d7);
-        color: white;
-        border-radius: 12px;
-        padding: 20px;
-        min-width: 280px;
-        margin: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        flex-shrink: 0;
-    }
+  .card-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
 
-    .card-icon img {
-        width: 50px;
-        margin-bottom: 15px;
-    }
+  .card-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
 
-    .card-content h2 {
-        margin: 0;
-        font-size: 18px;
-        font-weight: bold;
-    }
+  .card-body {
+    font-size: 14px;
+    color: #555;
+  }
 
-    .card-content p {
-        font-size: 14px;
-        line-height: 1.6;
-        margin-top: 10px;
-    }
+  .card-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
 
-    /* Botões de navegação */
-    .carousel-nav {
-        position: absolute;
-        top: 50%;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        transform: translateY(-50%);
-    }
-
-    .carousel-nav button {
-        background-color: rgba(0, 0, 0, 0.5);
-        color: white;
-        border: none;
-        padding: 10px;
-        cursor: pointer;
-        font-size: 24px;
-    }
-
-    /* Botões de navegação em estado de hover */
-    .carousel-nav button:hover {
-        background-color: rgba(0, 0, 0, 0.7);
-    }
-
-    /* Responsividade para dispositivos móveis */
-    @media (max-width: 768px) {
-        .carousel-wrapper {
-            display: block; /* Empilha os cards na versão mobile */
-        }
-
-        .card {
-            min-width: 90%; /* Ajuste a largura dos cards para dispositivos móveis */
-            margin: 10px auto;
-        }
-    }
+  .card-link:hover {
+    text-decoration: underline;
+  }
 </style>
 
-<script>
-    // Controle do carrossel
-    const carouselWrapper = document.querySelector('.carousel-wrapper');
-    const prevButton = document.querySelector('.prev');
-    const nextButton = document.querySelector('.next');
-    let currentIndex = 0;
-
-    // Número total de cards
-    const totalCards = document.querySelectorAll('.card').length;
-
-    // Função para avançar o carrossel
-    function moveNext() {
-        if (currentIndex < totalCards - 1) {
-            currentIndex++;
-            updateCarousel();
-        }
-    }
-
-    // Função para voltar o carrossel
-    function movePrev() {
-        if (currentIndex > 0) {
-            currentIndex--;
-            updateCarousel();
-        }
-    }
-
-    // Atualiza a posição do carrossel
-    function updateCarousel() {
-        carouselWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-    }
-
-    // Eventos para os botões de navegação
-    nextButton.addEventListener('click', moveNext);
-    prevButton.addEventListener('click', movePrev);
-</script>
         </div>
     </div>
     <!-- SweetAlert 2 CSS -->
