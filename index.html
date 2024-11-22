@@ -543,7 +543,6 @@ document.addEventListener("click", (event) => {
 </div>
 
 <style>
-    /* Estrutura geral */
     .carousel {
         display: flex;
         align-items: center;
@@ -557,17 +556,16 @@ document.addEventListener("click", (event) => {
     .carousel-wrapper {
         display: flex;
         transition: transform 0.5s ease;
+        flex-wrap: nowrap;
     }
 
-    /* Estilo dos cards */
     .card {
         background: linear-gradient(to right, #7b2cbf, #2a80d7);
         color: white;
         border-radius: 12px;
         padding: 20px;
-        min-width: 280px;
-        max-width: 90%;
-        margin: 0 auto;
+        width: 280px;
+        margin: 0 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         text-align: center;
         flex-shrink: 0;
@@ -580,7 +578,7 @@ document.addEventListener("click", (event) => {
 
     .card-content h2 {
         margin: 0;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: bold;
     }
 
@@ -590,7 +588,6 @@ document.addEventListener("click", (event) => {
         margin-top: 10px;
     }
 
-    /* Botões de navegação */
     .carousel-button {
         position: absolute;
         top: 50%;
@@ -613,20 +610,20 @@ document.addEventListener("click", (event) => {
         right: 10px;
     }
 
-    /* Estilo responsivo */
+    /* Responsividade para dispositivos móveis */
     @media (max-width: 768px) {
         .carousel-wrapper {
-            flex-direction: row;
-        }
-
-        .card {
-            margin: 10px auto;
-            min-width: 100%;
+            flex-direction: column;
         }
 
         .carousel-button {
             padding: 8px;
             font-size: 16px;
+        }
+
+        .card {
+            width: 90%; /* Ajusta o tamanho do card para ser responsivo */
+            margin-bottom: 20px;
         }
     }
 </style>
