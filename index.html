@@ -347,7 +347,8 @@ const searchData = [
     { name: "level", url: "https://neetk.onrender.com/site%20em%20constru%C3%A7%C3%A3o", icon: "fas fa-trophy" },
     { name: "regras", url: "https://neetk.onrender.com/regras", icon: "fas fa-list-ul" },
     { name: "painel FBI", url: "https://neetk.onrender.com/Painel%20Fbi", icon: "fas fa-user-shield" },
-    { name: "painel skur", url: "https://neetk.onrender.com/Painel%20Skur "gerador de rank", url: "gerador-rank.html", icon: "fas fa-medal" },
+    { name: "painel skur", url: "https://neetk.onrender.com/Painel%20Skur", icon: "fas fa-key" },
+    { name: "gerador de rank", url: "gerador-rank.html", icon: "fas fa-medal" },
     { name: "gerador de notícias", url: "https://neetk.onrender.com/jornal", icon: "fas fa-newspaper" },
     { name: "cartório neext", url: "https://neetk.onrender.com/cartorio", icon: "fas fa-archive" },
     { name: "procurados", url: "https://neetk.onrender.com/neexten", icon: "fas fa-search" },
@@ -357,7 +358,7 @@ const searchBar = document.getElementById("search-bar");
 const searchResults = document.getElementById("search-results");
 
 searchBar.addEventListener("input", () => {
-    const query = searchBar.value.toLowerCase();
+    const query = searchBar.value.toLowerCase().trim();
     searchResults.innerHTML = ""; // Limpa os resultados anteriores
 
     if (query.length > 0) {
@@ -365,20 +366,24 @@ searchBar.addEventListener("input", () => {
             item.name.toLowerCase().includes(query)
         );
 
-        filteredData.forEach(item => {
-            const li = document.createElement("li");
-            li.innerHTML = `<i class="${item.icon}"></i> ${item.name}`;
-            li.addEventListener("click", () => {
-                window.location.href = item.url; // Redireciona para a URL
-                searchResults.innerHTML = ""; // Limpa os resultados após clicar
-                searchBar.value = ""; // Limpa a barra de pesquisa
+        if (filteredData.length === 0) {
+            searchResults.innerHTML = "<li>Nenhum resultado encontrado</li>";
+        } else {
+            filteredData.forEach(item => {
+                const li = document.createElement("li");
+                li.innerHTML = `<i class="${item.icon}"></i> ${item.name}`;
+                li.addEventListener("click", () => {
+                    window.location.href = item.url; // Redireciona para a URL
+                    searchResults.innerHTML = ""; // Limpa os resultados após clicar
+                    searchBar.value = ""; // Limpa a barra de pesquisa
+                });
+                searchResults.appendChild(li);
             });
-            searchResults.appendChild(li);
-        });
+        }
     }
 });
 
-// Opcional: Fechar resultados ao clicar fora da barra de pesquisa
+// Fechar resultados ao clicar fora
 document.addEventListener("click", (event) => {
     if (!searchBar.contains(event.target) && !searchResults.contains(event.target)) {
         searchResults.innerHTML = "";
