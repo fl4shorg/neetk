@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>𝗗𝗢𝗠𝗢 𝗗𝗘 𝗙𝗘𝗥𝗥𝗢</title>
+    <title>PCN</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -124,49 +124,48 @@
             const searchValue = document.getElementById("searchNumber").value.trim();
             const result = allNumbers.filter(number => number.includes(searchValue.replace('+', '')));
             updateNumberList(searchValue ? result : allNumbers);
-        }
-
-
-function editNumber(row, oldNumber) {
+        }function editNumber(row, oldNumber) {
     Swal.fire({
         title: 'Editar número',
         input: 'text',
-        inputLabel: 'Digite o novo número:',
         inputValue: oldNumber,
         showCancelButton: true,
         confirmButtonText: 'Salvar',
         cancelButtonText: 'Cancelar',
         inputValidator: (value) => {
-            if (!value || value === oldNumber) {
-                return 'Por favor, insira um número válido!';
+            if (!value) {
+                return 'Por favor, insira um número!';
             }
         }
     }).then((result) => {
         if (result.isConfirmed) {
             const newNumber = result.value;
-            const paramsDelete = new URLSearchParams({ action: "delete", row });
-            fetch(scriptUrl + "?" + paramsDelete.toString(), { method: "POST" })
-                .then(() => {
-                    const paramsCreate = new URLSearchParams({ action: "create", numbers: newNumber.replace('+', '') });
-                    return fetch(scriptUrl + "?" + paramsCreate.toString(), { method: "POST" });
-                })
-                .then(() => {
-                    Swal.fire("Sucesso", "Número editado com sucesso!", "success");
-                    fetchTotalUsersAndList();
-                })
-                .catch(error => Swal.fire("Erro", "Erro ao editar número: " + error.message, "error"));
+            if (newNumber && newNumber !== oldNumber) {
+                const params = new URLSearchParams({ action: "delete", row });
+                fetch(scriptUrl + "?" + params.toString(), { method: "POST" })
+                    .then(() => {
+                        const paramsCreate = new URLSearchParams({ action: "create", numbers: newNumber.replace('+', '') });
+                        return fetch(scriptUrl + "?" + paramsCreate.toString(), { method: "POST" });
+                    })
+                    .then(() => {
+                        Swal.fire("Sucesso", "Número editado com sucesso!", "success");
+                        fetchTotalUsersAndList();
+                    })
+                    .catch(error => Swal.fire("Erro", "Erro ao editar número: " + error.message, "error"));
+            }
         }
     });
 }
-        
-        function deleteNumber(row) {
+
+
+function deleteNumber(row) {
     Swal.fire({
-        title: 'Tem certeza?',
-        text: "Você não poderá reverter esta ação!",
-        icon: 'warning',
+        title: "Tem certeza que deseja apagar este número?",
+        text: "Essa ação não pode ser desfeita.",
+        icon: "warning",  // Ícone de alerta para confirmação
         showCancelButton: true,
-        confirmButtonText: 'Sim, apagar!',
-        cancelButtonText: 'Cancelar',
+        confirmButtonText: "Sim, apagar",
+        cancelButtonText: "Cancelar"
     }).then((result) => {
         if (result.isConfirmed) {
             const params = new URLSearchParams({ action: "delete", row });
@@ -179,6 +178,24 @@ function editNumber(row, oldNumber) {
         }
     });
 }
+        
+        document.getElementById("submitButton").addEventListener("click", function() {
+            const numbersInput = document.getElementById("numbers").value;
+            const numbersArray = numbersInput.split(",").map(num => num.trim()).filter(num => num.length > 0);
+            const numbersWithoutPlus = numbersArray.map(num => num.replace('+', ''));
+            if (numbersWithoutPlus.length > 0) {
+                const params = new URLSearchParams({ action: "create", numbers: numbersWithoutPlus.join(",") });
+                fetch(scriptUrl + "?" + params.toString(), { method: "POST" })
+                    .then(() => {
+                        Swal.fire("Sucesso", "Números enviados com sucesso!", "success");
+                        fetchTotalUsersAndList();
+                        closeModal();
+                    })
+                    .catch(error => Swal.fire("Erro", "Erro ao enviar os números: " + error.message, "error"));
+            } else {
+                Swal.fire("Erro", "Por favor, insira pelo menos um número.", "error");
+            }
+        });
 
         document.getElementById("openModalButton").addEventListener("click", () => document.getElementById("numberModal").style.display = "flex");
         document.getElementById("closeModalButton").addEventListener("click", closeModal);
