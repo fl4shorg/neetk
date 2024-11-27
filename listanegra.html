@@ -128,7 +128,7 @@
             console.log('Tentando logar com usuário:', username); // Log para depuração
 
             // Faz a requisição para buscar os usuários
-            fetch('../usuarios.json') // Atualize o caminho para usuários.json
+            fetch('usuarios.json') // Atualize o caminho para usuários.json
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Erro ao carregar usuários: ' + response.status);
