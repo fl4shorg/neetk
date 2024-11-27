@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PCN</title>
+    <title>𝗗𝗢𝗠𝗢 𝗗𝗘 𝗙𝗘𝗥𝗥𝗢</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -110,10 +110,12 @@
         // Usando o ícone de telefone da Font Awesome
         li.innerHTML = `<i class="fas fa-phone-alt"></i> +${number}`; // ícone de telefone
         const editButton = document.createElement("button");
-        editButton.textContent = "Editar";
+        editButton.innerHTML = `<i class="fas fa-edit"></i> Editar`; // Ícone de editar
+        editButton.style.backgroundColor = "#f39c12"; // Cor de fundo para o botão de editar (dourado)
         editButton.onclick = () => editNumber(index + 2, number);
         const deleteButton = document.createElement("button");
-        deleteButton.textContent = "Apagar";
+        deleteButton.innerHTML = `<i class="fas fa-trash"></i> Apagar`; // Ícone de apagar
+        deleteButton.style.backgroundColor = "#e74c3c"; // Cor de fundo para o botão de apagar (vermelho)
         deleteButton.onclick = () => deleteNumber(index + 2);
         li.appendChild(editButton);
         li.appendChild(deleteButton);
@@ -180,22 +182,22 @@ function deleteNumber(row) {
 }
         
         document.getElementById("submitButton").addEventListener("click", function() {
-            const numbersInput = document.getElementById("numbers").value;
-            const numbersArray = numbersInput.split(",").map(num => num.trim()).filter(num => num.length > 0);
-            const numbersWithoutPlus = numbersArray.map(num => num.replace('+', ''));
-            if (numbersWithoutPlus.length > 0) {
-                const params = new URLSearchParams({ action: "create", numbers: numbersWithoutPlus.join(",") });
-                fetch(scriptUrl + "?" + params.toString(), { method: "POST" })
-                    .then(() => {
-                        Swal.fire("Sucesso", "Números enviados com sucesso!", "success");
-                        fetchTotalUsersAndList();
-                        closeModal();
-                    })
-                    .catch(error => Swal.fire("Erro", "Erro ao enviar os números: " + error.message, "error"));
-            } else {
-                Swal.fire("Erro", "Por favor, insira pelo menos um número.", "error");
-            }
-        });
+    const numbersInput = document.getElementById("numbers").value;
+    const numbersArray = numbersInput.split(",").map(num => num.trim()) // Remove espaços extras
+                                      .map(num => num.replace(/[^\d]/g, "")); // Remove caracteres não numéricos (como + e -)
+    if (numbersArray.length > 0) {
+        const params = new URLSearchParams({ action: "create", numbers: numbersArray.join(",") });
+        fetch(scriptUrl + "?" + params.toString(), { method: "POST" })
+            .then(() => {
+                Swal.fire("Sucesso", "Números enviados com sucesso!", "success");
+                fetchTotalUsersAndList();
+                closeModal();
+            })
+            .catch(error => Swal.fire("Erro", "Erro ao enviar os números: " + error.message, "error"));
+    } else {
+        Swal.fire("Erro", "Por favor, insira pelo menos um número.", "error");
+    }
+});
 
         document.getElementById("openModalButton").addEventListener("click", () => document.getElementById("numberModal").style.display = "flex");
         document.getElementById("closeModalButton").addEventListener("click", closeModal);
