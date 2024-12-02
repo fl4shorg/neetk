@@ -396,6 +396,14 @@
     ]
 },
 {
+    "titulo": "ARTIGCARD - BANIR OUTRO ADM INJUSTAMENTE",
+    "descricao": "É proibido banir outro administrador por zombaria, sem provas ou autorização, pois isso configura abuso de poder e prejudica a harmonia entre os membros da administração. Tal comportamento é considerado inaceitável e está sujeito a penalidades para evitar reincidências.",
+    "paragrafos": [
+        "Parágrafo 01: Quem banir outro administrador por zombaria, sem provas ou autorização, receberá um card cinza e azul claro como advertência.",
+        "Parágrafo 02: Caso a infração ocorra novamente, será aplicado um card verde escuro como penalidade mais severa."
+    ]
+},
+{
     "titulo": "ARTIGCARD - O QUE ACONTECE NO PRIVADO",
     "descricao": "Falar mal de outra pessoa fora do grupo, em conversas privadas, deve permanecer no privado e não tem validade nas regras, exceto em circunstâncias específicas.",
     "paragrafos": [
