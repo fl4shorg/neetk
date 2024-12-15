@@ -63,6 +63,7 @@
         <label for="assinatura" class="assinatura-label"><i class="fas fa-signature icon"></i> Assinatura:</label><br>
         <input type="text" id="assinatura" placeholder="Digite a assinatura"><br><br>
         <button onclick="gerarAtestado()">Gerar Atestado</button>
+        <button onclick="baixarAtestado()" class="download-btn">Baixar Atestado</button>
     </div>
 
     <div class="atestado" id="atestado">
@@ -77,9 +78,6 @@
         <p><i class="fas fa-calendar-alt icon"></i><strong> Data de Emissão:</strong> <span id="previewData"></span></p>
         <div class="assinatura">
             <p><i class="fas fa-signature icon"></i><strong class="assinatura-normal"> Assinatura:</strong> <span id="previewAssinatura"></span></p>
-        </div>
-        <div class="download-btn">
-            <button onclick="baixarAtestado()">Baixar Atestado</button>
         </div>
     </div>
 
