@@ -20,10 +20,10 @@
             text-align: center;
             display: none;
             border: 1px solid #000;
-            height: 400px; /* Ajusta a altura para parecer um documento */
+            height: 400px;
             box-sizing: border-box;
             border-radius: 10px;
-            transform: rotate(0deg); /* Garante que a imagem não seja inclinada */
+            transform: rotate(0deg);
         }
         .hospital-symbol { position: absolute; top: 10px; left: 10px; font-size: 60px; color: red; font-weight: bold; }
         .line { width: 100%; border-top: 2px solid #000; margin: 20px 0; }
@@ -57,7 +57,6 @@
         <label for="dias"><i class="fas fa-calendar-day icon"></i> Dias de Atestado:</label><br>
         <select id="dias">
             <option value="indeterminado">Indeterminado</option>
-            <!-- Dinamicamente preenchido de 1 a 100 -->
         </select><br><br>
         <label for="data"><i class="fas fa-calendar-alt icon"></i> Data de Emissão:</label><br>
         <input type="date" id="data"><br><br>
@@ -85,7 +84,6 @@
     </div>
 
     <script>
-        // Preenche a lista de dias de 1 a 100
         function preencherDias() {
             const selectDias = document.getElementById('dias');
             for (let i = 1; i <= 100; i++) {
@@ -96,7 +94,6 @@
             }
         }
 
-        // Chama a função para preencher os dias ao carregar a página
         window.onload = preencherDias;
 
         function gerarAtestado() {
@@ -110,23 +107,23 @@
         }
 
         function baixarAtestado() {
-            html2canvas(document.querySelector("#atestado")).then(canvas => {
-                // Garantir que o canvas está sendo gerado corretamente
-                if (canvas) {
-                    var link = document.createElement("a");
-                    link.href = canvas.toDataURL("image/png");
-                    link.download = "atestado_neext.png";
-                    document.body.appendChild(link); // Necessário para navegadores que exigem
+            const confirmar = window.confirm("Você tem certeza que deseja baixar o atestado?");
+            if (confirmar) {
+                html2canvas(document.querySelector("#atestado"), { scale: 2, useCORS: true }).then(canvas => {
+                    const dataUrl = canvas.toDataURL('image/png');
+                    const link = document.createElement('a');
+                    link.href = dataUrl;
+                    link.download = 'atestado_neext.png';
+                    document.body.appendChild(link);
                     link.click();
-                    document.body.removeChild(link); // Remove o link após o clique
-                }
-            }).catch(error => {
-                console.error('Erro ao gerar o atestado:', error);
-            });
+                    document.body.removeChild(link);
+                }).catch(error => {
+                    console.error('Erro ao gerar o atestado:', error);
+                });
+            }
         }
     </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </body>
 </html>
