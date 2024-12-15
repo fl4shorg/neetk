@@ -111,10 +111,17 @@
 
         function baixarAtestado() {
             html2canvas(document.querySelector("#atestado")).then(canvas => {
-                var link = document.createElement("a");
-                link.download = "atestado_neext.png";  // Certifique-se de que o arquivo tenha a extensão correta
-                link.href = canvas.toDataURL("image/png");  // Força o formato PNG
-                link.click();  // Executa o download
+                // Garantir que o canvas está sendo gerado corretamente
+                if (canvas) {
+                    var link = document.createElement("a");
+                    link.href = canvas.toDataURL("image/png");
+                    link.download = "atestado_neext.png";
+                    document.body.appendChild(link); // Necessário para navegadores que exigem
+                    link.click();
+                    document.body.removeChild(link); // Remove o link após o clique
+                }
+            }).catch(error => {
+                console.error('Erro ao gerar o atestado:', error);
             });
         }
     </script>
