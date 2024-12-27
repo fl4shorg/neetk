@@ -347,6 +347,15 @@
     ]
 },
 {
+      "titulo": "ARTIGCARD - ABUSO NO USO DE TAGS",
+    "descricao": "Fica proibido brincar com tags ou usar tags inexistentes.",
+    "paragrafos": [
+        "Parágrafo 01: Caso a infração seja cometida, será enviado um card de notificação ao indivíduo infrator, solicitando a retirada imediata da tag irregular.",
+        "Parágrafo 02: O não cumprimento da retirada ou a reincidência em recolocar a tag resultará na aplicação de um card vermelho.",
+        "Parágrafo 03: É proibido o uso de tags que zombem de problemas mentais, psicológicos ou doenças. O uso de outras tags, desde que não relacionadas a essas situações, será permitido."
+    ]
+},
+{
     "titulo": "ARTIGCARD - AMEAÇAR OU FAZER UM ADM KITAR À FORÇA",
     "descricao": "É proibido ameaçar um ADM para que ele realize um kitamento.",
     "paragrafos": [
