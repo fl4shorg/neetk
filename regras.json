@@ -18,13 +18,15 @@
         ]
     },
     {
-    "titulo": "ARTIGCARD - TRANSFERÊNCIA",
-    "descricao": "A Ministra das Relações é responsável por todas as transferências. Após a permissão dos Ceos regentes dos dois grupos envolvidos na transferência, é necessária a autorização final dela para que a transferência seja realizada.",
-    "paragrafos": [
-        "Parágrafo 01: Após a permissão de todos os ceos regentes para a transferência, é necessária a autorização final da Ministra das Relações para que a transferência seja efetivada.",
-        "Parágrafo 02: Para aprovar ou negar qualquer transferência, a Ministra das Relações deve apresentar o motivo de sua decisão, marcando os diretores e os ceos regentes envolvidos.",
-        "Parágrafo 03: Em casos de negligência, onde a Ministra das Relações não apresenta um motivo evidente para sua decisão, os diretores estão autorizados a realizar a transferência sem sua autorização.",
-        "Parágrafo 04: Qualquer violação desta regra resultará na aplicação de um card preto para todos os envolvidos."
+
+  "titulo": "ARTIGCARD - TRANSFERÊNCIA",
+  "descricao": "A Ministra das Relações é responsável por todas as transferências. Após a permissão dos CEOs regentes dos dois grupos envolvidos na transferência, é necessária a autorização final dela para que a transferência seja realizada.",
+  "paragrafos": [
+    "Parágrafo 01: Após a permissão de todos os CEOs regentes para a transferência, é necessária a autorização final da Ministra das Relações para que a transferência seja efetivada.",
+    "Parágrafo 02: Para aprovar ou negar qualquer transferência, a Ministra das Relações deve apresentar o motivo de sua decisão, marcando os diretores e os CEOs regentes envolvidos.",
+    "Parágrafo 03: Em casos de negligência, onde a Ministra das Relações não apresenta um motivo evidente para sua decisão, os diretores estão autorizados a realizar a transferência sem sua autorização.",
+    "Parágrafo 04: Qualquer violação desta regra resultará na aplicação de um card preto para todos os envolvidos."
+ 
     ]
 },
 {
