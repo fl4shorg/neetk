@@ -8,7 +8,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
   <!-- Incluindo a versão mais recente do html2canvas -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
   <style>
     body {
@@ -128,16 +128,6 @@
       border-radius: 10px;
       margin: 20px auto;
     }
-
-    .additionalText {
-      margin-top: 20px;
-      font-size: 16px;
-      color: #333;
-      background-color: #f7f7f7;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-    }
   </style>
 </head>
 <body>
@@ -154,6 +144,9 @@
     
     <label for="highlightColor">Escolha a cor do marca-texto:</label>
     <input type="color" id="highlightColor" class="colorPicker" value="#fffd3e">
+
+    <!-- Nova opção para adicionar texto abaixo de "Curiosidades" -->
+    <textarea id="additionalText" rows="4" placeholder="Adicione mais um texto abaixo..."></textarea>
     
     <div class="imagePreview" id="imagePreview">
       <span>Escolha uma imagem</span>
@@ -166,18 +159,11 @@
       <h1><i class="fas fa-question-circle"></i>VOCÊ SABIA?</h1>
       <div id="imageContainer"></div>
       <p id="previewText">Escreva algo interessante aqui!</p>
+      <p id="additionalTextPreview" style="margin-top: 20px; font-size: 14px;"></p> <!-- Texto adicional -->
       <p id="previewFooter" style="margin-top: 20px; font-size: 12px; opacity: 0.8;">Fonte: exemplo.com</p>
     </div>
     
     <button onclick="downloadImage()">Baixar Imagem</button>
-    
-    <!-- Nova seção para adicionar mais textos abaixo de "Curiosidades" -->
-    <div class="additionalText">
-      <h3>Mais Curiosidades:</h3>
-      <textarea id="additionalTextArea" rows="4" placeholder="Escreva mais curiosidades aqui..."></textarea>
-      <button onclick="addMoreText()">Adicionar Curiosidade</button>
-      <p id="moreText"></p>
-    </div>
   </div>
 
   <script>
@@ -207,7 +193,8 @@
       const cardColor = document.getElementById('cardColor').value || "#ff8a00";
       const textColor = document.getElementById('textColor').value || "#ffffff";
       const highlightColor = document.getElementById('highlightColor').value || "#fffd3e";
-      
+      const additionalText = document.getElementById('additionalText').value || "";
+
       const card = document.getElementById('cardPreview');
       card.style.background = cardColor;
       
@@ -228,7 +215,8 @@
 
       const highlightedText = `<span class="highlight-text" style="background-color: ${highlightColor};">${text}</span>`;
       document.getElementById('previewText').innerHTML = highlightedText;
-      
+
+      document.getElementById('additionalTextPreview').innerText = additionalText; // Exibindo texto adicional
       document.getElementById('previewFooter').innerText = footer;
     }
 
@@ -248,15 +236,6 @@
       }).catch(function(error) {
         console.error('Erro ao gerar a imagem:', error);
       });
-    }
-
-    function addMoreText() {
-      const additionalText = document.getElementById('additionalTextArea').value;
-      const moreTextContainer = document.getElementById('moreText');
-      if (additionalText) {
-        moreTextContainer.innerHTML += `<p>${additionalText}</p>`;
-        document.getElementById('additionalTextArea').value = ''; // Limpar o campo após adicionar
-      }
     }
   </script>
 </body>
