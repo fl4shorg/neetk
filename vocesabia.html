@@ -8,9 +8,10 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   
   <!-- Incluindo a biblioteca html2canvas -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.3/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.3/html2canvas.min.js"></script>
 
   <style>
+    /* Estilos do card e página */
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
@@ -220,8 +221,10 @@
       html2canvas(card).then(function(canvas) {
         const link = document.createElement('a');
         link.download = 'voce-sabia.png';
-        link.href = canvas.toDataURL('image/png');
+        link.href = canvas.toDataURL();
         link.click();
+      }).catch(function(error) {
+        alert("Erro ao capturar a imagem: " + error);
       });
     }
   </script>
