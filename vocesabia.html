@@ -7,8 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   
-  <!-- Incluindo a biblioteca html2canvas -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.3/html2canvas.min.js"></script>
+  <!-- Incluindo a versão mais recente do html2canvas (2024) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.0.0/html2canvas.min.js"></script>
 
   <style>
     body {
@@ -42,6 +42,7 @@
       margin: 20px 0;
       text-align: center;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
     }
 
     .card h1 {
@@ -97,7 +98,7 @@
     .imagePreview img {
       max-width: 100%;
       max-height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       border-radius: 8px;
       margin: 10px;
     }
@@ -198,9 +199,9 @@
         const imgElement = new Image();
         imgElement.src = selectedImage;
         imgElement.style.width = '100%';
-        imgElement.style.height = 'auto';  /* Garante a altura proporcional */
-        imgElement.style.borderRadius = '10px'; /* Borda arredondada na imagem */
-        imgElement.style.margin = '20px auto';  /* Adiciona margem ao redor da imagem */
+        imgElement.style.height = 'auto';
+        imgElement.style.borderRadius = '10px';
+        imgElement.style.margin = '20px auto';  
         imageContainer.appendChild(imgElement);
       }
       
@@ -217,11 +218,16 @@
       const card = document.getElementById('cardPreview');
 
       // Usando html2canvas para capturar o conteúdo do card
-      html2canvas(card).then(function(canvas) {
+      html2canvas(card, {
+        logging: true, // Ativa o log para depuração
+        useCORS: true, // Permite o uso de CORS para carregar imagens externas
+      }).then(function(canvas) {
         const link = document.createElement('a');
         link.download = 'voce-sabia.png';
         link.href = canvas.toDataURL('image/png');
         link.click();
+      }).catch(function(error) {
+        console.error('Erro ao gerar a imagem:', error);
       });
     }
   </script>
