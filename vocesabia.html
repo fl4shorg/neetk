@@ -128,6 +128,16 @@
       border-radius: 10px;
       margin: 20px auto;
     }
+
+    .additionalText {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #333;
+      background-color: #f7f7f7;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
   </style>
 </head>
 <body>
@@ -160,6 +170,14 @@
     </div>
     
     <button onclick="downloadImage()">Baixar Imagem</button>
+    
+    <!-- Nova seção para adicionar mais textos abaixo de "Curiosidades" -->
+    <div class="additionalText">
+      <h3>Mais Curiosidades:</h3>
+      <textarea id="additionalTextArea" rows="4" placeholder="Escreva mais curiosidades aqui..."></textarea>
+      <button onclick="addMoreText()">Adicionar Curiosidade</button>
+      <p id="moreText"></p>
+    </div>
   </div>
 
   <script>
@@ -230,6 +248,15 @@
       }).catch(function(error) {
         console.error('Erro ao gerar a imagem:', error);
       });
+    }
+
+    function addMoreText() {
+      const additionalText = document.getElementById('additionalTextArea').value;
+      const moreTextContainer = document.getElementById('moreText');
+      if (additionalText) {
+        moreTextContainer.innerHTML += `<p>${additionalText}</p>`;
+        document.getElementById('additionalTextArea').value = ''; // Limpar o campo após adicionar
+      }
     }
   </script>
 </body>
