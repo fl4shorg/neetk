@@ -165,6 +165,14 @@
         ]
     },
 {
+  "titulo": "ARTIGCARD - ACUSAÇÃO SEM PROVAS",
+  "descricao": "É proibido acusar alguém sem provas ou fundamentos. Acusações só serão aceitas quando baseadas em evidências e devidamente fundamentadas.",
+  "paragrafos": [
+    "Parágrafo 01: Todo aquele que acusar outro sem provas ou fundamentos será imediatamente punido com um card vermelho.",
+    "Parágrafo 02: Caso a pessoa que faz a acusação sem provas ocupe um cargo de alta posição, ela será penalizada com um card preto e encaminhada ao hospício para avaliação e tratamento adequado."
+  ]
+},
+{
         "titulo": "ARTIGCARD - APOSENTADOS",
         "descricao": "A aposentadoria é permitida para membros que cumprirem os requisitos estabelecidos.",
         "paragrafos": [
