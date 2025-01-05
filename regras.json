@@ -30,6 +30,15 @@
     ]
 },
 {
+  "titulo": "ARTIGCARD - PROTEÇÃO AOS REPÓRTERES",
+  "descricao": "É proibido questionar ou perturbar o repórter por causa de suas notícias devido a desagrado pessoal ou por qualquer outro motivo.",
+  "paragrafos": [
+    "Parágrafo 01: Qualquer pessoa que ofender ou perturbar um repórter será considerada contra a liberdade de expressão e receberá um card preto como advertência.",
+    "Parágrafo 02: Se ocorrer alguma violação, o repórter deve publicar informações sobre o infrator, destacando a tentativa de violar a liberdade de expressão.",
+    "Parágrafo 03: Em caso de reincidência, o infrator deverá receber um card marrom como penalidade adicional."
+  ]
+},
+{
         "titulo": "ARTIGCARD 02: Proibido Ameaçar de Sair (Kitar) do Grupo",
         "descricao": "Essa regra proíbe ameaças de saída do grupo e impõe punições para quem realizar tal ato.",
         "paragrafos": [
