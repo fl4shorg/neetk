@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro e Edição de Usuários</title>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; }
+        header {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+        #users-cards { margin: 10px auto; max-width: 500px; padding: 10px; }
+        .user-card { border: 1px solid #ccc; padding: 15px; margin-bottom: 10px; border-radius: 5px; background: #fff; }
+        .actions { display: flex; justify-content: space-between; }
+        button { background-color: #007BFF; color: #fff; padding: 10px 15px; border-radius: 5px; cursor: pointer; }
+        .search-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .search-container input {
+            padding: 10px;
+            width: 80%;
+            max-width: 400px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar no topo -->
+    <header>
+        <h1>DASDBOARD</h1>
+    </header>
+    
+    <!-- Card para Total de Presos e Livres -->
+<div style="margin: 20px auto; max-width: 600px; padding: 15px; background-color: #ffffff; border: 1px solid #ccc; border-radius: 5px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+        <!-- Card para Total de Presos -->
+        <div id="presos-card" style="padding: 15px; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 5px; flex: 1; margin-right: 10px;">
+            <h3 style="text-align: center;">Total de Presos</h3>
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <i class="fas fa-user-lock" style="font-size: 40px; margin-right: 15px; color: #721c24;"></i>
+                <p><strong><span id="total-presos">Carregando...</span></strong></p>
+            </div>
+        </div>
+
+        <!-- Card para Total de Livres -->
+        <div id="livres-card" style="padding: 15px; background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 5px; flex: 1; margin-left: 10px;">
+            <h3 style="text-align: center;">Total de Livres</h3>
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <i class="fas fa-user" style="font-size: 40px; margin-right: 15px; color: #155724;"></i>
+                <p><strong><span id="total-livres">Carregando...</span></strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gráfico de barras (Chart.js) -->
+    <div style="margin-top: 20px;">
+        <canvas id="statsChart" width="400" height="200"></canvas>
+    </div>
+</div>
+
+<!-- Calendário -->
+<div id="calendar" style="margin-top: 40px;"></div>
+
+<!-- Incluir o link da biblioteca Font Awesome, Chart.js e FullCalendar -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/fullcalendar.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/fullcalendar.min.js"></script>
+
+<script>
+    // URL da API
+    const API_URL2 = 'https://script.google.com/macros/s/AKfycbym4UBhkZGyuHkTr3Y9gWlYdE0cquRY9LcW7t8jCxACh3YqdOG3z3TRGrz-zAGH0j5I/exec?action=summary';
+
+    // Função para atualizar o card com as informações da API
+    function updateStats() {
+        fetch(API_URL2)
+            .then(response => response.json())
+            .then(data => {
+                // Atualiza o texto dos cards
+                document.getElementById("total-presos").textContent = data["Total de Presos"];
+                document.getElementById("total-livres").textContent = data["Total de Livres"];
+
+                // Atualiza o gráfico com os valores da API
+                chart.data.datasets[0].data = [data["Total de Presos"], data["Total de Livres"]];
+                chart.update();  // Atualiza o gráfico com os novos dados
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados da API:", error);
+                document.getElementById("total-presos").textContent = "Erro ao carregar";
+                document.getElementById("total-livres").textContent = "Erro ao carregar";
+            });
+    }
+
+    // Gráfico de barras (Chart.js)
+    const data = {
+        labels: ['Presos', 'Livres'],
+        datasets: [{
+            label: 'Total',
+            data: [0, 0], // Inicialmente os valores são 0
+            backgroundColor: ['#721c24', '#155724'],
+            borderColor: ['#721c24', '#155724'],
+            borderWidth: 1
+        }]
+    };
+
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    beginAtZero: true
+                },
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    };
+
+    // Cria o gráfico
+    const ctx = document.getElementById('statsChart').getContext('2d');
+    const chart = new Chart(ctx, config);
+
+    // Atualiza os dados imediatamente ao carregar a página
+    updateStats();
+
+    // Atualiza os dados a cada 10 segundos
+    setInterval(updateStats, 10000);  // Atualiza os dados a cada 10 segundos (10000ms)
+
+    // Inicializa o calendário de 2025 e marca o dia atual
+    $(document).ready(function() {
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            defaultView: 'month', // Exibe o calendário no formato de mês por padrão
+            defaultDate: new Date(), // Define a data inicial como a data atual
+            eventRender: function(event, element) {
+                // Marca o dia atual com uma classe especial
+                if (event.start.format('YYYY-MM-DD') === moment().format('YYYY-MM-DD')) {
+                    element.addClass('today');
+                }
+            },
+            events: [
+                // Adicione eventos aqui se necessário
+            ],
+        });
+    });
+</script>
+
+<!-- Estilos adicionais para destacar o dia atual -->
+<style>
+    .today {
+        background-color: #ffeb3b !important;
+        color: #000 !important;
+    }
+</style>
+
+</script>
+    
+
+    <h1>DETENCAO #01</h1>
+
+    <!-- Botão para abrir o formulário -->
+    <button onclick="openForm()">Enviar</button>
+
+    <!-- Título "Prisioneiro" -->
+    <h2 style="text-align: center; margin-top: 20px;">Prisioneiro</h2>
+
+    <!-- Barra de pesquisa -->
+    <div class="search-container">
+        <input type="text" id="search-bar" placeholder="Pesquise pelo ID ou Número" onkeyup="searchUser()">
+    </div>
+
+    <!-- Container para os Cards dos Usuários -->
+    <div id="users-cards"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const API_URL = 'https://script.google.com/macros/s/AKfycbym4UBhkZGyuHkTr3Y9gWlYdE0cquRY9LcW7t8jCxACh3YqdOG3z3TRGrz-zAGH0j5I/exec';
+
+        // Função para abrir o formulário de cadastro
+        function openForm() {
+            const id = Math.floor(Math.random() * 900) + 100; // Gerando um ID único de 3 dígitos
+
+            Swal.fire({
+                title: 'Cadastrar Novo Usuário',
+                html: `
+                    <label>ID</label>
+                    <input id="swal-id" class="swal2-input" value="${id}" readonly>
+                    <label>Nome</label>
+                    <input id="swal-name" class="swal2-input" placeholder="Nome">
+                    <label>Número</label>
+                    <input id="swal-number" class="swal2-input" placeholder="Número">
+                    <label>Dias</label>
+                    <input id="swal-dias" class="swal2-input" placeholder="Dias">
+                    <label>Situação</label>
+                    <input id="swal-situacao" class="swal2-input" placeholder="Situação">
+                    <label>Motivo</label>
+                    <input id="swal-motivo" class="swal2-input" placeholder="Motivo">
+                `,
+                showCancelButton: true,
+                confirmButtonText: 'Cadastrar',
+                preConfirm: () => {
+                    const id = document.getElementById('swal-id').value;
+                    const name = document.getElementById('swal-name').value;
+                    const number = document.getElementById('swal-number').value;
+                    const dias = document.getElementById('swal-dias').value;
+                    const situacao = document.getElementById('swal-situacao').value;
+                    const motivo = document.getElementById('swal-motivo').value;
+
+                    // Envio dos dados para o Google Apps Script
+                    return fetch(API_URL, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                        body: new URLSearchParams({
+                            action: "create", // Ação para criar novo registro
+                            id,
+                            name,
+                            number,
+                            dias,
+                            situacao,
+                            motivo
+                        })
+                    });
+                }
+            }).then(() => {
+                Swal.fire('Usuário cadastrado com sucesso!');
+                loadUsers(); // Recarrega a lista de usuários
+            }).catch(() => {
+                Swal.fire('Erro ao cadastrar o usuário.');
+            });
+        }
+
+        // Função para carregar os usuários cadastrados
+        function loadUsers() {
+            fetch(`${API_URL}?action=read`)
+                .then(response => response.text())
+                .then(data => {
+                    const cardsContainer = document.getElementById("users-cards");
+                    cardsContainer.innerHTML = "";
+                    if (data.trim().length > 0) {
+                        data.trim().split("\n").slice(1).forEach(line => {
+                            const user = line.split(",");
+                            const card = document.createElement("div");
+                            card.classList.add("user-card");
+                            card.innerHTML = `
+                                <h3>${user[0]}</h3> <!-- Exibindo o ID -->
+                                <p><strong>Nome:</strong> ${user[1]}</p>
+                                <p><strong>Número:</strong> ${user[2]}</p>
+                                <p><strong>Dias:</strong> ${user[3]}</p>
+                                <p><strong>Situação:</strong> ${user[4]}</p>
+                                <p><strong>Motivo:</strong> ${user[5]}</p> <!-- Exibindo o motivo -->
+                                <div class="actions">
+                                    <button onclick="editUser('${user[0]}', '${user[1]}', '${user[2]}', '${user[3]}', '${user[4]}', '${user[5]}')">Editar</button>
+                                    <button onclick="deleteUser('${user[0]}')">Excluir</button>
+                                </div>
+                            `;
+                            cardsContainer.appendChild(card);
+                        });
+                    } else {
+                        cardsContainer.innerHTML = "<p>Nenhum usuário encontrado.</p>";
+                    }
+                })
+                .catch(error => {
+                    console.error("Erro ao carregar dados:", error);
+                    const cardsContainer = document.getElementById("users-cards");
+                    cardsContainer.innerHTML = "<p>Erro ao carregar os usuários. Tente novamente mais tarde.</p>";
+                });
+        }
+
+        // Função para editar um usuário
+        function editUser(id, name, number, dias, situacao, motivo) {
+            Swal.fire({
+                title: 'Editar Usuário',
+                html: `
+                    <label>Nome</label>
+                    <input id="swal-name" class="swal2-input" value="${name}">
+                    <label>Número</label>
+                    <input id="swal-number" class="swal2-input" value="${number}">
+                    <label>Dias</label>
+                    <input id="swal-dias" class="swal2-input" value="${dias}">
+                    <label>Situação</label>
+                    <input id="swal-situacao" class="swal2-input" value="${situacao}">
+                    <label>Motivo</label>
+                    <input id="swal-motivo" class="swal2-input" value="${motivo}">
+                `,
+                showCancelButton: true,
+                confirmButtonText: 'Salvar',
+                preConfirm: () => {
+                    const updatedData = {
+                        id,
+                        name: document.getElementById('swal-name').value,
+                        number: document.getElementById('swal-number').value,
+                        dias: document.getElementById('swal-dias').value,
+                        situacao: document.getElementById('swal-situacao').value,
+                        motivo: document.getElementById('swal-motivo').value,
+                        action: "update"
+                    };
+
+                    return fetch(API_URL, {
+                        method: 'POST',
+                        body: new URLSearchParams(updatedData)
+                    });
+                }
+            }).then(() => loadUsers());
+        }
+
+        // Função para excluir um usuário
+        function deleteUser(id) {
+            Swal.fire({
+                title: 'Tem certeza?',
+                text: 'Você não poderá reverter isso!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sim, excluir',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(API_URL, {
+                        method: 'POST',
+                        body: new URLSearchParams({ id, action: "delete" })
+                    })
+                    .then(() => {
+                        Swal.fire('Usuário excluído!', '', 'success');
+                        loadUsers();
+                    })
+                    .catch(() => Swal.fire('Erro ao excluir o usuário.', '', 'error'));
+                }
+            });
+        }
+
+        // Função de pesquisa
+        function searchUser() {
+            const searchTerm = document.getElementById('search-bar').value.toLowerCase();
+            const cards = document.querySelectorAll('.user-card');
+            cards.forEach(card => {
+                const id = card.querySelector('h3').textContent.toLowerCase();
+                const number = card.querySelector('p').textContent.toLowerCase();
+                if (id.includes(searchTerm) || number.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Carregar usuários na inicialização
+        window.onload = loadUsers;
+    </script>
+</body>
+</html>
