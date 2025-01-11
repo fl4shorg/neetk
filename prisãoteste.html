@@ -5,42 +5,147 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro e Edição de Usuários</title>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; }
-        header {
-            background-color: #007BFF;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+    }
+
+    header {
+        background-color: #007BFF;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+
+    header h1 {
+        font-size: 36px;
+        margin: 0;
+    }
+
+    #users-cards {
+        margin: 10px auto;
+        max-width: 500px;
+        padding: 10px;
+    }
+
+    .user-card {
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        background: #fff;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    button {
+        background-color: #007BFF;
+        color: #fff;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .search-container {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .search-container input {
+        padding: 10px;
+        width: 80%;
+        max-width: 400px;
+        margin-top: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    /* Adiciona estilos específicos para o SweetAlert2 */
+.swal2-popup {
+    width: 90% !important; /* Faz o modal ocupar 90% da tela no mobile */
+    max-width: 500px; /* Define um limite máximo para o tamanho do modal */
+    padding: 20px;
+}
+
+.swal2-input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .swal2-popup {
+        width: 90% !important; /* Reduz a largura do popup em telas menores */
+    }
+    .swal2-title {
+        font-size: 22px;
+    }
+    .swal2-input {
+        font-size: 14px;
+    }
+    .swal2-actions {
+        padding: 10px 0;
+    }
+}
+
+    /* Responsividade */
+    @media (max-width: 768px) {
         header h1 {
-            font-size: 36px;
-            margin: 0;
+            font-size: 28px;
         }
-        #users-cards { margin: 10px auto; max-width: 500px; padding: 10px; }
-        .user-card { border: 1px solid #ccc; padding: 15px; margin-bottom: 10px; border-radius: 5px; background: #fff; }
-        .actions { display: flex; justify-content: space-between; }
-        button { background-color: #007BFF; color: #fff; padding: 10px 15px; border-radius: 5px; cursor: pointer; }
-        .search-container {
-            margin-top: 20px;
-            text-align: center;
-        }
-        .search-container input {
+
+        .user-card {
             padding: 10px;
-            width: 80%;
-            max-width: 400px;
-            margin-top: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
         }
-    </style>
+
+        button {
+            font-size: 14px;
+            padding: 8px 12px;
+        }
+
+        .search-container input {
+            width: 90%;
+        }
+
+        #presos-card, #livres-card {
+            flex: 1;
+            margin: 10px 0;
+        }
+
+        /* Ajustar layout dos cards para mobile */
+        .actions {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .actions button {
+            width: 100%;
+        }
+    }
+</style>
 </head>
 <body>
     <!-- Navbar no topo -->
     <header>
         <h1>DASDBOARD</h1>
     </header>
+    <head>
+    <!-- Incluir o jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
+    <!-- Incluir o FullCalendar CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/fullcalendar.min.css" rel="stylesheet">
+    
+    <!-- Incluir o FullCalendar JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/fullcalendar.min.js"></script>
+
+    <!-- Incluir o Moment.js -->
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+</head>
     <!-- Card para Total de Presos e Livres -->
 <div style="margin: 20px auto; max-width: 600px; padding: 15px; background-color: #ffffff; border: 1px solid #ccc; border-radius: 5px;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
@@ -163,24 +268,22 @@
     });
 </script>
 
-<!-- Estilos adicionais para destacar o dia atual -->
-<style>
-    .today {
-        background-color: #ffeb3b !important;
-        color: #000 !important;
-    }
-</style>
 
-</script>
+
+
+
+
     
+<h1><i class="fas fa-building"></i> DETENCAO #01</h1>
 
-    <h1>DETENCAO #01</h1>
+<!-- Botão para abrir o formulário com ícone de enviar -->
+<button onclick="openForm()">
+    <i class="fas fa-paper-plane"></i> Enviar
+</button>
 
-    <!-- Botão para abrir o formulário -->
-    <button onclick="openForm()">Enviar</button>
-
-    <!-- Título "Prisioneiro" -->
-    <h2 style="text-align: center; margin-top: 20px;">Prisioneiro</h2>
+<!-- Título "Prisioneiros" com ícone Font Awesome -->
+<h2 style="text-align: center; margin-top: 20px;">
+    <i class="fas fa-lock"></i> Prisioneiros</h2>
 
     <!-- Barra de pesquisa -->
     <div class="search-container">
@@ -196,130 +299,140 @@
 
         // Função para abrir o formulário de cadastro
         function openForm() {
-            const id = Math.floor(Math.random() * 900) + 100; // Gerando um ID único de 3 dígitos
+    const id = Math.floor(Math.random() * 900) + 100; // Gerando um ID único de 3 dígitos
 
-            Swal.fire({
-                title: 'Cadastrar Novo Usuário',
-                html: `
-                    <label>ID</label>
-                    <input id="swal-id" class="swal2-input" value="${id}" readonly>
-                    <label>Nome</label>
-                    <input id="swal-name" class="swal2-input" placeholder="Nome">
-                    <label>Número</label>
-                    <input id="swal-number" class="swal2-input" placeholder="Número">
-                    <label>Dias</label>
-                    <input id="swal-dias" class="swal2-input" placeholder="Dias">
-                    <label>Situação</label>
-                    <input id="swal-situacao" class="swal2-input" placeholder="Situação">
-                    <label>Motivo</label>
-                    <input id="swal-motivo" class="swal2-input" placeholder="Motivo">
-                `,
-                showCancelButton: true,
-                confirmButtonText: 'Cadastrar',
-                preConfirm: () => {
-                    const id = document.getElementById('swal-id').value;
-                    const name = document.getElementById('swal-name').value;
-                    const number = document.getElementById('swal-number').value;
-                    const dias = document.getElementById('swal-dias').value;
-                    const situacao = document.getElementById('swal-situacao').value;
-                    const motivo = document.getElementById('swal-motivo').value;
+    Swal.fire({
+        title: 'Cadastrar Novo Usuário',
+        html: `
+            <label><i class="fas fa-id-badge"></i> ID</label>
+            <input id="swal-id" class="swal2-input" value="${id}" readonly>
+            <label><i class="fas fa-user"></i> Nome</label>
+            <input id="swal-name" class="swal2-input" placeholder="Nome">
+            <label><i class="fas fa-phone-alt"></i> Número</label>
+            <input id="swal-number" class="swal2-input" placeholder="Número">
+            <label><i class="fas fa-calendar-day"></i> Dias</label>
+            <input id="swal-dias" class="swal2-input" placeholder="Dias">
+            <label><i class="fas fa-exclamation-circle"></i> Situação</label>
+            <select id="swal-situacao" class="swal2-input" style="width: 100%;">
+                <option value="Presa">Presa</option>
+                <option value="Livre">Livre</option>
+            </select>
+            <label><i class="fas fa-info-circle"></i> Motivo</label>
+            <input id="swal-motivo" class="swal2-input" placeholder="Motivo">
+        `,
+        showCancelButton: true,
+        confirmButtonText: 'Cadastrar',
+        preConfirm: () => {
+            const id = document.getElementById('swal-id').value;
+            const name = document.getElementById('swal-name').value;
+            const number = document.getElementById('swal-number').value;
+            const dias = document.getElementById('swal-dias').value;
+            const situacao = document.getElementById('swal-situacao').value;
+            const motivo = document.getElementById('swal-motivo').value;
 
-                    // Envio dos dados para o Google Apps Script
-                    return fetch(API_URL, {
-                        method: "POST",
-                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                        body: new URLSearchParams({
-                            action: "create", // Ação para criar novo registro
-                            id,
-                            name,
-                            number,
-                            dias,
-                            situacao,
-                            motivo
-                        })
-                    });
-                }
-            }).then(() => {
-                Swal.fire('Usuário cadastrado com sucesso!');
-                loadUsers(); // Recarrega a lista de usuários
-            }).catch(() => {
-                Swal.fire('Erro ao cadastrar o usuário.');
+            // Envio dos dados para o Google Apps Script
+            return fetch(API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams({
+                    action: "create",
+                    id,
+                    name,
+                    number,
+                    dias,
+                    situacao,
+                    motivo
+                })
             });
         }
-
+    }).then(() => {
+        Swal.fire('Usuário cadastrado com sucesso!');
+        loadUsers(); // Recarrega a lista de usuários
+    }).catch(() => {
+        Swal.fire('Erro ao cadastrar o usuário.');
+    });
+}
         // Função para carregar os usuários cadastrados
         function loadUsers() {
-            fetch(`${API_URL}?action=read`)
-                .then(response => response.text())
-                .then(data => {
-                    const cardsContainer = document.getElementById("users-cards");
-                    cardsContainer.innerHTML = "";
-                    if (data.trim().length > 0) {
-                        data.trim().split("\n").slice(1).forEach(line => {
-                            const user = line.split(",");
-                            const card = document.createElement("div");
-                            card.classList.add("user-card");
-                            card.innerHTML = `
-                                <h3>${user[0]}</h3> <!-- Exibindo o ID -->
-                                <p><strong>Nome:</strong> ${user[1]}</p>
-                                <p><strong>Número:</strong> ${user[2]}</p>
-                                <p><strong>Dias:</strong> ${user[3]}</p>
-                                <p><strong>Situação:</strong> ${user[4]}</p>
-                                <p><strong>Motivo:</strong> ${user[5]}</p> <!-- Exibindo o motivo -->
-                                <div class="actions">
-                                    <button onclick="editUser('${user[0]}', '${user[1]}', '${user[2]}', '${user[3]}', '${user[4]}', '${user[5]}')">Editar</button>
-                                    <button onclick="deleteUser('${user[0]}')">Excluir</button>
-                                </div>
-                            `;
-                            cardsContainer.appendChild(card);
-                        });
-                    } else {
-                        cardsContainer.innerHTML = "<p>Nenhum usuário encontrado.</p>";
-                    }
-                })
-                .catch(error => {
-                    console.error("Erro ao carregar dados:", error);
-                    const cardsContainer = document.getElementById("users-cards");
-                    cardsContainer.innerHTML = "<p>Erro ao carregar os usuários. Tente novamente mais tarde.</p>";
+    fetch(`${API_URL}?action=read`)
+        .then(response => response.text())
+        .then(data => {
+            const cardsContainer = document.getElementById("users-cards");
+            cardsContainer.innerHTML = "";
+            if (data.trim().length > 0) {
+                data.trim().split("\n").slice(1).forEach(line => {
+                    const user = line.split(",");
+                    const card = document.createElement("div");
+                    card.classList.add("user-card");
+                    card.innerHTML = `
+                        <h3><i class="fas fa-id-badge"></i> ${user[0]}</h3> <!-- Exibindo o ID com ícone -->
+                        <p><i class="fas fa-user"></i> <strong>Nome:</strong> ${user[1]}</p>
+                        <p><i class="fas fa-phone"></i> <strong>Número:</strong> ${user[2]}</p>
+                        <p><i class="fas fa-calendar-day"></i> <strong>Dias:</strong> ${user[3]}</p>
+                        <p><i class="fas fa-check-circle"></i> <strong>Situação:</strong> ${user[4]}</p>
+                        <p><i class="fas fa-comment-alt"></i> <strong>Motivo:</strong> ${user[5]}</p> <!-- Exibindo o motivo com ícone -->
+                        <div class="actions">
+                            <button class="edit-btn" onclick="editUser('${user[0]}', '${user[1]}', '${user[2]}', '${user[3]}', '${user[4]}', '${user[5]}')">
+                                <i class="fas fa-edit"></i> Editar
+                            </button>
+                            <button class="delete-btn" onclick="deleteUser('${user[0]}')">
+                                <i class="fas fa-trash-alt"></i> Excluir
+                            </button>
+                        </div>
+                    `;
+                    cardsContainer.appendChild(card);
                 });
-        }
-
+            } else {
+                cardsContainer.innerHTML = "<p>Nenhum usuário encontrado.</p>";
+            }
+        })
+        .catch(error => {
+            console.error("Erro ao carregar dados:", error);
+            const cardsContainer = document.getElementById("users-cards");
+            cardsContainer.innerHTML = "<p>Erro ao carregar os usuários. Tente novamente mais tarde.</p>";
+        });
+}
         // Função para editar um usuário
-        function editUser(id, name, number, dias, situacao, motivo) {
-            Swal.fire({
-                title: 'Editar Usuário',
-                html: `
-                    <label>Nome</label>
-                    <input id="swal-name" class="swal2-input" value="${name}">
-                    <label>Número</label>
-                    <input id="swal-number" class="swal2-input" value="${number}">
-                    <label>Dias</label>
-                    <input id="swal-dias" class="swal2-input" value="${dias}">
-                    <label>Situação</label>
-                    <input id="swal-situacao" class="swal2-input" value="${situacao}">
-                    <label>Motivo</label>
-                    <input id="swal-motivo" class="swal2-input" value="${motivo}">
-                `,
-                showCancelButton: true,
-                confirmButtonText: 'Salvar',
-                preConfirm: () => {
-                    const updatedData = {
-                        id,
-                        name: document.getElementById('swal-name').value,
-                        number: document.getElementById('swal-number').value,
-                        dias: document.getElementById('swal-dias').value,
-                        situacao: document.getElementById('swal-situacao').value,
-                        motivo: document.getElementById('swal-motivo').value,
-                        action: "update"
-                    };
+function editUser(id, name, number, dias, situacao, motivo) {
+    Swal.fire({
+        title: 'Editar Usuário',
+        html: `
+            <label><i class="fas fa-id-badge"></i> ID</label>
+            <input id="swal-name" class="swal2-input" value="${name}" readonly>
+            <label><i class="fas fa-user"></i> Nome</label>
+            <input id="swal-name" class="swal2-input" value="${name}">
+            <label><i class="fas fa-phone-alt"></i> Número</label>
+            <input id="swal-number" class="swal2-input" value="${number}">
+            <label><i class="fas fa-calendar-alt"></i> Dias</label>
+            <input id="swal-dias" class="swal2-input" value="${dias}">
+            <label><i class="fas fa-exclamation-circle"></i> Situação</label>
+            <select id="swal-situacao" class="swal2-input">
+                <option value="Livre" ${situacao === 'Livre' ? 'selected' : ''}>Livre</option>
+                <option value="Presa" ${situacao === 'Presa' ? 'selected' : ''}>Presa</option>
+            </select>
+            <label><i class="fas fa-info-circle"></i> Motivo</label>
+            <input id="swal-motivo" class="swal2-input" value="${motivo}">
+        `,
+        showCancelButton: true,
+        confirmButtonText: 'Salvar',
+        preConfirm: () => {
+            const updatedData = {
+                id,
+                name: document.getElementById('swal-name').value,
+                number: document.getElementById('swal-number').value,
+                dias: document.getElementById('swal-dias').value,
+                situacao: document.getElementById('swal-situacao').value,
+                motivo: document.getElementById('swal-motivo').value,
+                action: "update"
+            };
 
-                    return fetch(API_URL, {
-                        method: 'POST',
-                        body: new URLSearchParams(updatedData)
-                    });
-                }
-            }).then(() => loadUsers());
+            return fetch(API_URL, {
+                method: 'POST',
+                body: new URLSearchParams(updatedData)
+            });
         }
+    }).then(() => loadUsers());
+}
 
         // Função para excluir um usuário
         function deleteUser(id) {
