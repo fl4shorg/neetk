@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro e Edição de Usuários</title>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f5f5f5; }
+        h1, h2 { text-align: center; color: #333; }
+        .navbar { display: flex; justify-content: center; align-items: center; background-color: #007BFF; padding: 20px 0; color: #fff; }
+        .navbar-brand { font-size: 28px; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .navbar-brand i { font-size: 30px; }
+        .navbar-menu { list-style-type: none; display: flex; gap: 20px; margin: 0; padding: 0; }
+        .navbar-menu li a { color: #fff; text-decoration: none; font-size: 18px; transition: color 0.3s ease; }
+        .navbar-menu li a:hover { color: #f8d7da; }
+        @media (max-width: 768px) { .navbar-menu { flex-direction: column; align-items: flex-start; gap: 10px; } }
+        #users-cards { margin: 10px auto; padding: 10px; max-width: 500px; background: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        .user-card { border: 1px solid #ccc; padding: 15px; margin-bottom: 10px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); background: #fff; }
+        .actions { margin-top: 10px; display: flex; justify-content: space-between; }
+        @media (max-width: 600px) { #users-cards { padding: 15px; margin: 10px; } }
+        button { background-color: #007BFF; color: #fff; padding: 10px 15px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        
+        
+    .swal2-popup {
+        width: 400px !important; /* Define a largura do pop-up */
+        font-size: 16px; /* Define o tamanho da fonte */
+    }
+
+    .swal2-title {
+        font-size: 20px; /* Tamanho do título */
+    }
+
+    .swal2-content {
+        font-size: 14px; /* Tamanho do conteúdo */
+    }
+    
+    /* Estilos para o modo escuro */
+body.dark-mode {
+    background-color: #121212;
+    color: #fff;
+}
+
+body.dark-mode .navbar {
+    background-color: #333;
+}
+
+body.dark-mode .navbar-menu li a {
+    color: #fff;
+}
+
+body.dark-mode #users-cards,
+body.dark-mode .user-card {
+    background-color: #333;
+    color: #fff;
+    border-color: #555;
+}
+
+body.dark-mode button {
+    background-color: #444;
+    color: #fff;
+}
+
+body.dark-mode button:hover {
+    background-color: #666;
+}
+
+body.dark-mode .swal2-popup {
+    background-color: #333 !important;
+    color: #fff !important;
+}
+
+
+    body { 
+        font-family: Arial, sans-serif; 
+        background-color: #f5f5f5; 
+        color: #333;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    body.dark-mode {
+        background-color: #121212;
+        color: #fff;
+    }
+    .navbar { 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        background-color: #007BFF; 
+        padding: 20px; 
+    }
+    .navbar a { 
+        color: #fff; 
+        text-decoration: none; 
+        font-size: 18px; 
+    }
+    .toggle-btn {
+        cursor: pointer;
+        font-size: 20px;
+        color: #fff;
+        background: none;
+        border: none;
+    }
+
+
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+<!-- Navbar com opção de Modo Escuro -->
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+<div class="navbar" style="background: linear-gradient(90deg, #2575fc, #ff4081); padding: 20px; color: white; font-size: 36px; font-weight: bold;">
+    <div class="navbar-brand" style="display: flex; align-items: center; gap: 12px;">
+        <img src="svg/navbar.svg" alt="Navbar Icon" style="width: 1.5em; height: 1.5em; display: inline-block; vertical-align: middle;"> 
+        DASHBOARD
+    </div>
+    <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: none; border: none; color: white; font-size: 20px; cursor: pointer;">
+        <i id="icon" class="fas fa-moon"></i> <!-- Ícone inicial de lua para o modo escuro -->
+    </button>
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <div id="profileWrapper" style="position: relative; width: 50px; height: 50px; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 50%; background-color: #ccc;">
+            <i class="fas fa-user" id="defaultIcon" style="font-size: 24px; color: white;"></i>
+            <img id="profilePic" src="" alt="Profile" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; display: none;">
+        </div>
+        <input type="file" id="profileInput" style="display: none;" accept="image/*" onchange="changeProfilePic()">
+    </div>
+</div>
+
+<script>
+    // Função para alternar entre modo escuro e claro
+    function toggleDarkMode() {
+        const body = document.body;
+        const icon = document.getElementById("icon");
+
+        body.classList.toggle("dark-mode");
+
+        if (body.classList.contains("dark-mode")) {
+            icon.classList.remove("fa-moon");
+            icon.classList.add("fa-sun");
+        } else {
+            icon.classList.remove("fa-sun");
+            icon.classList.add("fa-moon");
+        }
+    }
+
+    // Carregar a foto de perfil do armazenamento local (se houver)
+    window.onload = function() {
+        const savedProfilePic = localStorage.getItem("profilePic");
+        const profilePic = document.getElementById("profilePic");
+        const defaultIcon = document.getElementById("defaultIcon");
+
+        if (savedProfilePic) {
+            profilePic.src = savedProfilePic;
+            profilePic.style.display = "block";
+            defaultIcon.style.display = "none";
+        }
+    };
+
+    // Função para alterar a foto de perfil
+    function changeProfilePic() {
+        const fileInput = document.getElementById("profileInput");
+        const profilePic = document.getElementById("profilePic");
+        const defaultIcon = document.getElementById("defaultIcon");
+        const file = fileInput.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = function() {
+                profilePic.src = reader.result;
+                profilePic.style.display = "block";
+                defaultIcon.style.display = "none";
+
+                localStorage.setItem("profilePic", reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    // Quando clicar no perfil, abre o seletor de arquivos
+    document.getElementById("profileWrapper").onclick = function() {
+        document.getElementById("profileInput").click();
+    };
+</script>
+
+<!-- Segunda Navbar -->
+
+
+
+<!-- Barra de Navegação com o Botão de Modo Escuro -->
+
+
+<!-- Estilos CSS para o Modo Escuro -->
+
+
+<!-- Função JavaScript para Alternar o Modo Escuro -->
+<script>
+    // Verifica se o modo escuro está ativado e aplica
+    if(localStorage.getItem('darkMode') === 'enabled') {
+        document.body.classList.add('dark-mode');
+    }
+
+    // Função para alternar o modo escuro
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        
+        // Salva a preferência no localStorage
+        if(document.body.classList.contains('dark-mode')) {
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            localStorage.setItem('darkMode', 'disabled');
+        }
+    }
+</script>
+
+
+<!-- Container para os cards -->
+<div id="summary-cards" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin-top: 20px; padding: 0 10px;"></div>
+
+
+
+<!-- Container para os gráficos -->
+<div style="display: flex; flex-direction: column; gap: 20px; margin-top: 20px; padding: 0 10px;">
+    <div id="graph-container" style="width: 100%; height: 400px;">
+        <canvas id="ctsChart"></canvas> <!-- Gráfico de Coluna -->
+    </div>
+    <div id="graph-pizza-container" style="width: 100%; height: 400px;">
+        <canvas id="pizzaChart"></canvas> <!-- Gráfico de Pizza -->
+    </div>
+</div>
+
+<!-- Link para Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<!-- Link para o Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const API_URL_2 = 'https://script.google.com/macros/s/AKfycbyM_j5fMnlmgp2IjXk2gHyleUtTR_5FJhTDabBvnYpbCEazdywk8HUcIPhBvgMmcFkM_w/exec?action=summary';  // Substitua por sua URL
+
+    function loadSummaryData() {
+        fetch(API_URL_2)
+            .then(response => response.json())
+            .then(data => {
+                const summaryCards = document.getElementById('summary-cards');
+                
+                // Checa se o card da situação já existe. Se não, cria o card.
+                let situationCard = document.getElementById('situation-card');
+                if (!situationCard) {
+                    situationCard = document.createElement('div');
+                    situationCard.id = 'situation-card';  // Garantindo que o card de situação tenha um ID único
+                    summaryCards.appendChild(situationCard);
+                }
+
+                // Atualizar a situação do grupo
+                const totalAdmins = data["Total de Administradores"];
+                let groupStatus = '';
+                let statusColor = '';
+                let statusIcon = '';
+
+                if (totalAdmins < 50) {
+                    groupStatus = 'Situação Ruim';
+                    statusColor = '#e74c3c'; // Vermelho
+                    statusIcon = 'fas fa-frown'; // Ícone de carinha triste
+                } else if (totalAdmins >= 50 && totalAdmins <= 100) {
+                    groupStatus = 'Situação Estável';
+                    statusColor = '#f1c40f'; // Amarelo
+                    statusIcon = 'fas fa-meh'; // Ícone de carinha neutra
+                } else {
+                    groupStatus = 'Situação Muito Boa';
+                    statusColor = '#2ecc71'; // Verde
+                    statusIcon = 'fas fa-smile'; // Ícone de carinha feliz
+                }
+
+                situationCard.innerHTML = `
+                    <div style="text-align: center;">
+                        <i class="${statusIcon}" style="font-size: 30px; color: #fff;"></i>
+                    </div>
+                    <h4 style="color: #fff; font-size: 14px; text-align: center;">Situação do Grupo</h4>
+                    <p style="color: #fff; font-size: 18px; font-weight: bold; text-align: center;">${groupStatus}</p>
+                `;
+                situationCard.style.backgroundColor = statusColor;
+                situationCard.style.padding = '10px';
+                situationCard.style.borderRadius = '8px';
+                situationCard.style.flex = '1 1 calc(50% - 10px)';
+                situationCard.style.boxSizing = 'border-box';
+
+                // Atualizar os outros cards
+                const cards = [
+                    { title: "Número do Grupo", value: data["Número do Grupo"], color: "#3498db", icon: "fa-users" },
+                    { title: "Total de Administradores", value: data["Total de Administradores"], color: "#e74c3c", icon: "fa-user-shield" },
+                    { title: "Jovens", value: data["Faixa Etária"].Jovens, color: "#2ecc71", icon: "fa-child" },
+                    { title: "Adolescentes", value: data["Faixa Etária"].Adolescentes, color: "#9b59b6", icon: "fa-user-graduate" },
+                    { title: "Adultos", value: data["Faixa Etária"].Adultos, color: "#f39c12", icon: "fa-user" },
+                    { title: "Último ID", value: data["Último ID Enviado"], color: "#16a085", icon: "fa-id-card" },
+                    { title: "Taxa de Crescimento", value: data["Taxa de Crescimento"], color: "#f1c40f", icon: "fa-chart-line" }
+                ];
+
+                // Remover e recriar os outros cards
+                summaryCards.innerHTML = '';
+                summaryCards.appendChild(situationCard);  // Re-add the situation card at the top
+                cards.forEach(card => {
+                    const cardElement = document.createElement('div');
+                    cardElement.classList.add('card');
+                    cardElement.style.backgroundColor = card.color;
+                    cardElement.style.padding = '10px';
+                    cardElement.style.borderRadius = '8px';
+                    cardElement.style.flex = '1 1 calc(50% - 10px)';
+                    cardElement.style.boxSizing = 'border-box';
+
+                    cardElement.innerHTML = `
+                        <div style="text-align: center;">
+                            <i class="fas ${card.icon}" style="font-size: 30px; color: #fff;"></i>
+                        </div>
+                        <h4 style="color: #fff; font-size: 14px; text-align: center;">${card.title}</h4>
+                        <p style="color: #fff; font-size: 18px; font-weight: bold; text-align: center;">${card.value}</p>
+                    `;
+                    summaryCards.appendChild(cardElement);
+                });
+
+                // Cálculo da Pontuação de CTS
+                const growthRate = parseFloat(data["Taxa de Crescimento"].replace('%', '').trim()) / 100;
+                const ctsScore = (totalAdmins + growthRate * 100) / 10;  // Calculando a pontuação
+                const finalScore = Math.min(Math.max(ctsScore, 0), 10);
+
+                // Criando o gráfico de barras (Coluna)
+                const ctxBar = document.getElementById('ctsChart').getContext('2d'); // Obtendo o contexto do canvas
+                new Chart(ctxBar, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Pontuação de CTS'],
+                        datasets: [{
+                            label: 'Pontuação',
+                            data: [finalScore],
+                            backgroundColor: '#3498db',
+                            borderColor: '#2980b9',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                min: 0,
+                                max: 10,
+                                ticks: {
+                                    stepSize: 1
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // Gráfico de Pizza para Total de Administradores (50 como meta)
+                const remainingAdmins = 50 - totalAdmins;
+                const ctxPizza = document.getElementById('pizzaChart').getContext('2d');
+                const pizzaData = {
+                    labels: ['Admins atingidos', 'Faltando Administradores'],
+                    datasets: [{
+                        data: [totalAdmins, remainingAdmins],
+                        backgroundColor: ['#2ecc71', '#e74c3c'],
+                        borderColor: ['#27ae60', '#c0392b'],
+                        borderWidth: 1
+                    }]
+                };
+
+                new Chart(ctxPizza, {
+                    type: 'doughnut',
+                    data: pizzaData,
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function(tooltipItem) {
+                                        return tooltipItem.label + ': ' + tooltipItem.raw + ' Administradores';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao carregar os dados:", error);
+            });
+    }
+
+    // Alteração do evento de carregamento para 'DOMContentLoaded'
+    document.addEventListener('DOMContentLoaded', loadSummaryData);
+
+    // Atualiza os dados a cada 30 segundos (30000ms)
+    setInterval(loadSummaryData, 30000);
+</script>
+
+
+
+
+    <!-- Container para os Cards dos Usuários -->
+    
+<!-- Contêiner com a pesquisa e os botões -->
+<div id="search-container" style="text-align: center; margin: 20px;">
+    <!-- Linha de Pesquisa -->
+    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+        <input type="text" id="search-input" placeholder="Pesquisar por ID, Nome, Instagram ou Número" 
+               style="padding: 10px; font-size: 16px; width: 300px; border: 1px solid #ddd; border-radius: 5px; margin-right: 10px;">
+        
+        <button onclick="searchUsers()" style="background-color: #4CAF50; color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px;">
+            <i class="fas fa-search"></i> Pesquisar
+        </button>
+    </div>
+
+    <!-- Botão de Cadastro com Ícone -->
+    <button id="registerButton" style="background-color: red; color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px; display: block; margin: 0 auto; font-size: 16px; display: flex; align-items: center;">
+        <!-- Ícone do Cadastro -->
+        <svg viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000" style="width: 25px; height: 25px; margin-right: 10px;">
+            <g id="SVGRepo_iconCarrier">
+                <path d="M195.2 534.4l147.2-147.2c73.6-1.6 140.8 28.8 203.2 91.2 62.4 62.4 92.8 129.6 91.2 203.2l-147.2 147.2c-81.6 81.6-212.8 81.6-294.4 0s-81.6-212.8 0-294.4z" fill="#2F4BFF"></path>
+                <path d="M217.6 556.8c-68.8 68.8-68.8 180.8 0 249.6s180.8 68.8 249.6 0l339.2-339.2c68.8-68.8 68.8-180.8 0-249.6s-180.8-68.8-249.6 0L217.6 556.8z m-22.4-22.4l339.2-339.2c81.6-81.6 212.8-81.6 294.4 0s81.6 212.8 0 294.4L489.6 828.8c-81.6 81.6-212.8 81.6-294.4 0s-81.6-212.8 0-294.4z" fill="#050D42"></path>
+                <path d="M590.4 433.6c-12.8 12.8-32 12.8-44.8 0-12.8-12.8-12.8-32 0-44.8 12.8-12.8 32-12.8 44.8 0 12.8 11.2 12.8 32 0 44.8z m136 67.2c-12.8 12.8-32 12.8-44.8 0s-12.8-32 0-44.8 32-12.8 44.8 0 12.8 32 0 44.8z m17.6-176c-9.6 9.6-24 9.6-33.6 0-9.6-9.6-9.6-24 0-33.6 9.6-9.6 24-9.6 33.6 0s9.6 24 0 33.6z m62.4-16c-6.4 6.4-16 6.4-22.4 0-6.4-6.4-6.4-16 0-22.4 6.4-6.4 16-6.4 22.4 0 6.4 4.8 6.4 16 0 22.4zM704 251.2c-6.4 6.4-16 6.4-22.4 0s-6.4-16 0-22.4 16-6.4 22.4 0c6.4 6.4 6.4 16 0 22.4z m-22.4 158.4c-6.4 6.4-16 6.4-22.4 0-6.4-6.4-6.4-16 0-22.4 6.4-6.4 16-6.4 22.4 0 6.4 6.4 6.4 16 0 22.4z m-124.8-100.8c-6.4 6.4-16 6.4-22.4 0-6.4-6.4-6.4-16 0-22.4 6.4-6.4 16-6.4 22.4 0 6.4 4.8 6.4 16 0 22.4z m107.2-17.6c-16 16-41.6 16-56 0s-16-41.6 0-56 41.6-16 56 0 16 40 0 56z" fill="#2F4BFF"></path>
+            </g>
+        </svg>
+        Cadastrar Novo Adm
+    </button>
+</div>
+    
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+
+<script>
+  // Função para abrir o popup
+  function openPopup() {
+    document.getElementById('popup').style.display = 'flex';
+  }
+
+  // Função para fechar o popup
+  function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+  }
+
+  // Função para verificar se o número está na lista negra
+  async function checkNumber() {
+    const number = document.getElementById('searchInput').value.trim();
+    
+    // Verifica se o número digitado está vazio
+    if (number === "") {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Atenção',
+        text: 'Digite um número para pesquisa!',
+      });
+      return;
+    }
+
+    try {
+      // Fazendo a requisição à API com o número digitado
+      const response = await fetch(`https://script.google.com/macros/s/AKfycbxIG53Hskr69iwx5OREGTqEHYkBCIQYwZr820x2gU7AJ2Fvd2b82iOszZMU0nQ5hQ/exec`);
+
+      // Verificando se a resposta da API é válida
+      if (!response.ok) {
+        throw new Error('Erro ao carregar os números.');
+      }
+
+      // Obtendo a resposta como texto, pois não é um JSON
+      const data = await response.text();
+
+      // Expressão regular para encontrar todos os números
+      const regex = /\d{11,}/g;  // Captura números com 11 ou mais dígitos
+      const numbers = data.match(regex);
+
+      if (numbers && numbers.includes(number)) {
+        // Número encontrado na lista
+        Swal.fire({
+          icon: 'success',
+          title: 'Número Encontrado',
+          text: `O número ${number} está na lista negra!`,
+        });
+      } else {
+        // Número não encontrado na lista
+        Swal.fire({
+          icon: 'error',
+          title: 'Número Não Encontrado',
+          text: `O número ${number} não foi encontrado na lista negra.`,
+        });
+      }
+    } catch (error) {
+      // Exibindo mensagem de erro em caso de falha
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro',
+        text: error.message,
+      });
+    }
+  }
+</script>
+
+<button onclick="openPopup()">Verificar Número</button>
+
+<!-- Popup -->
+<div id="popup" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center;">
+  <div style="background: #fff; padding: 20px; border-radius: 5px; text-align: center; width: 80%; max-height: 80%; overflow-y: auto;">
+    <h3>Verificar Número na Lista Negra</h3>
+    <input type="text" id="searchInput" placeholder="Digite o número" style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px;">
+    
+    <!-- Botão para verificar o número -->
+    <button onclick="checkNumber()" style="padding: 10px 20px; margin-top: 10px;">Verificar</button>
+    
+    <button onclick="closePopup()" style="margin-top: 10px;">Fechar</button>
+  </div>
+</div>
+    <div id="users-cards"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const API_URL = 'https://script.google.com/macros/s/AKfycbyM_j5fMnlmgp2IjXk2gHyleUtTR_5FJhTDabBvnYpbCEazdywk8HUcIPhBvgMmcFkM_w/exec';
+
+// Função para carregar os usuários
+// Função de pesquisa
+function searchUsers() {
+    const searchQuery = document.getElementById('search-input').value.toLowerCase();  // Pega o texto da pesquisa e converte para minúsculas
+    fetch(`${API_URL}?action=read`)
+        .then(response => response.text())
+        .then(data => {
+            const cardsContainer = document.getElementById("users-cards");
+            cardsContainer.innerHTML = "";  // Limpa os cards antes de exibir os resultados da pesquisa
+
+            if (data.trim().length > 0) {
+                // Se houver dados, divida e filtre com base no texto de pesquisa
+                const filteredData = data.trim().split("\n").slice(1).filter(line => {
+                    const user = line.split(",");
+                    // Verifica se qualquer campo contém o texto da pesquisa
+                    return user.some(field => field.toLowerCase().includes(searchQuery));
+                });
+
+                if (filteredData.length > 0) {
+                    // Se houver usuários que atendem ao critério, exibe os cards
+                    filteredData.forEach(line => {
+                        const user = line.split(",");
+                        const card = document.createElement("div");
+                        card.classList.add("user-card");
+                        card.innerHTML = `
+                            <h3><i class="fas fa-user"></i> ${user[1]}</h3>
+                            <p><strong><i class="fas fa-birthday-cake"></i> Idade:</strong> ${user[2]}</p>
+                            <p><strong><i class="fas fa-phone-alt"></i> Número:</strong> ${user[3]}</p>
+                            <p><strong><i class="fab fa-instagram"></i> Instagram:</strong> ${user[4]}</p>
+                            <p><strong><i class="fas fa-envelope"></i> E-mail:</strong> ${user[5]}</p>
+                            <p><strong><i class="fas fa-id-badge"></i> ID:</strong> ${user[0]}</p>
+                            <div class="actions">
+                                <button onclick="editUser('${user[0]}', '${user[1]}', ${user[2]}, '${user[3]}', '${user[4]}', '${user[5]}')" 
+                                        style="background-color: #4CAF50; color: white; padding: 8px 12px; margin-right: 5px; border: none; cursor: pointer;">
+                                    <i class="fas fa-edit"></i> Editar
+                                </button>
+                                <button onclick="deleteUser('${user[0]}')" 
+                                        style="background-color: #f44336; color: white; padding: 8px 12px; border: none; cursor: pointer;">
+                                    <i class="fas fa-trash-alt"></i> Excluir
+                                </button>
+                            </div>
+                        `;
+                        cardsContainer.appendChild(card);
+                    });
+                } else {
+                    cardsContainer.innerHTML = "<p>Nenhum usuário encontrado com essa pesquisa.</p>";
+                }
+            } else {
+                cardsContainer.innerHTML = "<p>Nenhum usuário encontrado.</p>";
+            }
+        })
+        .catch(error => {
+            console.error("Erro ao carregar dados:", error);
+            const cardsContainer = document.getElementById("users-cards");
+            cardsContainer.innerHTML = "<p>Erro ao carregar os usuários. Tente novamente mais tarde.</p>";
+        });
+}
+
+// Função de carregar usuários
+function loadUsers() {
+    fetch(`${API_URL}?action=read`)
+        .then(response => response.text())
+        .then(data => {
+            const cardsContainer = document.getElementById("users-cards");
+            cardsContainer.innerHTML = "";
+            if (data.trim().length > 0) {
+                data.trim().split("\n").slice(1).forEach(line => {
+                    const user = line.split(",");
+                    const card = document.createElement("div");
+                    card.classList.add("user-card");
+                    card.innerHTML = `
+                        <h3><i class="fas fa-user"></i> ${user[1]}</h3>
+                        <p><strong><i class="fas fa-birthday-cake"></i> Idade:</strong> ${user[2]}</p>
+                        <p><strong><i class="fas fa-phone-alt"></i> Número:</strong> ${user[3]}</p>
+                        <p><strong><i class="fab fa-instagram"></i> Instagram:</strong> ${user[4]}</p>
+                        <p><strong><i class="fas fa-envelope"></i> E-mail:</strong> ${user[5]}</p>
+                        <p><strong><i class="fas fa-id-badge"></i> ID:</strong> ${user[0]}</p>
+                        <div class="actions">
+                            <button onclick="editUser('${user[0]}', '${user[1]}', ${user[2]}, '${user[3]}', '${user[4]}', '${user[5]}')" 
+                                    style="background-color: #4CAF50; color: white; padding: 8px 12px; margin-right: 5px; border: none; cursor: pointer;">
+                                <i class="fas fa-edit"></i> Editar
+                            </button>
+                            <button onclick="deleteUser('${user[0]}')" 
+                                    style="background-color: #f44336; color: white; padding: 8px 12px; border: none; cursor: pointer;">
+                                <i class="fas fa-trash-alt"></i> Excluir
+                            </button>
+                        </div>
+                    `;
+                    cardsContainer.appendChild(card);
+                });
+            } else {
+                cardsContainer.innerHTML = "<p>Nenhum usuário encontrado.</p>";
+            }
+        })
+        .catch(error => {
+            console.error("Erro ao carregar dados:", error);
+            const cardsContainer = document.getElementById("users-cards");
+            cardsContainer.innerHTML = "<p>Erro ao carregar os usuários. Tente novamente mais tarde.</p>";
+        });
+}
+
+// Vincular a pesquisa ao evento de digitação
+document.getElementById('search-input').addEventListener('input', searchUsers);
+
+// Carregar os usuários inicialmente
+loadUsers();
+
+        // Função para gerar ID sugerido
+        function getSuggestedID() {
+            fetch(`${API_URL}?action=read`)
+                .then(response => response.text())
+                .then(data => {
+                    const lines = data.trim().split("\n");
+                    const lastUser = lines[lines.length - 1];
+                    const lastID = lastUser.split(",")[0];
+                    const newID = parseInt(lastID) + 1;
+                    document.getElementById('swal-id').value = newID;
+                    document.getElementById('id-suggestion').innerText = `ID Disponível: ${newID}`;
+                })
+                .catch(error => console.error('Erro ao gerar ID sugerido:', error));
+        }
+
+        // Exibir popup para cadastrar novo usuário
+document.getElementById("registerButton").addEventListener("click", function() {
+    Swal.fire({
+        title: 'Cadastrar Novo Adm',
+        html: `
+            <label for="swal-name"><i class="fas fa-id-badge"></i> Nome</label>
+            <input id="swal-name" class="swal2-input" placeholder="Nome">
+            
+            <label for="swal-age"><i class="fas fa-birthday-cake"></i> Idade</label>
+            <input id="swal-age" type="number" class="swal2-input" placeholder="Idade">
+            
+            <label for="swal-number"><i class="fas fa-phone-alt"></i> Número</label>
+            <input id="swal-number" class="swal2-input" placeholder="Número">
+            
+            <label for="swal-instagram"><i class="fab fa-instagram"></i> Instagram</label>
+            <input id="swal-instagram" class="swal2-input" placeholder="Instagram">
+            
+            <label for="swal-email"><i class="fas fa-envelope"></i> E-mail</label>
+            <input id="swal-email" type="email" class="swal2-input" placeholder="E-mail">
+            
+            <p id="id-suggestion">Aguarde, ID Disponível ...</p>
+            
+            <label for="swal-id"><i class="fas fa-hashtag"></i> ID</label>
+            <input id="swal-id" type="text" class="swal2-input" placeholder="ID" disabled>
+        `,
+        showCancelButton: true,
+        confirmButtonText: 'Cadastrar',
+        preConfirm: () => {
+            const name = document.getElementById('swal-name').value;
+            const age = document.getElementById('swal-age').value;
+            const number = document.getElementById('swal-number').value;
+            const instagram = document.getElementById('swal-instagram').value;
+            const email = document.getElementById('swal-email').value;
+            const id = document.getElementById('swal-id').value;
+            
+            // Enviar dados para a API
+            return fetch(API_URL, {
+                method: 'POST',
+                body: new URLSearchParams({
+                    action: 'create',
+                    name, age, number, instagram, email, id
+                })
+            });
+        },
+        customClass: {
+            popup: 'custom-popup'
+        },
+        didOpen: () => {
+            // Impede o movimento da página durante o preenchimento do formulário
+            document.querySelector('.swal2-popup').style.overflow = 'hidden';
+        }
+    }).then(() => {
+        loadUsers();
+    });
+
+    // Obter o ID sugerido
+    getSuggestedID();
+});
+
+        // Funções para editar e excluir usuários
+function editUser(id, name, age, number, instagram, email) {
+    Swal.fire({
+        title: 'Editar Usuário',
+        html: `
+            <div style="display: flex; align-items: center; margin-bottom: 12px; flex-wrap: wrap;">
+                <i class="fas fa-user" style="margin-right: 5px; font-size: 20px;"></i>
+                <label for="swal-name" style="font-size: 14px; margin-right: 10px; width: 25%;">Nome</label>
+                <input id="swal-name" class="swal2-input" value="${name}" style="flex-grow: 1; font-size: 14px; padding: 8px; width: 60%;">
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 12px; flex-wrap: wrap;">
+                <i class="fas fa-birthday-cake" style="margin-right: 5px; font-size: 20px;"></i>
+                <label for="swal-age" style="font-size: 14px; margin-right: 10px; width: 25%;">Idade</label>
+                <input id="swal-age" type="number" class="swal2-input" value="${age}" style="flex-grow: 1; font-size: 14px; padding: 8px; width: 60%;">
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 12px; flex-wrap: wrap;">
+                <i class="fas fa-phone" style="margin-right: 5px; font-size: 20px;"></i>
+                <label for="swal-number" style="font-size: 14px; margin-right: 10px; width: 25%;">Número</label>
+                <input id="swal-number" class="swal2-input" value="${number}" style="flex-grow: 1; font-size: 14px; padding: 8px; width: 60%;">
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 12px; flex-wrap: wrap;">
+                <i class="fab fa-instagram" style="margin-right: 5px; font-size: 20px;"></i>
+                <label for="swal-instagram" style="font-size: 14px; margin-right: 10px; width: 25%;">Instagram</label>
+                <input id="swal-instagram" class="swal2-input" value="${instagram}" style="flex-grow: 1; font-size: 14px; padding: 8px; width: 60%;">
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 12px; flex-wrap: wrap;">
+                <i class="fas fa-envelope" style="margin-right: 5px; font-size: 20px;"></i>
+                <label for="swal-email" style="font-size: 14px; margin-right: 10px; width: 25%;">E-mail</label>
+                <input id="swal-email" type="email" class="swal2-input" value="${email}" style="flex-grow: 1; font-size: 14px; padding: 8px; width: 60%;">
+            </div>
+        `,
+        width: '100%',  // Ajustando a largura para 100% da tela
+        padding: '20px',
+        showCancelButton: true,
+        confirmButtonText: 'Salvar',
+        preConfirm: () => {
+            const updatedData = {
+                id,
+                name: document.getElementById('swal-name').value,
+                age: document.getElementById('swal-age').value,
+                number: document.getElementById('swal-number').value,
+                instagram: document.getElementById('swal-instagram').value,
+                email: document.getElementById('swal-email').value,
+                action: "update"
+            };
+
+            return fetch(API_URL, {
+                method: 'POST',
+                body: new URLSearchParams(updatedData)
+            });
+        },
+        customClass: {
+            popup: 'swal2-popup-custom',  // Customização extra, se necessário
+        },
+        didOpen: () => {
+            const popup = document.querySelector('.swal2-popup');
+            // Impede rolagem horizontal
+            popup.style.overflowX = 'hidden';
+            popup.style.whiteSpace = 'normal';  // Impede quebras de linha inadequadas
+        },
+        onBeforeOpen: () => {
+            const popup = document.querySelector('.swal2-popup');
+            // Impede qualquer rolagem horizontal
+            popup.style.overflowX = 'hidden';
+            popup.style.whiteSpace = 'normal';
+        }
+    }).then(() => loadUsers());
+}
+
+        function deleteUser(id) {
+            Swal.fire({
+                title: 'Tem certeza?',
+                text: 'Você não poderá reverter isso!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sim, excluir',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(API_URL, {
+                        method: 'POST',
+                        body: new URLSearchParams({ id, action: "delete" })
+                    })
+                    .then(() => {
+                        Swal.fire('Usuário excluído!', '', 'success');
+                        loadUsers();
+                    })
+                    .catch(() => Swal.fire('Erro ao excluir o usuário.', '', 'error'));
+                }
+            });
+        }
+
+        window.onload = loadUsers;
+    </script>
+</body>
+</html>
