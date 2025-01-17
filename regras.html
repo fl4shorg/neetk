@@ -8,67 +8,107 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <style>
-        /* Reset e estilos globais */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
             font-family: Arial, sans-serif;
             background-image: url('imagens/3.jpg');
             background-size: cover;
             background-position: center;
             color: white;
-            padding-top: 100px; /* Aumento do espaço para navbar maior */
+            padding: 80px 20px 20px; /* Ajuste o padding superior para evitar que o conteúdo fique atrás da navbar */
+            margin: 0; /* Remove margens padrão do body */
         }
 
-        /* Navbar estilizada */
         .navbar {
-            background: linear-gradient(to right, #8e2de2, #4a00e0); /* Degradê roxo para azul */
-            display: flex;
-            justify-content: center; /* Centraliza o título */
-            align-items: center;
-            padding: 25px 20px; /* Aumento do padding para navbar maior */
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra para a navbar */
+            background-color: purple;
+            padding: 10px;
+            text-align: center;
+            width: 100%; /* Garante que a navbar ocupe toda a largura */
+            position: fixed; /* Fixa a navbar no topo */
+            top: 0; /* Fixa a navbar no topo */
+            left: 0; /* Garante que ela comece do lado esquerdo */
+            z-index: 1000; /* Para garantir que a navbar fique acima de outros elementos */
         }
 
         .navbar h1 {
+            margin: 0;
             color: #fff;
-            font-size: 36px; /* Aumento do tamanho do título */
-            letter-spacing: 1px;
         }
 
-        /* Estilo da barra de pesquisa */
+        .ultima-atualizacao {
+            color: #fff;
+            margin-top: 5px;
+            font-size: 0.9em;
+        }
+
+        .botao-pasta, .botao-download {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 12px; /* Diminuído o padding do botão de download */
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none; /* Remove underline for link */
+            font-size: 14px; /* Ajusta o tamanho da fonte */
+        }
+
+        .botao-pasta i, .botao-download i {
+            margin-right: 5px;
+        }
+
+        .botao-download {
+            background-color: #28a745;
+        }
+
+        .botao-download:hover {
+            background-color: #218838;
+        }
+
+        .regra {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .paragrafo {
+            margin-bottom: 10px;
+        }
+
+        .botao-copiar {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .botao-copiar:hover {
+            background-color: #0056b3;
+        }
+
         .barra-pesquisa {
-            margin-top: 20px;
+            margin-top: 70px; /* Margem superior para separar da navbar */
             margin-bottom: 20px;
             width: 100%;
             padding: 10px;
-            border-radius: 25px;
+            border-radius: 5px;
             border: 1px solid #ccc;
-            position: relative;
-            background-color: rgba(255, 255, 255, 0.9);
+            position: relative; /* Para posicionar o ícone */
         }
 
         .barra-pesquisa input {
-            width: 100%;
-            padding: 10px 40px 10px 15px; /* Ajuste para o ícone à direita */
-            border: none;
-            border-radius: 25px;
+            width: calc(100% - 40px); /* Ajusta a largura para o ícone */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
             outline: none;
             font-size: 16px;
-            background-color: transparent;
-        }
-
-        .barra-pesquisa input::placeholder {
-            color: #888;
         }
 
         .barra-pesquisa i {
@@ -76,101 +116,21 @@
             right: 10px;
             top: 50%;
             transform: translateY(-50%);
-            color: #888;
-            font-size: 18px;
+            color: #999; /* Cor do ícone */
         }
-
-        .barra-pesquisa input:focus {
-            background-color: #f0f0f0;
-        }
-
-        /* Estilo das regras (diminuído e ajustado) */
-        .regra {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 15px; /* Reduzido para deixar o card mais fino */
-            border-radius: 8px;
-            margin-bottom: 15px; /* Reduzido para maior espaçamento entre os cards */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra mais suave para os cards */
-            width: 90%; /* Ajuste da largura para os cards */
-            margin-left: auto;
-            margin-right: auto; /* Centralizando os cards */
-        }
-
-        /* Estilo da descrição e parágrafos */
-        .regra .descricao, .regra .paragrafo {
-            font-size: 14px; /* Reduzi o tamanho da fonte */
-            line-height: 1.4; /* Aumento do espaçamento entre as linhas */
-        }
-
-        /* Botões */
-        .botao-pasta, .botao-download, .botao-copiar {
-            display: inline-block;
-            margin-top: 20px; /* Aumento do espaço superior */
-            padding: 12px 20px;
-            color: white;
-            background-color: #007bff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-
-        .botao-pasta:hover, .botao-download:hover, .botao-copiar:hover {
-            background-color: #0056b3;
-        }
-
-        .botao-copiar {
-            background: linear-gradient(to right, #8e2de2, #4a00e0); /* Degradê de roxo e azul */
-            padding: 8px 15px; /* Tamanho reduzido */
-            font-size: 14px; /* Tamanho da fonte reduzido */
-        }
-
-        .botao-copiar i {
-            margin-right: 8px;
-        }
-
-        /* Ajuste para espaçamento dos parágrafos */
-        .regra p {
-            margin-bottom: 10px; /* Menor espaçamento entre os parágrafos */
-        }
-
-        /* Símbolo de ponto nos parágrafos */
-        .regra .paragrafo i {
-            color: #fff; /* Ponto branco */
-            margin-right: 10px;
-        }
-
-        .regra .descricao i {
-            color: #ff4500; /* Cor do símbolo na descrição */
-            margin-right: 10px;
-        }
-
-        /* Ajuste do título e da descrição */
-        .regra h3 {
-            margin-bottom: 15px; /* Aumento do espaço entre o título e a descrição */
-            font-size: 18px; /* Ajuste do tamanho do título */
-            color: #fff;
-            letter-spacing: 1px;
-        }
-
-        .regra .descricao {
-            font-size: 16px; /* Aumento do tamanho da descrição */
-            margin-bottom: 20px; /* Mais espaçamento entre descrição e parágrafos */
-        }
-
     </style>
 </head>
 <body>
     <div class="navbar">
-        <h1>Regras</h1>
+        <h1><i class="fas fa-gavel"></i> Regras</h1>
+        <div class="ultima-atualizacao">
+            <i class="fas fa-calendar-alt"></i> Última atualização: 31 de outubro de 2024
+        </div>
     </div>
     
     <div class="barra-pesquisa">
         <input type="text" id="barra-pesquisa-input" placeholder="Pesquisar regras...">
-        <i class="fas fa-search"></i>
+        <i class="fas fa-search"></i> <!-- Ícone de pesquisa -->
     </div>
 
     <button class="botao-pasta" onclick="window.location.href='https://drive.google.com/drive/folders/1EwNoYwRSlO4-a5KeQxKkvupTqzDRq1ih'">
@@ -202,20 +162,19 @@
                         regraDiv.appendChild(tituloDiv);
                         
                         const descricaoDiv = document.createElement('p');
-                        descricaoDiv.className = 'descricao';
-                        descricaoDiv.innerHTML = `<i class="fas fa-info-circle"></i> ${regra.descricao}`; // Símbolo na descrição
+                        descricaoDiv.innerText = regra.descricao;
                         regraDiv.appendChild(descricaoDiv);
                         
                         regra.paragrafos.forEach(paragrafo => {
                             const paragrafoDiv = document.createElement('p');
                             paragrafoDiv.className = 'paragrafo';
-                            paragrafoDiv.innerHTML = `<i class="fas fa-circle"></i> ${paragrafo.trim()}`; // Pontinho em cada parágrafo
+                            paragrafoDiv.innerText = paragrafo.trim();
                             regraDiv.appendChild(paragrafoDiv);
                         });
 
                         const botao = document.createElement('button');
                         botao.className = 'botao-copiar';
-                        botao.innerHTML = '<i class="fas fa-copy"></i> Copiar Regra';
+                        botao.innerText = 'Copiar Regra';
                         botao.onclick = () => {
                             const textoRegra = `${regra.titulo}\n${regra.descricao}\n${regra.paragrafos.join('\n')}`;
                             navigator.clipboard.writeText(textoRegra)
